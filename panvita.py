@@ -1634,8 +1634,102 @@ class Visualization:
         pass
 
     @staticmethod
-    def generate_panplot():
-        pass
+    def generate_lineplot(data_file, title, pan_label, core_label, output_file, fileType, outputs):
+        """Generate pan-genome lineplot with proper parameter handling"""
+        try:
+            # Generate pan-genome plot with validation
+            df_pan = pd.read_csv(data_file, sep=";")
+            
+            # Validate data before plotting
+            if len(df_pan) == 0:
+                print("Warning: No data found for pan-genome analysis!")
+                return outputs
+            
+            df_pan["Number of Genomes"] = list(range(1, len(df_pan["Strains"]) + 1))
+            df_pan = df_pan.rename(columns={'Core': 'Core Genes'})
+            
+            # Validate that core never exceeds pan
+            invalid_rows = df_pan[df_pan["Core Genes"] > df_pan["Pan"]]
+            if len(invalid_rows) > 0:
+                print("Warning: Found rows where core > pan, correcting...")
+                df_pan.loc[df_pan["Core Genes"] > df_pan["Pan"], "Core Genes"] = df_pan["Pan"]
+            
+            # Obter valores únicos dos dados para ajustar o tamanho da figura
+            unique_values = sorted(set(df_pan["Pan"].tolist() + df_pan["Core Genes"].tolist()))
+            # Adicionar 0 se não estiver presente
+            if 0 not in unique_values and min(unique_values) > 0:
+                unique_values = [0] + unique_values
+            # Usar apenas valores inteiros
+            unique_values = [int(val) for val in unique_values if val == int(val)]
+            
+            # Ajustar a altura com base no número de valores únicos
+            num_unique_values = len(unique_values)
+            # Garantir espaçamento adequado entre os valores do eixo Y
+            y_size = max(8, min(10, 4 + num_unique_values * 0.8))
+            
+            plt.figure(figsize=(12, y_size))
+            plt.subplot(1, 1, 1)
+            
+            # Create line plots with better styling
+            plt.plot(df_pan["Number of Genomes"], df_pan["Pan"], 
+                     label=pan_label, marker='o', linewidth=2.5, markersize=8, color='#1f77b4', alpha=0.8)
+            plt.plot(df_pan["Number of Genomes"], df_pan["Core Genes"], 
+                     label=core_label, marker='s', linewidth=2.5, markersize=8, color='#ff7f0e', alpha=0.8)
+            
+            plt.xlabel('Number of Genomes', fontsize=14, fontweight='bold')
+            plt.ylabel('Number of Genes', fontsize=14, fontweight='bold')
+            plt.title(title, fontsize=16, fontweight='bold', pad=20)
+            plt.legend(fontsize=12, frameon=True, shadow=True, loc='upper left')
+            plt.grid(True, alpha=0.3, linestyle='--')
+            
+            # Set integer ticks for x-axis
+            plt.xticks(range(1, len(df_pan) + 1))
+            
+            # Garantir que o eixo Y mostre valores exatos correspondentes aos dados
+            from matplotlib.ticker import FixedLocator
+            # Definir os ticks exatamente nos valores dos dados
+            plt.gca().yaxis.set_major_locator(FixedLocator(unique_values))
+            
+            # Add annotations for first and last points
+            if len(df_pan) > 1:
+                plt.annotate(f'Final Pan: {df_pan["Pan"].iloc[-1]}', 
+                            xy=(len(df_pan), df_pan["Pan"].iloc[-1]), 
+                            xytext=(10, 10), textcoords='offset points',
+                            bbox=dict(boxstyle='round,pad=0.3', fc='lightblue', alpha=0.7),
+                            fontsize=10)
+                plt.annotate(f'Final Core: {df_pan["Core Genes"].iloc[-1]}', 
+                            xy=(len(df_pan), df_pan["Core Genes"].iloc[-1]), 
+                            xytext=(10, -15), textcoords='offset points',
+                            bbox=dict(boxstyle='round,pad=0.3', fc='orange', alpha=0.7),
+                            fontsize=10)
+            
+            plt.tight_layout()
+            
+            # Ensure output_file is a string and has proper extension
+            if not isinstance(output_file, str):
+                output_file = str(output_file)
+            if not output_file.endswith(f'.{fileType}'):
+                output_file = f"{output_file}.{fileType}"
+            
+            plt.savefig(output_file, format=fileType, dpi=300, bbox_inches="tight")
+            plt.close()
+            outputs.append(output_file)
+            
+            print(f"Pan-genome analysis completed:")
+            print(f"  - Total genomes analyzed: {len(df_pan)}")
+            print(f"  - Final pan-genome size: {df_pan['Pan'].iloc[-1]} genes")
+            print(f"  - Final core-genome size: {df_pan['Core Genes'].iloc[-1]} genes")
+            print(f"  - Pan-genome plot saved as: {output_file}")
+            
+            # Additional statistics
+            if len(df_pan) > 1:
+                pan_growth = df_pan['Pan'].iloc[-1] - df_pan['Pan'].iloc[0]
+                core_reduction = df_pan['Core Genes'].iloc[0] - df_pan['Core Genes'].iloc[-1]
+                print(f"  - Pan-genome growth: +{pan_growth} genes")
+                print(f"  - Core-genome reduction: -{core_reduction} genes")
+                
+        except Exception as e:
+            print(f"Error generating lineplot {output_file}: {e}")
 
 class PanViTa:
     def __init__(self):
@@ -2331,88 +2425,8 @@ Contact: dlnrodrigues@ufmg.br
                 # Write to file
                 panomic.write(f"{strain_names[i]};{len(core_genes)};{len(pan_genes)}\n")
         
-        # Generate pan-genome plot with validation
-        df_pan = pd.read_csv(t3, sep=";")
-        
-        # Validate data before plotting
-        if len(df_pan) == 0:
-            print("Warning: No data found for pan-genome analysis!")
-            return outputs
-        
-        df_pan["Number of Genomes"] = list(range(1, len(df_pan["Strains"]) + 1))
-        df_pan = df_pan.rename(columns={'Core': 'Core Genes'})
-        
-        # Validate that core never exceeds pan
-        invalid_rows = df_pan[df_pan["Core Genes"] > df_pan["Pan"]]
-        if len(invalid_rows) > 0:
-            print("Warning: Found rows where core > pan, correcting...")
-            df_pan.loc[df_pan["Core Genes"] > df_pan["Pan"], "Core Genes"] = df_pan["Pan"]
-        
-        # Obter valores únicos dos dados para ajustar o tamanho da figura
-        unique_values = sorted(set(df_pan["Pan"].tolist() + df_pan["Core Genes"].tolist()))
-        # Adicionar 0 se não estiver presente
-        if 0 not in unique_values and min(unique_values) > 0:
-            unique_values = [0] + unique_values
-        # Usar apenas valores inteiros
-        unique_values = [int(val) for val in unique_values if val == int(val)]
-        
-        # Ajustar a altura com base no número de valores únicos
-        num_unique_values = len(unique_values)
-        # Garantir espaçamento adequado entre os valores do eixo Y
-        y_size = max(8, min(10, 4 + num_unique_values * 0.8))
-        
-        plt.figure(figsize=(12, y_size))
-        plt.subplot(1, 1, 1)
-        
-        # Create line plots with better styling
-        plt.plot(df_pan["Number of Genomes"], df_pan["Pan"], 
-                 label=l1, marker='o', linewidth=2.5, markersize=8, color='#1f77b4', alpha=0.8)
-        plt.plot(df_pan["Number of Genomes"], df_pan["Core Genes"], 
-                 label=l2, marker='s', linewidth=2.5, markersize=8, color='#ff7f0e', alpha=0.8)
-        
-        plt.xlabel('Number of Genomes', fontsize=14, fontweight='bold')
-        plt.ylabel('Number of Genes', fontsize=14, fontweight='bold')
-        plt.title(t4, fontsize=16, fontweight='bold', pad=20)
-        plt.legend(fontsize=12, frameon=True, shadow=True, loc='center right')
-        plt.grid(True, alpha=0.3, linestyle='--')
-        
-        # Set integer ticks for x-axis
-        plt.xticks(range(1, len(df_pan) + 1))
-        
-        # Garantir que o eixo Y mostre valores exatos correspondentes aos dados
-        from matplotlib.ticker import FixedLocator
-        # Definir os ticks exatamente nos valores dos dados
-        plt.gca().yaxis.set_major_locator(FixedLocator(unique_values))
-        
-        # Add annotations for first and last points
-        if len(df_pan) > 1:
-            plt.annotate(f'Final Pan: {df_pan["Pan"].iloc[-1]}', 
-                        xy=(len(df_pan), df_pan["Pan"].iloc[-1]), 
-                        xytext=(10, 10), textcoords='offset points',
-                        bbox=dict(boxstyle='round,pad=0.3', fc='lightblue', alpha=0.7),
-                        fontsize=10)
-            plt.annotate(f'Final Core: {df_pan["Core Genes"].iloc[-1]}', 
-                        xy=(len(df_pan), df_pan["Core Genes"].iloc[-1]), 
-                        xytext=(10, -15), textcoords='offset points',
-                        bbox=dict(boxstyle='round,pad=0.3', fc='orange', alpha=0.7),
-                        fontsize=10)
-        
-        plt.tight_layout()
-        plt.savefig(t5, format=fileType, dpi=300, bbox_inches="tight")
-        plt.close()
-        
-        print(f"Pan-genome analysis completed:")
-        print(f"  - Total genomes analyzed: {len(df_pan)}")
-        print(f"  - Final pan-genome size: {df_pan['Pan'].iloc[-1]} genes")
-        print(f"  - Final core-genome size: {df_pan['Core Genes'].iloc[-1]} genes")
-        print(f"  - Pan-genome plot saved as: {t5}")
-        
-        # Additional statistics
-        if len(df_pan) > 1:
-            pan_growth = df_pan['Pan'].iloc[-1] - df_pan['Pan'].iloc[0]
-            core_reduction = df_pan['Core Genes'].iloc[0] - df_pan['Core Genes'].iloc[-1]
-            print(f"  - Pan-genome growth: +{pan_growth} genes")
-            print(f"  - Core-genome reduction: -{core_reduction} genes")
+        # Generate pan-genome plot using the new method
+        Visualization.generate_lineplot(t3, t4, l1, l2, t5, fileType, outputs)
         
         # Pan-distribution analysis
         if db_param == "-card":
