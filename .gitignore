@@ -1,0 +1,18 @@
+# Ignore everything
+*
+
+# But don't ignore this .gitignore file
+!.gitignore
+!requirements.txt
+!install_dependencies.py
+!install_linux.sh
+!install_windows.bat
+!scripts/
+!scripts/*
+
+# Don't ignore the main script
+!panvita.py
+
+# Don't ignore README if it exists
+!README.md
+!INSTALL.md

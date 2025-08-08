@@ -1,0 +1,13 @@
+# PanVITA - Dependências Python
+# Análise de dados
+pandas>=1.3.0
+
+# Visualização
+matplotlib>=3.3.0
+seaborn>=0.11.0
+
+# Mapas geográficos
+basemap>=1.3.0
+
+# Download de arquivos
+wget>=3.2
