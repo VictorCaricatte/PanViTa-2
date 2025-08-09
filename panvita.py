@@ -1412,9 +1412,9 @@ class Visualization:
         db_name = db_param[1:]  # Remove the '-' from parameter name
         
         if aligner_suffix:
-            out = f"clustermap_{db_name}_{aligner_suffix}.{fileType}"
+            out = f"heatmap_{db_name}_{aligner_suffix}.{fileType}"
         else:
-            out = f"clustermap_{db_name}.{fileType}"
+            out = f"heatmap_{db_name}.{fileType}"
         
         outputs.append(out)
         
@@ -1628,9 +1628,11 @@ class Visualization:
                 if "Unnamed:" in col:
                     df = df.drop(columns=[col])
 
-            # Compute metrics per strain
+            # Compute metrics per strain - fix NAType error
             genes_present = (df > 0).sum(axis=1).astype(int)
-            mean_identity = df.replace(0, pd.NA).astype(float).mean(axis=1, skipna=True).fillna(0)
+            # Convert to numeric first, then replace 0 with NaN, then calculate mean
+            df_numeric = df.apply(pd.to_numeric, errors='coerce')
+            mean_identity = df_numeric.replace(0, pd.NA).mean(axis=1, skipna=True).fillna(0)
 
             metrics = pd.DataFrame({
                 "Strain": df.index,
@@ -1672,7 +1674,9 @@ class Visualization:
                     df = df.drop(columns=[col])
 
             genes_present = (df > 0).sum(axis=1).astype(int)
-            mean_identity = df.replace(0, pd.NA).astype(float).mean(axis=1, skipna=True).fillna(0)
+            # Convert to numeric first, then replace 0 with NaN, then calculate mean
+            df_numeric = df.apply(pd.to_numeric, errors='coerce')
+            mean_identity = df_numeric.replace(0, pd.NA).mean(axis=1, skipna=True).fillna(0)
             metrics = pd.DataFrame({"GenesPresent": genes_present, "MeanIdentity": mean_identity})
 
             g = sns.jointplot(
@@ -1692,36 +1696,116 @@ class Visualization:
 
     @staticmethod
     def generate_scatterplot_heatmap(data_file, db_param, outputs, erro, aligner_suffix=""):
-        """2D binned heatmap (hex) for GenesPresent vs MeanIdentity using seaborn"""
-        try:
-            fileType = "pdf" if "-pdf" in sys.argv or "-png" not in sys.argv else "png"
-            if "-png" in sys.argv:
-                fileType = "png"
-            db_name = db_param[1:]
-            out = f"scatter_heatmap_{db_name}{f'_{aligner_suffix}' if aligner_suffix else ''}.{fileType}"
-            outputs.append(out)
+        """Gera um scatter "heatmap" no estilo do exemplo do seaborn:
+        - X: proteínas/genes
+        - Y: Strains (genomas)
+        - Cor (hue) e tamanho (size): % identidade
+        A paleta de cores é sequencial e depende do db_param (baseada em generate_heatmap)."""
+        # Saída
+        fileType = "pdf"
+        if "-pdf" in sys.argv:
+            fileType = "pdf"
+        elif "-png" in sys.argv:
+            fileType = "png"
 
+        db_name = db_param[1:]
+        out = f"scatter_heatmap_{db_name}{f'_{aligner_suffix}' if aligner_suffix else ''}.{fileType}"
+        outputs.append(out)
+
+        # Tema semelhante ao exemplo solicitado
+        try:
+            sns.set_theme(style="whitegrid")
+            # Leitura e preparo
             df = pd.read_csv(data_file, sep=';').set_index('Strains')
+            # Remover colunas não nomeadas
             for col in list(df.columns):
                 if "Unnamed:" in col:
                     df = df.drop(columns=[col])
 
-            genes_present = (df > 0).sum(axis=1).astype(int)
-            mean_identity = df.replace(0, pd.NA).astype(float).mean(axis=1, skipna=True).fillna(0)
-            metrics = pd.DataFrame({"GenesPresent": genes_present, "MeanIdentity": mean_identity})
+            # Long-form: Strains, Gene, Identity
+            long_df = df.reset_index().melt(id_vars='Strains', var_name='Gene', value_name='Identity')
+            # Garantir tipo numérico para Identity e filtrar zeros/NaN
+            long_df['Identity'] = pd.to_numeric(long_df['Identity'], errors='coerce')
+            long_df = long_df[long_df['Identity'] > 0]
+            if long_df.empty:
+                print(f"Warning: No data to plot for scatter heatmap {out}")
+                return
 
-            g = sns.jointplot(
-                data=metrics, x="GenesPresent", y="MeanIdentity",
-                kind="hex", cmap="magma", height=8
+            # Limites para normalização de tamanho/cor
+            id_min = float(long_df['Identity'].min())
+            id_max = float(long_df['Identity'].max())
+            if id_max <= id_min:
+                id_max = id_min + 1.0
+
+            # Paleta contínua dependente do db_param (seguindo generate_heatmap)
+            if db_param == "-card":
+                palette = "Blues"
+            elif db_param == "-vfdb":
+                palette = "Reds"
+            elif db_param == "-bacmet":
+                palette = "Greens"
+            elif db_param == "-megares":
+                palette = "Oranges"
+            else:
+                palette = "viridis"
+
+            # Dimensionamento dinâmico: altura baseada em strains e largura proporcional a genes
+            n_genes = long_df['Gene'].nunique()
+            n_strains = long_df['Strains'].nunique()
+            # Altura: escala suavemente com o número de strains
+            height = max(5, min(22, 2 + 0.28 * n_strains))
+            # Aspecto (largura/altura): proporcional à razão genes/strains (com limites mais largos para mais espaço no X)
+            aspect_ratio = max(15.0, min(15.0, n_genes / max(n_strains, 1)))
+
+            print(f"\nPlotting scatter heatmap{f' ({aligner_suffix})' if aligner_suffix else ''}...")
+
+
+            g = sns.relplot(
+                data=long_df,
+                x="Gene", y="Strains",
+                hue="Identity", size="Identity",
+                palette=palette, legend=True,
+                hue_norm=(id_min, id_max),
+                edgecolor=".7",
+                height=height,
+                sizes=(id_min * 10, id_max * 10),  # Tamanho proporcional ao Identity
+                size_norm=(id_min, id_max),
+                aspect=aspect_ratio
             )
-            g.set_axis_labels("Genes Present", "Mean Identity (%)")
-            g.figure.suptitle("Binned Density Heatmap", y=1.02, fontweight="bold")
 
-            g.fig.savefig(out, format=fileType, dpi=300, bbox_inches="tight")
-            plt.close(g.fig)
-            print(f"Scatter heatmap (hex) saved as: {out}")
-        except Exception as e:
-            erro_string = f"\nFailed to plot scatter heatmap ({db_param}): {e}"
+            # Ajustes de estilo no espírito do exemplo
+            g.set(xlabel="Genes", ylabel="Strains")
+            g.despine(left=True, bottom=True)
+            # Reduzir espaçamento vertical entre categorias e margens extras
+            try:
+                g.ax.set_ylim(-0.5, n_strains - 0.5)
+            except Exception:
+                pass
+            # Aumentar espaço no X e reduzir ao máximo no Y
+            g.ax.margins(x=.08, y=0.0)
+            # Reduzir padding entre ticks/labels no Y e aumentar no X
+            try:
+                # Tamanho de fonte dinâmico para Y para compactar visualmente
+                y_labelsize = max(7, min(11, 12 - int(n_strains * 0.15)))
+                g.ax.tick_params(axis='y', pad=0, labelsize=y_labelsize)
+                g.ax.tick_params(axis='x', pad=10)
+            except Exception:
+                pass
+            for label in g.ax.get_xticklabels():
+                label.set_rotation(90)
+
+            g.figure.suptitle(f"Scatter Heatmap - {db_name.upper()}", y=1.02, fontweight="bold")
+
+            # Salvar
+            g.figure.savefig(out, format=fileType, dpi=300, bbox_inches="tight")
+            plt.close(g.figure)
+            print(f"Scatter heatmap saved as: {out}")
+
+        except BaseException as e:
+            erro_string = (
+                f"\nIt was not possible to plot the scatter heatmap {out}...\n"
+                f"Error: {e}\nPlease verify the GenBank files and the matrix_x.csv output."
+            )
             erro.append(erro_string)
             print(erro_string)
 
@@ -2461,9 +2545,12 @@ Contact: dlnrodrigues@ufmg.br
                 df = pd.read_csv(titulo, sep=';')
                 df = df.set_index('Strains')
                 
-                # Generate clustermap
+                # Generate heatmap
                 Visualization.generate_heatmap(titulo, p, outputs, self.erro, aligner_suffix)
-                
+                Visualization.generate_clustermap(titulo, p, outputs, self.erro, aligner_suffix)
+                Visualization.generate_scatterplot_heatmap(titulo, p, outputs, self.erro, aligner_suffix)
+                Visualization.generate_joint_and_marginal_histograms(titulo, p, outputs, self.erro, aligner_suffix)
+
                 # Process omics analysis
                 lines = list(df.index.values)
                 analysis_outputs = self._process_omics_analysis(df, lines, p, aligner_suffix)
