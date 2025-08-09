@@ -2406,7 +2406,7 @@ Contact: dlnrodrigues@ufmg.br
                 for i in os.listdir(tabular1_dir):
                     DataProcessor.blastmining_specific(i, tabular1_dir, tabular2_dir)
 
-    def _run_analysis_workflow(self):
+    def _run_analysis_workflow(self, aligner_types, aligner_names):
         """Run the main analysis workflow for each database"""
         for p in self.parameters:
             db_name = p[1:]  
@@ -2538,7 +2538,7 @@ Contact: dlnrodrigues@ufmg.br
                         color = "black\n"
                     out.write(final[j][1][0] + '\t' + final[j][1][1].strip() + '\t' + final[j][0] + '\t' + color)
 
-    def _process_omics_analysis(self, df, db_param, aligner_suffix=""):
+    def _process_omics_analysis(self, df, lines, db_param, aligner_suffix=""):
         """Process omics analysis and generate output files"""
         fileType = "pdf"
         if "-pdf" in sys.argv:
@@ -2656,8 +2656,6 @@ Contact: dlnrodrigues@ufmg.br
         
         # Generate pan-genome plot using the new method
         Visualization.generate_lineplot(t3, t4, l1, l2, t5, fileType, outputs)
-        Visualization.generate_scatterplot_heatmap(t3, t4, l1, l2, t5, fileType, outputs)
-        Visualization.generate_joint_and_marginal_histograms(t3, t4, l1, l2, t5, fileType, outputs)
         
         # Pan-distribution analysis
         if db_param == "-card":
