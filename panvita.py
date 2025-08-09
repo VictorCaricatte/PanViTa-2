@@ -2552,12 +2552,12 @@ Contact: dlnrodrigues@ufmg.br
         output_setup = self._setup_output_files(db_param, fileType, aligner_suffix)
         
         # Unpack based on actual length returned
-        if len(output_setup) == 13:  # CARD and MEGARes case (13 elements: 7 base + 6 specific)
-            outputs, t1, t2, t3, t4, l1, l2, t6, t7, t8, t9, t10, t11 = output_setup
-        elif len(output_setup) == 12:  # VFDB and BACMET case (12 elements: 7 base + 5 specific)
-            outputs, t1, t2, t3, t4, l1, l2, t6, t7, t8, t9, t10, t11 = output_setup + [None]
+        if len(output_setup) == 17:  # CARD and MEGARes case (17 elements: 7 base + 10 specific)
+            outputs, t1, t2, t3, t4, l1, l2, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15 = output_setup
+        elif len(output_setup) == 16:  # VFDB and BACMET case (16 elements: 7 base + 9 specific)
+            outputs, t1, t2, t3, t4, l1, l2, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15 = output_setup + [None]
         else:  # Fallback for any other case
-            outputs, t1, t2, t3, t4, l1, l2, t6, t7, t8, t9, t10, t11 = output_setup + [None] * (13 - len(output_setup))
+            outputs, t1, t2, t3, t4, l1, l2, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15 = output_setup + [None] * (17 - len(output_setup))
         
         t5 = t3.replace("csv", fileType)
         outputs.append(t5)
@@ -2659,13 +2659,13 @@ Contact: dlnrodrigues@ufmg.br
         
         # Pan-distribution analysis
         if db_param == "-card":
-            self._process_card_distribution(t1, t6, t7, t8, t9, t10, t11, fileType, outputs)
+            self._process_card_distribution(t1, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, fileType, outputs)
         elif db_param == "-vfdb":
-            self._process_vfdb_distribution(t1, t6, t7, t10, fileType, outputs)
+            self._process_vfdb_distribution(t1, t6, t7, t10, t12, t14, fileType, outputs)
         elif db_param == "-bacmet":
-            self._process_bacmet_distribution(t1, t6, t7, t8, t10, fileType, outputs)
+            self._process_bacmet_distribution(t1, t6, t7, t8, t10, t12, t14, fileType, outputs)
         elif db_param == "-megares":
-            self._process_megares_distribution(t1, t6, t7, t8, t9, t10, t11, fileType, outputs)
+            self._process_megares_distribution(t1, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, fileType, outputs)
         
         return outputs
 
@@ -2698,7 +2698,11 @@ Contact: dlnrodrigues@ufmg.br
                     "mechanisms_plot": f"card_mechanisms_barplot{suffix}.{fileType}",
                     "drug_classes_plot": f"card_drug_classes_barplot{suffix}.{fileType}",
                     "mechanisms_scatter": f"card_mechanisms_scatterplot{suffix}.{fileType}",
-                    "drug_classes_scatter": f"card_drug_classes_scatterplot{suffix}.{fileType}"
+                    "drug_classes_scatter": f"card_drug_classes_scatterplot{suffix}.{fileType}",
+                    "mechanisms_bubble": f"card_mechanisms_bubble{suffix}.{fileType}",
+                    "drug_classes_bubble": f"card_drug_classes_bubble{suffix}.{fileType}",
+                    "mechanisms_strip": f"card_mechanisms_strip{suffix}.{fileType}",
+                    "drug_classes_strip": f"card_drug_classes_strip{suffix}.{fileType}"
                 }
             },
             "-vfdb": {
@@ -2711,7 +2715,9 @@ Contact: dlnrodrigues@ufmg.br
                     "pan_analysis": f"vfdb_pan{suffix}.csv",
                     "mechanisms": f"vfdb_mechanisms{suffix}.csv",
                     "mechanisms_plot": f"vfdb_mechanisms_barplot{suffix}.{fileType}",
-                    "mechanisms_scatter": f"vfdb_mechanisms_scatterplot{suffix}.{fileType}"
+                    "mechanisms_scatter": f"vfdb_mechanisms_scatterplot{suffix}.{fileType}",
+                    "mechanisms_bubble": f"vfdb_mechanisms_bubble{suffix}.{fileType}",
+                    "mechanisms_strip": f"vfdb_mechanisms_strip{suffix}.{fileType}"
                 }
             },
             "-bacmet": {
@@ -2725,7 +2731,9 @@ Contact: dlnrodrigues@ufmg.br
                     "heavy_metals": f"bacmet_heavy_metals{suffix}.csv",
                     "all_compounds": f"bacmet_all_compounds{suffix}.csv",
                     "heavy_metals_plot": f"bacmet_heavy_metals_barplot{suffix}.{fileType}",
-                    "heavy_metals_scatter": f"bacmet_heavy_metals_scatterplot{suffix}.{fileType}"
+                    "heavy_metals_scatter": f"bacmet_heavy_metals_scatterplot{suffix}.{fileType}",
+                    "heavy_metals_bubble": f"bacmet_heavy_metals_bubble{suffix}.{fileType}",
+                    "heavy_metals_strip": f"bacmet_heavy_metals_strip{suffix}.{fileType}"
                 }
             },
             "-megares": {
@@ -2741,7 +2749,11 @@ Contact: dlnrodrigues@ufmg.br
                     "mechanisms_plot": f"megares_mechanisms_barplot{suffix}.{fileType}",
                     "drug_classes_plot": f"megares_drug_classes_barplot{suffix}.{fileType}",
                     "mechanisms_scatter": f"megares_mechanisms_scatterplot{suffix}.{fileType}",
-                    "drug_classes_scatter": f"megares_drug_classes_scatterplot{suffix}.{fileType}"
+                    "drug_classes_scatter": f"megares_drug_classes_scatterplot{suffix}.{fileType}",
+                    "mechanisms_bubble": f"megares_mechanisms_bubble{suffix}.{fileType}",
+                    "drug_classes_bubble": f"megares_drug_classes_bubble{suffix}.{fileType}",
+                    "mechanisms_strip": f"megares_mechanisms_strip{suffix}.{fileType}",
+                    "drug_classes_strip": f"megares_drug_classes_strip{suffix}.{fileType}"
                 }
             }
         }
@@ -2782,7 +2794,11 @@ Contact: dlnrodrigues@ufmg.br
                 config["files"]["mechanisms_plot"],      # t8
                 config["files"]["drug_classes_plot"],    # t9
                 config["files"]["mechanisms_scatter"],   # t10
-                config["files"]["drug_classes_scatter"]  # t11
+                config["files"]["drug_classes_scatter"], # t11
+                config["files"]["mechanisms_bubble"],    # t12
+                config["files"]["drug_classes_bubble"],  # t13
+                config["files"]["mechanisms_strip"],     # t14
+                config["files"]["drug_classes_strip"]    # t15
             ]
         elif db_param == "-vfdb":
             return base_return + [
@@ -2791,7 +2807,11 @@ Contact: dlnrodrigues@ufmg.br
                 None,                                     # t8 (not used for VFDB)
                 None,                                     # t9 (not used for VFDB)
                 config["files"]["mechanisms_scatter"],   # t10
-                None                                      # t11 (not used for VFDB)
+                None,                                     # t11 (not used for VFDB)
+                config["files"]["mechanisms_bubble"],    # t12
+                None,                                     # t13 (not used for VFDB)
+                config["files"]["mechanisms_strip"],     # t14
+                None                                      # t15 (not used for VFDB)
             ]
         elif db_param == "-bacmet":
             return base_return + [
@@ -2800,7 +2820,11 @@ Contact: dlnrodrigues@ufmg.br
                 config["files"]["heavy_metals_plot"],    # t8
                 None,                                     # t9 (not used for BacMet)
                 config["files"]["heavy_metals_scatter"], # t10
-                None                                      # t11 (not used for BacMet)
+                None,                                     # t11 (not used for BacMet)
+                config["files"]["heavy_metals_bubble"],  # t12
+                None,                                     # t13 (not used for BacMet)
+                config["files"]["heavy_metals_strip"],   # t14
+                None                                      # t15 (not used for BacMet)
             ]
         elif db_param == "-megares":
             return base_return + [
@@ -2809,13 +2833,17 @@ Contact: dlnrodrigues@ufmg.br
                 config["files"]["mechanisms_plot"],      # t8
                 config["files"]["drug_classes_plot"],    # t9
                 config["files"]["mechanisms_scatter"],   # t10
-                config["files"]["drug_classes_scatter"]  # t11
+                config["files"]["drug_classes_scatter"], # t11
+                config["files"]["mechanisms_bubble"],    # t12
+                config["files"]["drug_classes_bubble"],  # t13
+                config["files"]["mechanisms_strip"],     # t14
+                config["files"]["drug_classes_strip"]    # t15
             ]
         
         # Fallback (should not reach here due to validation above)
-        return base_return + [None, None, None, None, None, None]
+        return base_return + [None, None, None, None, None, None, None, None, None, None]
 
-    def _process_card_distribution(self, t1, t6, t7, t8, t9, t10, t11, fileType, outputs):
+    def _process_card_distribution(self, t1, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, fileType, outputs):
         """Process CARD database distribution analysis"""
         print("\nMaking the pan-distribution...")
         aro = pd.read_csv(os.path.join(self.dbpath, "aro_index.tsv"), sep="\t")
@@ -2944,18 +2972,26 @@ Contact: dlnrodrigues@ufmg.br
                 Visualization.generate_barplot(t6, "Resistance Mechanism", t8, fileType, outputs)
             if t10 is not None:
                 Visualization.generate_scatterplot(t6, "Resistance Mechanism", t10, fileType, outputs)
+            if t12 is not None:
+                Visualization.generate_scatterplot_with_continuous_hues_and_sizes(t6, "Resistance Mechanism", t12, fileType, outputs)
+            if t14 is not None:
+                Visualization.generate_regression_fit_over_strip_plot(t6, "Resistance Mechanism", t14, fileType, outputs)
             
             # Drug classes
             if t9 is not None:
                 Visualization.generate_barplot(t7, "Drug Class", t9, fileType, outputs)
             if t11 is not None:
                 Visualization.generate_scatterplot(t7, "Drug Class", t11, fileType, outputs)
+            if t13 is not None:
+                Visualization.generate_scatterplot_with_continuous_hues_and_sizes(t7, "Drug Class", t13, fileType, outputs)
+            if t15 is not None:
+                Visualization.generate_regression_fit_over_strip_plot(t7, "Drug Class", t15, fileType, outputs)
         except Exception as e:
             print(f"Error generating plots: {e}")
             import traceback
             traceback.print_exc()
 
-    def _process_vfdb_distribution(self, t1, t6, t7, t10, fileType, outputs):
+    def _process_vfdb_distribution(self, t1, t6, t7, t10, t12, t14, fileType, outputs):
         """Process VFDB database distribution analysis"""
         print("\nMaking the pan-distribution...")
         
@@ -3008,10 +3044,14 @@ Contact: dlnrodrigues@ufmg.br
                 Visualization.generate_barplot(t6, "Virulence Mechanism", t7, fileType, outputs)
             if t10 is not None:
                 Visualization.generate_scatterplot(t6, "Virulence Mechanism", t10, fileType, outputs)
+            if t12 is not None:
+                Visualization.generate_scatterplot_with_continuous_hues_and_sizes(t6, "Virulence Mechanism", t12, fileType, outputs)
+            if t14 is not None:
+                Visualization.generate_regression_fit_over_strip_plot(t6, "Virulence Mechanism", t14, fileType, outputs)
         except Exception as e:
             print(f"Error generating plots: {e}")
 
-    def _process_bacmet_distribution(self, t1, t6, t7, t8, t10, fileType, outputs):
+    def _process_bacmet_distribution(self, t1, t6, t7, t8, t10, t12, t14, fileType, outputs):
         """Process BacMet database distribution analysis"""
         db = pd.read_csv(os.path.join(self.dbpath, "bacmet_2.txt"), sep="\t")
         genes_list = db["Gene_name"].tolist()
@@ -3117,10 +3157,14 @@ Contact: dlnrodrigues@ufmg.br
                 Visualization.generate_barplot(t6, "Compound", t8, fileType, outputs)
             if t10 is not None:
                 Visualization.generate_scatterplot(t6, "Compound", t10, fileType, outputs)
+            if t12 is not None:
+                Visualization.generate_scatterplot_with_continuous_hues_and_sizes(t6, "Compound", t12, fileType, outputs)
+            if t14 is not None:
+                Visualization.generate_regression_fit_over_strip_plot(t6, "Compound", t14, fileType, outputs)
         except Exception as e:
             print(f"Error generating plots: {e}")
 
-    def _process_megares_distribution(self, t1, t6, t7, t8, t9, t10, t11, fileType, outputs):
+    def _process_megares_distribution(self, t1, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, fileType, outputs):
         """Process MEGARes database distribution analysis"""
         print("\nMaking the MEGARes pan-distribution...")
         
@@ -3199,12 +3243,20 @@ Contact: dlnrodrigues@ufmg.br
                 Visualization.generate_barplot(t6, "Resistance Mechanism", t8, fileType, outputs)
             if t10 is not None:
                 Visualization.generate_scatterplot(t6, "Resistance Mechanism", t10, fileType, outputs)
+            if t12 is not None:
+                Visualization.generate_scatterplot_with_continuous_hues_and_sizes(t6, "Resistance Mechanism", t12, fileType, outputs)
+            if t14 is not None:
+                Visualization.generate_regression_fit_over_strip_plot(t6, "Resistance Mechanism", t14, fileType, outputs)
             
             # Drug classes
             if t9 is not None:
                 Visualization.generate_barplot(t7, "Drug Class", t9, fileType, outputs)
             if t11 is not None:
                 Visualization.generate_scatterplot(t7, "Drug Class", t11, fileType, outputs)
+            if t13 is not None:
+                Visualization.generate_scatterplot_with_continuous_hues_and_sizes(t7, "Drug Class", t13, fileType, outputs)
+            if t15 is not None:
+                Visualization.generate_regression_fit_over_strip_plot(t7, "Drug Class", t15, fileType, outputs)
         except Exception as e:
             print(f"Error generating plots: {e}")
 
