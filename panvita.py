@@ -1612,26 +1612,255 @@ class Visualization:
         except Exception as e:
             print(f"Error generating scatterplot {output_file}: {e}")
 
+    @staticmethod
+    def generate_scatterplot_with_marginal_ticks(data_file, db_param, outputs, erro, aligner_suffix=""):
+        """Scatter (GenesPresent vs MeanIdentity) with marginal ticks using seaborn"""
+        try:
+            fileType = "pdf" if "-pdf" in sys.argv or "-png" not in sys.argv else "png"
+            if "-png" in sys.argv:
+                fileType = "png"
+            db_name = db_param[1:]
+            out = f"scatter_marginals_{db_name}{f'_{aligner_suffix}' if aligner_suffix else ''}.{fileType}"
+            outputs.append(out)
+
+            df = pd.read_csv(data_file, sep=';').set_index('Strains')
+            for col in list(df.columns):
+                if "Unnamed:" in col:
+                    df = df.drop(columns=[col])
+
+            # Compute metrics per strain
+            genes_present = (df > 0).sum(axis=1).astype(int)
+            mean_identity = df.replace(0, pd.NA).astype(float).mean(axis=1, skipna=True).fillna(0)
+
+            metrics = pd.DataFrame({
+                "Strain": df.index,
+                "GenesPresent": genes_present,
+                "MeanIdentity": mean_identity
+            })
+
+            g = sns.JointGrid(data=metrics, x="GenesPresent", y="MeanIdentity", height=8)
+            g.plot_joint(sns.scatterplot, s=70, alpha=0.7)
+            sns.rugplot(data=metrics, x="GenesPresent", ax=g.ax_marg_x, height=0.05)
+            sns.rugplot(data=metrics, y="MeanIdentity", ax=g.ax_marg_y, height=0.05)
+
+            g.ax_joint.set_xlabel("Genes Present", fontweight="bold")
+            g.ax_joint.set_ylabel("Mean Identity (%)", fontweight="bold")
+            g.ax_joint.set_title("Genes Present vs Mean Identity", pad=20, fontweight="bold")
+
+            g.figure.savefig(out, format=fileType, dpi=300, bbox_inches="tight")
+            plt.close(g.figure)
+            print(f"Scatter with marginal ticks saved as: {out}")
+        except Exception as e:
+            erro_string = f"\nFailed to plot scatter with marginal ticks ({db_param}): {e}"
+            erro.append(erro_string)
+            print(erro_string)
 
     @staticmethod
-    def generate_heatmap_without_numbers():
-        pass
+    def generate_joint_and_marginal_histograms(data_file, db_param, outputs, erro, aligner_suffix=""):
+        """Joint and marginal histograms (2D) for GenesPresent vs MeanIdentity using seaborn"""
+        try:
+            fileType = "pdf" if "-pdf" in sys.argv or "-png" not in sys.argv else "png"
+            if "-png" in sys.argv:
+                fileType = "png"
+            db_name = db_param[1:]
+            out = f"joint_hist_{db_name}{f'_{aligner_suffix}' if aligner_suffix else ''}.{fileType}"
+            outputs.append(out)
+
+            df = pd.read_csv(data_file, sep=';').set_index('Strains')
+            for col in list(df.columns):
+                if "Unnamed:" in col:
+                    df = df.drop(columns=[col])
+
+            genes_present = (df > 0).sum(axis=1).astype(int)
+            mean_identity = df.replace(0, pd.NA).astype(float).mean(axis=1, skipna=True).fillna(0)
+            metrics = pd.DataFrame({"GenesPresent": genes_present, "MeanIdentity": mean_identity})
+
+            g = sns.jointplot(
+                data=metrics, x="GenesPresent", y="MeanIdentity",
+                kind="hist", bins="auto", cmap="viridis", cbar=True, height=8
+            )
+            g.set_axis_labels("Genes Present", "Mean Identity (%)")
+            g.figure.suptitle("Joint and Marginal Histograms", y=1.02, fontweight="bold")
+
+            g.fig.savefig(out, format=fileType, dpi=300, bbox_inches="tight")
+            plt.close(g.fig)
+            print(f"Joint/marginal histograms saved as: {out}")
+        except Exception as e:
+            erro_string = f"\nFailed to plot joint/marginal histograms ({db_param}): {e}"
+            erro.append(erro_string)
+            print(erro_string)
 
     @staticmethod
-    def generate_jointgrid():
-        pass
+    def generate_scatterplot_heatmap(data_file, db_param, outputs, erro, aligner_suffix=""):
+        """2D binned heatmap (hex) for GenesPresent vs MeanIdentity using seaborn"""
+        try:
+            fileType = "pdf" if "-pdf" in sys.argv or "-png" not in sys.argv else "png"
+            if "-png" in sys.argv:
+                fileType = "png"
+            db_name = db_param[1:]
+            out = f"scatter_heatmap_{db_name}{f'_{aligner_suffix}' if aligner_suffix else ''}.{fileType}"
+            outputs.append(out)
+
+            df = pd.read_csv(data_file, sep=';').set_index('Strains')
+            for col in list(df.columns):
+                if "Unnamed:" in col:
+                    df = df.drop(columns=[col])
+
+            genes_present = (df > 0).sum(axis=1).astype(int)
+            mean_identity = df.replace(0, pd.NA).astype(float).mean(axis=1, skipna=True).fillna(0)
+            metrics = pd.DataFrame({"GenesPresent": genes_present, "MeanIdentity": mean_identity})
+
+            g = sns.jointplot(
+                data=metrics, x="GenesPresent", y="MeanIdentity",
+                kind="hex", cmap="magma", height=8
+            )
+            g.set_axis_labels("Genes Present", "Mean Identity (%)")
+            g.figure.suptitle("Binned Density Heatmap", y=1.02, fontweight="bold")
+
+            g.fig.savefig(out, format=fileType, dpi=300, bbox_inches="tight")
+            plt.close(g.fig)
+            print(f"Scatter heatmap (hex) saved as: {out}")
+        except Exception as e:
+            erro_string = f"\nFailed to plot scatter heatmap ({db_param}): {e}"
+            erro.append(erro_string)
+            print(erro_string)
 
     @staticmethod
-    def generate_hexbin():
-        pass
+    def generate_scatterplot_with_continuous_hues_and_sizes(data_file, index_col, output_file, fileType, outputs):
+        """Bubble scatter: x=index_col (categorical), y=Category, hue/size by Count (continuous) using seaborn"""
+        try:
+            data = pd.read_csv(data_file, sep=';', index_col=index_col)
+            if data is None or data.empty:
+                print(f"No data to plot for {output_file}")
+                return
+
+            long_df = data.reset_index().melt(id_vars=index_col, var_name="Category", value_name="Count")
+
+            num_x = long_df[index_col].nunique()
+            num_y = long_df["Category"].nunique()
+
+            base_w, base_h = 10, 6
+            width = max(base_w, min(24, base_w + num_x * 0.7))
+            height = max(base_h, min(16, base_h + num_y * 0.7))
+
+            plt.figure(figsize=(width, height))
+            ax = sns.scatterplot(
+                data=long_df, x=index_col, y="Category",
+                hue="Count", size="Count", sizes=(40, 600),
+                palette="viridis", alpha=0.8, edgecolor="black", linewidth=0.4
+            )
+            ax.set_title(f"Counts by {index_col} and Category", fontweight="bold")
+            ax.set_xlabel(index_col, fontweight="bold")
+            ax.set_ylabel("Category", fontweight="bold")
+            plt.xticks(rotation=45, ha="right")
+            plt.grid(True, linestyle="--", alpha=0.3)
+
+            if not isinstance(output_file, str):
+                output_file = str(output_file)
+            if not output_file.endswith(f".{fileType}"):
+                output_file = f"{output_file}.{fileType}"
+
+            plt.tight_layout()
+            plt.savefig(output_file, format=fileType, dpi=300, bbox_inches="tight")
+            plt.close()
+            outputs.append(output_file)
+            print(f"Bubble scatter saved as: {output_file} (size: {width:.1f}x{height:.1f})")
+        except Exception as e:
+            print(f"Error generating bubble scatter {output_file}: {e}")
 
     @staticmethod
-    def generate_scatterplot_with_marginal_ticks():
-        pass
+    def generate_regression_fit_over_strip_plot(data_file, index_col, output_file, fileType, outputs):
+        """Strip plot with regression fit (trend over ordered categories) using seaborn"""
+        try:
+            data = pd.read_csv(data_file, sep=';', index_col=index_col)
+            if data is None or data.empty:
+                print(f"No data to plot for {output_file}")
+                return
+
+            long_df = data.reset_index().melt(id_vars=index_col, var_name="Category", value_name="Count")
+            # Map categories to numeric positions
+            x_levels = list(long_df[index_col].unique())
+            x_pos_map = {cat: idx for idx, cat in enumerate(x_levels)}
+            long_df["x_pos"] = long_df[index_col].map(x_pos_map)
+
+            base_w = 10
+            width = max(base_w, min(24, base_w + len(x_levels) * 0.6))
+            height = 8
+
+            plt.figure(figsize=(width, height))
+            # Strip plot (categorical)
+            sns.stripplot(data=long_df, x=index_col, y="Count", hue="Category", jitter=0.25, dodge=True, alpha=0.6)
+            # Regression over numeric x positions (trend across index_col order)
+            sns.regplot(data=long_df, x="x_pos", y="Count", scatter=False, color="black", line_kws={"lw": 2})
+
+            plt.xticks(ticks=range(len(x_levels)), labels=x_levels, rotation=45, ha="right")
+            plt.xlabel(index_col, fontweight="bold")
+            plt.ylabel("Count", fontweight="bold")
+            plt.title(f"Regression Fit over {index_col}", fontweight="bold")
+            plt.grid(True, linestyle="--", alpha=0.3)
+            plt.tight_layout()
+
+            if not isinstance(output_file, str):
+                output_file = str(output_file)
+            if not output_file.endswith(f".{fileType}"):
+                output_file = f"{output_file}.{fileType}"
+
+            plt.savefig(output_file, format=fileType, dpi=300, bbox_inches="tight")
+            plt.close()
+            outputs.append(output_file)
+            print(f"Regression over strip plot saved as: {output_file} (size: {width:.1f}x{height:.1f})")
+        except Exception as e:
+            print(f"Error generating regression over strip plot {output_file}: {e}")
 
     @staticmethod
-    def generate_scatterplot_heatmap():
-        pass
+    def generate_clustermap(data_file, db_param, outputs, erro, aligner_suffix=""):
+        """Hierarchical clustermap using seaborn.clustermap"""
+        fileType = "pdf"
+        if "-pdf" in sys.argv:
+            fileType = "pdf"
+        elif "-png" in sys.argv:
+            fileType = "png"
+
+        db_name = db_param[1:]
+        out = f"clustermap_hierarchical_{db_name}{f'_{aligner_suffix}' if aligner_suffix else ''}.{fileType}"
+        outputs.append(out)
+
+        if db_param == "-card":
+            cmap = "Blues"
+        elif db_param == "-vfdb":
+            cmap = "Reds"
+        elif db_param == "-bacmet":
+            cmap = "Greens"
+        elif db_param == "-megares":
+            cmap = "Oranges"
+        else:
+            cmap = "viridis"
+
+        try:
+            df = pd.read_csv(data_file, sep=';').set_index('Strains')
+            for col in list(df.columns):
+                if "Unnamed:" in col:
+                    df = df.drop(columns=[col])
+
+            if df.empty or df.shape[1] == 0:
+                print(f"Warning: Empty data for clustermap: {data_file}")
+                return
+
+            # Create clustermap
+            g = sns.clustermap(
+                df, cmap=cmap, method="average", metric="euclidean",
+                z_score=None, standard_scale=None, cbar_kws={'label': 'Identity (%)'},
+                figsize=(12, max(6, min(18, 0.4 * len(df.index) + 4)))
+            )
+            g.fig.suptitle(f"Hierarchical Clustermap - {db_name.upper()}", y=1.02, fontweight="bold")
+
+            g.savefig(out, format=fileType, dpi=300, bbox_inches="tight")
+            plt.close(g.fig)
+            print(f"Hierarchical clustermap saved as: {out}")
+        except Exception as e:
+            erro_string = f"\nIt was not possible to plot the hierarchical clustermap {out}: {e}"
+            erro.append(erro_string)
+            print(erro_string)
 
     @staticmethod
     def generate_lineplot(data_file, title, pan_label, core_label, output_file, fileType, outputs):
@@ -1671,10 +1900,10 @@ class Visualization:
             plt.subplot(1, 1, 1)
             
             # Create line plots with better styling
-            plt.plot(df_pan["Number of Genomes"], df_pan["Pan"], 
-                     label=pan_label, marker='o', linewidth=2.5, markersize=8, color='#1f77b4', alpha=0.8)
-            plt.plot(df_pan["Number of Genomes"], df_pan["Core Genes"], 
-                     label=core_label, marker='s', linewidth=2.5, markersize=8, color='#ff7f0e', alpha=0.8)
+            sns.lineplot(x=df_pan["Number of Genomes"], y=df_pan["Pan"], 
+                         marker='o', linewidth=2.5, markersize=8, color='#1f77b4', alpha=0.8, label=pan_label)
+            sns.lineplot(x=df_pan["Number of Genomes"], y=df_pan["Core Genes"], 
+                         marker='s', linewidth=2.5, markersize=8, color='#ff7f0e', alpha=0.8, label=core_label)
             
             plt.xlabel('Number of Genomes', fontsize=14, fontweight='bold')
             plt.ylabel('Number of Genes', fontsize=14, fontweight='bold')
@@ -1819,7 +2048,7 @@ Hello user!
 This script has the function of comparing multiple genomes against previously selected databases.
 The result consists of a clustermap and a presence matrix.
 
-Contact: dlnrodrigues@ufmg.br
+Contact: dlnrodrigues@ufmg.br - victorsc@ufmg.br - vinicius.oliveira.1444802@sga.pucminas.br
 
 Let's continue with your analysis.''')
 
@@ -2177,7 +2406,7 @@ Contact: dlnrodrigues@ufmg.br
                 for i in os.listdir(tabular1_dir):
                     DataProcessor.blastmining_specific(i, tabular1_dir, tabular2_dir)
 
-    def _run_analysis_workflow(self, aligner_types, aligner_names):
+    def _run_analysis_workflow(self):
         """Run the main analysis workflow for each database"""
         for p in self.parameters:
             db_name = p[1:]  
@@ -2309,7 +2538,7 @@ Contact: dlnrodrigues@ufmg.br
                         color = "black\n"
                     out.write(final[j][1][0] + '\t' + final[j][1][1].strip() + '\t' + final[j][0] + '\t' + color)
 
-    def _process_omics_analysis(self, df, lines, db_param, aligner_suffix=""):
+    def _process_omics_analysis(self, df, db_param, aligner_suffix=""):
         """Process omics analysis and generate output files"""
         fileType = "pdf"
         if "-pdf" in sys.argv:
@@ -2427,6 +2656,8 @@ Contact: dlnrodrigues@ufmg.br
         
         # Generate pan-genome plot using the new method
         Visualization.generate_lineplot(t3, t4, l1, l2, t5, fileType, outputs)
+        Visualization.generate_scatterplot_heatmap(t3, t4, l1, l2, t5, fileType, outputs)
+        Visualization.generate_joint_and_marginal_histograms(t3, t4, l1, l2, t5, fileType, outputs)
         
         # Pan-distribution analysis
         if db_param == "-card":
