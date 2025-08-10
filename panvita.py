@@ -19,6 +19,7 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import numpy as np
 import wget
 
 class PanViTaConfig:
@@ -1267,16 +1268,17 @@ class Visualization:
 
         dicl = {}
         totalgenes = set()  # Use set for better performance
+        found_genes_per_strain = {}  # Track found genes per strain for save-genes functionality
         
         # Check if directory exists and has files
         if not os.path.exists(tabular_dir):
             print(f"Warning: Directory {tabular_dir} not found!")
-            return titulo, dicl, []
+            return titulo, dicl, [], found_genes_per_strain
             
         files_in_dir = os.listdir(tabular_dir)
         if not files_in_dir:
             print(f"Warning: No files found in {tabular_dir}!")
-            return titulo, dicl, []
+            return titulo, dicl, [], found_genes_per_strain
         
         print(f"Processing {len(files_in_dir)} strain files...")
         
@@ -1304,6 +1306,7 @@ class Visualization:
             genes = {}
             genes_found = 0
             debug_sample_count = 0
+            strain_found_genes = {}  # Track locus_tags and genes for this strain
             
             for j in linhas:
                 linha = j.strip()
@@ -1321,6 +1324,7 @@ class Visualization:
                     
                 gene = None
                 original_gene = None  # For debugging
+                locus_tag = linha[0]  # First column is the locus_tag
                 
                 # Special handling for MEGARes first - extract exact MEG_ID
                 if 'MEG_' in linha[1] and '|' in linha[1]:
@@ -1360,11 +1364,18 @@ class Visualization:
                         genes[gene] = identidade
                         totalgenes.add(gene)
                         genes_found += 1
+                        
+                        # Store locus_tag for save-genes functionality
+                        if gene not in strain_found_genes:
+                            strain_found_genes[gene] = []
+                        strain_found_genes[gene].append(locus_tag)
+                        
                     except (ValueError, IndexError):
                         print(f"Warning: Invalid identity value in {file_path}: {linha}")
                         continue
             
             dicl[str(linhagem)] = genes
+            found_genes_per_strain[str(linhagem)] = strain_found_genes
             print(f"  - {linhagem}: {genes_found} genes found")
         
         # Convert set back to sorted list for consistent output
@@ -1380,7 +1391,7 @@ class Visualization:
                 saida.write('Strains\n')
                 for strain in dicl.keys():
                     saida.write(strain + '\n')
-            return titulo, dicl, []
+            return titulo, dicl, [], found_genes_per_strain
         
         with open(titulo, 'w') as saida:
             saida.write('Strains')
@@ -1398,7 +1409,7 @@ class Visualization:
                 saida.write('\n')
         
         print(f"Matrix saved as: {titulo}")
-        return titulo, dicl, totalgenes
+        return titulo, dicl, totalgenes, found_genes_per_strain
 
     @staticmethod
     def generate_heatmap(data_file, db_param, outputs, erro, aligner_suffix=""):
@@ -1613,39 +1624,135 @@ class Visualization:
             print(f"Error generating scatterplot {output_file}: {e}")
 
     @staticmethod
-    def generate_joint_and_marginal_histograms(data_file, db_param, outputs, erro, aligner_suffix=""):
-        """Joint and marginal histograms (2D) for GenesPresent vs MeanIdentity using seaborn"""
+    def generate_joint_and_marginal_distributions(data_file, db_param, outputs, erro, aligner_suffix=""):
+        """Hexbin joint plot with marginal distributions using seaborn"""
         try:
             fileType = "pdf" if "-pdf" in sys.argv or "-png" not in sys.argv else "png"
             if "-png" in sys.argv:
                 fileType = "png"
             db_name = db_param[1:]
-            out = f"joint_hist_{db_name}{f'_{aligner_suffix}' if aligner_suffix else ''}.{fileType}"
+            out = f"joint_hexbin_{db_name}{f'_{aligner_suffix}' if aligner_suffix else ''}.{fileType}"
             outputs.append(out)
+
+            # Database-specific color palettes (matching other generate methods)
+            if db_param == "-card":
+                color_palette = "Blues"
+                main_color = "#2171b5"  # Blue
+            elif db_param == "-vfdb":
+                color_palette = "Reds"
+                main_color = "#cb181d"  # Red
+            elif db_param == "-bacmet":
+                color_palette = "Greens"
+                main_color = "#238b45"  # Green
+            elif db_param == "-megares":
+                color_palette = "Oranges"
+                main_color = "#d94801"  # Orange
+            else:
+                color_palette = "viridis"
+                main_color = "#4CB391"  # Default
 
             df = pd.read_csv(data_file, sep=';').set_index('Strains')
             for col in list(df.columns):
                 if "Unnamed:" in col:
                     df = df.drop(columns=[col])
 
+            # Metrics
             genes_present = (df > 0).sum(axis=1).astype(int)
-            # Convert to numeric first, then replace 0 with NaN, then calculate mean
             df_numeric = df.apply(pd.to_numeric, errors='coerce')
-            mean_identity = df_numeric.replace(0, pd.NA).mean(axis=1, skipna=True).fillna(0)
+            # Calculate mean identity, replacing 0 with NaN for calculation, then fill NaN with 0
+            mean_identity_temp = df_numeric.replace(0, pd.NA).mean(axis=1, skipna=True)
+            mean_identity = pd.to_numeric(mean_identity_temp.fillna(0), errors='coerce')
             metrics = pd.DataFrame({"GenesPresent": genes_present, "MeanIdentity": mean_identity})
 
-            g = sns.jointplot(
-                data=metrics, x="GenesPresent", y="MeanIdentity",
-                kind="hist", bins="auto", cmap="viridis", cbar=True, height=8
-            )
-            g.set_axis_labels("Genes Present", "Mean Identity (%)")
-            g.figure.suptitle("Joint and Marginal Histograms", y=1.02, fontweight="bold")
+            if metrics.empty:
+                print(f"Warning: No data to plot for hexbin jointplot ({db_param})")
+                return
 
-            g.fig.savefig(out, format=fileType, dpi=300, bbox_inches="tight")
-            plt.close(g.fig)
-            print(f"Joint/marginal histograms saved as: {out}")
+            # Check if we have enough data points for a meaningful hexbin plot
+            if len(metrics) < 2:
+                print(f"Warning: Not enough data points ({len(metrics)}) for hexbin jointplot ({db_param}). Need at least 2 strains.")
+                return
+            
+            # Check for valid numeric ranges to avoid division by zero
+            x_range = metrics["GenesPresent"].max() - metrics["GenesPresent"].min()
+            y_range = metrics["MeanIdentity"].max() - metrics["MeanIdentity"].min()
+            
+            if x_range == 0 and y_range == 0:
+                print(f"Warning: No variation in data for hexbin jointplot ({db_param}). All values are identical.")
+                return
+            elif x_range == 0:
+                print(f"Warning: No variation in genes present for hexbin jointplot ({db_param})")
+                return
+            elif y_range == 0:
+                print(f"Warning: No variation in mean identity for hexbin jointplot ({db_param})")
+                return
+
+            # Calculate dynamic figure size based on data range
+            data_span_x = x_range if x_range > 0 else 10
+            data_span_y = y_range if y_range > 0 else 10
+            
+            # Base size with scaling factor
+            base_size = 6
+            scale_factor = min(1.5, max(0.8, (data_span_x + data_span_y) / 100))
+            fig_size = base_size * scale_factor
+            
+            # Set the correct theme
+            sns.set_theme(style="ticks")
+            
+            try:
+                x = metrics["GenesPresent"].to_numpy()
+                y = metrics["MeanIdentity"].to_numpy()
+
+                # Create hexbin plot with consistent colors and appropriate scaling
+                g = sns.jointplot(
+                    x=x, y=y, 
+                    kind="hex", 
+                    color=main_color,
+                    height=fig_size,
+                    joint_kws={
+                        'gridsize': 15,  # Moderate hexagon size
+                        'cmap': color_palette,
+                        'alpha': 0.8,  # Full opacity for hexagons
+                        'edgecolors': 'white'  # White edges for better definition
+                    },
+                    marginal_kws={
+                        'color': main_color,
+                        'alpha': 0.8,
+                        'bins': 15
+                    }
+                )
+                
+                # Set labels and title
+                g.set_axis_labels("Genes Present", "Mean Identity (%)", fontsize=12, fontweight='bold')
+                g.figure.suptitle(f"Hexbin plot with marginal distributions - {db_name.upper()}", 
+                                y=1.02, fontsize=14, fontweight="bold")
+                
+                # Improve axis appearance
+                g.ax_joint.tick_params(labelsize=10)
+                
+                # Add some padding to the axes
+                x_padding = x_range * 0.05 if x_range > 0 else 1
+                y_padding = y_range * 0.05 if y_range > 0 else 1
+                
+                g.ax_joint.set_xlim(
+                    metrics["GenesPresent"].min() - x_padding,
+                    metrics["GenesPresent"].max() + x_padding
+                )
+                g.ax_joint.set_ylim(
+                    metrics["MeanIdentity"].min() - y_padding,
+                    metrics["MeanIdentity"].max() + y_padding
+                )
+
+                g.figure.savefig(out, format=fileType, dpi=300, bbox_inches="tight")
+                plt.close(g.figure)
+                print(f"Hexbin jointplot saved as: {out}")
+                
+            finally:
+                # Reset theme to default after plotting
+                sns.reset_defaults()
+                
         except Exception as e:
-            erro_string = f"\nFailed to plot joint/marginal histograms ({db_param}): {e}"
+            erro_string = f"\nFailed to plot hexbin jointplot ({db_param}): {e}"
             erro.append(erro_string)
             print(erro_string)
 
@@ -1664,9 +1771,6 @@ class Visualization:
 
         # Tema semelhante ao exemplo solicitado
         try:
-            # Salvar o contexto atual do tema antes de modificar
-            original_context = sns.plotting_context()
-            original_style = plt.rcParams.copy()
             
             # Aplicar tema temporariamente apenas para este gráfico
             with sns.axes_style("whitegrid"):
@@ -2139,6 +2243,7 @@ Parameters:
 -both\tUse both DIAMOND and BLAST for alignments
 -pdf\tFigures will be saved as PDF (default)
 -png\tFigures will be saved as PNG (WARNING! High memory consumption)
+-save-genes\tSave found genes in individual .faa files for each genome
 -g\tDownload the genomes fasta files (require CSV table from NCBI)
 -a\tDownload and annote the genomes using PROKKA pipeline (require CSV table from NCBI)
 -b\tDownload the genome GenBank files (require CSV table from NCBI)
@@ -2503,7 +2608,11 @@ Contact: dlnrodrigues@ufmg.br
                 self.genes_comp = genes_comp
                 
                 # Generate matrix
-                titulo, dicl, totalgenes = Visualization.generate_matrix(p, outputs, comp, aligner_suffix)
+                titulo, dicl, totalgenes, found_genes_per_strain = Visualization.generate_matrix(p, outputs, comp, aligner_suffix)
+                
+                # Save found genes to individual .faa files if requested
+                if "-save-genes" in sys.argv:
+                    self._save_found_genes(found_genes_per_strain, p, aligner_suffix)
                 
                 # Generate positions files (only for the first aligner to avoid conflicts)
                 if aligner_suffix == aligner_dirs[0]:
@@ -2517,6 +2626,7 @@ Contact: dlnrodrigues@ufmg.br
                 Visualization.generate_heatmap(titulo, p, outputs, self.erro, aligner_suffix)
                 Visualization.generate_clustermap(titulo, p, outputs, self.erro, aligner_suffix)
                 Visualization.generate_scatterplot_heatmap(titulo, p, outputs, self.erro, aligner_suffix)
+                Visualization.generate_joint_and_marginal_distributions(titulo, p, outputs, self.erro, aligner_suffix)
                 
                 # Process omics analysis
                 lines = list(df.index.values)
@@ -2525,6 +2635,112 @@ Contact: dlnrodrigues@ufmg.br
                 
                 # Organize results
                 self._organize_results(outputs, p, aligner_suffix)
+
+    def _save_found_genes(self, found_genes_per_strain, db_param, aligner_suffix=""):
+        """Save found genes in individual .faa files for each genome"""
+        print(f"\nSaving found genes to individual .faa files for {db_param}{f' ({aligner_suffix})' if aligner_suffix else ''}...")
+        
+        db_name = db_param[1:]  # Remove the '-' from parameter name
+        
+        # Create output directory
+        if aligner_suffix:
+            output_dir = f"Found_genes_{db_name}_{aligner_suffix}"
+        else:
+            output_dir = f"Found_genes_{db_name}"
+            
+        if os.path.exists(output_dir):
+            shutil.rmtree(output_dir)
+        os.mkdir(output_dir)
+        
+        # Read all .faa files to create a lookup dictionary
+        faa_sequences = {}
+        faa_dir = "faa"
+        
+        if not os.path.exists(faa_dir):
+            print(f"Warning: {faa_dir} directory not found. Cannot extract gene sequences.")
+            return
+            
+        # Load all sequences from faa files
+        for strain_name, strain_genes in found_genes_per_strain.items():
+            faa_file = os.path.join(faa_dir, strain_name + ".faa")
+            
+            if not os.path.exists(faa_file):
+                print(f"Warning: {faa_file} not found. Skipping strain {strain_name}.")
+                continue
+                
+            # Parse the .faa file to extract sequences
+            strain_sequences = {}
+            try:
+                with open(faa_file, 'r') as f:
+                    current_header = None
+                    current_seq = []
+                    
+                    for line in f:
+                        line = line.strip()
+                        if line.startswith('>'):
+                            # Save previous sequence if exists
+                            if current_header and current_seq:
+                                # Extract locus_tag from header (first part after >)
+                                locus_tag = current_header.split()[0].replace('>', '')
+                                strain_sequences[locus_tag] = {
+                                    'header': current_header,
+                                    'sequence': ''.join(current_seq)
+                                }
+                            
+                            # Start new sequence
+                            current_header = line
+                            current_seq = []
+                        else:
+                            current_seq.append(line)
+                    
+                    # Save last sequence
+                    if current_header and current_seq:
+                        locus_tag = current_header.split()[0].replace('>', '')
+                        strain_sequences[locus_tag] = {
+                            'header': current_header,
+                            'sequence': ''.join(current_seq)
+                        }
+                        
+            except Exception as e:
+                print(f"Error reading {faa_file}: {e}")
+                continue
+            
+            # Create output file for this strain
+            output_file = os.path.join(output_dir, f"{strain_name}_{db_name}_genes.faa")
+            genes_saved = 0
+            
+            try:
+                with open(output_file, 'w') as out:
+                    for gene_name, locus_tags in strain_genes.items():
+                        for locus_tag in locus_tags:
+                            if locus_tag in strain_sequences:
+                                # Write header with gene annotation
+                                original_header = strain_sequences[locus_tag]['header']
+                                # Add gene annotation to header
+                                annotated_header = f"{original_header} | {db_name.upper()}_GENE:{gene_name}"
+                                out.write(annotated_header + '\n')
+                                
+                                # Write sequence
+                                sequence = strain_sequences[locus_tag]['sequence']
+                                # Write sequence in lines of 80 characters
+                                for i in range(0, len(sequence), 80):
+                                    out.write(sequence[i:i+80] + '\n')
+                                
+                                genes_saved += 1
+                            else:
+                                print(f"Warning: Locus tag {locus_tag} not found in {strain_name}.faa")
+                
+                if genes_saved > 0:
+                    print(f"  - {strain_name}: {genes_saved} genes saved to {output_file}")
+                else:
+                    # Remove empty file
+                    os.remove(output_file)
+                    print(f"  - {strain_name}: No genes found, file not created")
+                    
+            except Exception as e:
+                print(f"Error writing to {output_file}: {e}")
+        
+        print(f"Found genes saved in directory: {output_dir}")
 
     def _generate_positions_files(self, db_param, comp, aligner_suffix=""):
         """Generate position files for genes"""
