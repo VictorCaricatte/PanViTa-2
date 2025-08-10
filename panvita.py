@@ -1282,7 +1282,7 @@ class Visualization:
         
         print(f"Processing {len(files_in_dir)} strain files...")
         
-        # Debug: Print sample of comp dictionary for MEGARes
+        # Debug: Print sample of comp dictionary for MEGARes.
         if db_param == "-megares" and comp:
             print(f"Sample comp mappings for MEGARes:")
             sample_keys = list(comp.keys())[:5]  # Show first 5 mappings
