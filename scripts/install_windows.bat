@@ -1,79 +1,79 @@
 @echo off
-REM PanVITA - Script de Instalação para Windows
+REM PanVITA - Installation Script for Windows
 REM ==========================================
 
 echo.
 echo ============================================================
-echo   PanVITA - Instalador de Dependencias (Windows)
+echo   PanVITA - Dependency Installer (Windows)
 echo   Versao: 2.0.0
 echo ============================================================
 echo.
 
-REM Verifica se Python está instalado
+REM Check if Python is installed
 python --version >nul 2>&1
 if errorlevel 1 (
-    echo ERRO: Python nao encontrado!
-    echo Por favor, instale Python 3.7+ e adicione ao PATH.
+    echo ERROR: Python not found!
+    echo Please install Python 3.7+ and add it to your PATH.
     echo Download: https://www.python.org/downloads/
     pause
     exit /b 1
 )
 
-echo Python encontrado:
+echo Python found:
 python --version
 echo.
 
-REM Navega para o diretório pai (onde está o panvita.py)
+REM Navigate to the parent directory (where panvita.py is located)
 cd /d "%~dp0\.."
 
-REM Cria ambiente virtual se não existir
+REM Creates virtual environment if it does not exist
 if not exist ".venv" (
-    echo Criando ambiente virtual Python...
+    echo Creating a Python virtual environment...
     python -m venv .venv
     
     if errorlevel 1 (
-        echo ERRO: Falha ao criar ambiente virtual.
-        echo Certifique-se de que o modulo venv esta disponivel.
+        echo ERROR: Failed to create virtual environment.
+        echo Make sure the venv module is available.
         pause
         exit /b 1
     )
     
-    echo Ambiente virtual criado em .venv\
+    echo Virtual environment created em .venv\
 ) else (
-    echo Ambiente virtual ja existe em .venv\
+    echo Virtual environment already exists in .venv\
 )
 
-REM Ativa o ambiente virtual
-echo Ativando ambiente virtual...
+REM Activate the virtual environment
+echo Activating virtual environment...
 call .venv\Scripts\activate.bat
 
 if errorlevel 1 (
-    echo ERRO: Falha ao ativar ambiente virtual.
+    echo ERROR: Failed to activate virtual environment.
     pause
     exit /b 1
 )
 
-echo Ambiente virtual ativado
+echo Virtual environment activated
 echo Python: %VIRTUAL_ENV%\Scripts\python.exe
 echo.
 
-REM Atualiza pip no ambiente virtual
-echo Atualizando pip no ambiente virtual...
+REM Update pip in the virtual environment
+echo Updating pip in the virtual environment...
 python -m pip install --upgrade pip
 
 if errorlevel 1 (
-    echo Aviso: Falha ao atualizar pip, continuando mesmo assim...
+    echo Warning: Failed to update pip, continuing anyway...
 )
 
-REM Executa o script de instalação Python
-echo Executando instalador de dependencias...
+REM Run the Python installation script
+echo Running dependency installer...
 echo.
 python scripts\install_dependencies.py
 
 if errorlevel 1 (
     echo.
-    echo ERRO: Falha na instalacao das dependencias.
-    echo Tente executar manualmente:
+    echo ERROR: Dependency installation failed.
+    echo Try running manually:
     echo   .venv\Scripts\activate.bat
     echo   python scripts\install_dependencies.py
     pause
@@ -82,14 +82,14 @@ if errorlevel 1 (
 
 echo.
 echo ============================================================
-echo   INSTALACAO CONCLUIDA COM SUCESSO!
+echo   INSTALLATION COMPLETED SUCCESSFULLY!
 echo ============================================================
 echo.
-echo Para executar o PanVITA:
-echo   .venv\Scripts\activate.bat     REM Ativar ambiente virtual
-echo   python panvita.py [opcoes]     REM Executar PanVITA
+echo To run PanVITA:
+echo   .venv\Scripts\activate.bat     REM Activate virtual environment
+echo   python panvita.py [opcoes]     REM Run PanVITA
 echo.
-echo   OU use o script de ativacao:
-echo   scripts\activate_env.bat       REM Ativar ambiente
+echo   OR use the activation script:
+echo   scripts\activate_env.bat       REM Activate environment
 echo.
 pause
