@@ -1,39 +1,39 @@
 @echo off
-REM PanVITA - Script de Ativação do Ambiente Virtual (Windows)
+REM PanVITA - Virtual Environment Activation Script (Windows)
 REM ==========================================================
 
 echo.
-echo Ativando ambiente virtual do PanVITA...
+echo Activating PanVITA virtual environment...
 echo.
 
-REM Navega para o diretório pai (onde está o panvita.py)
+REM Navigate to the parent directory (where panvita.py is located)
 cd /d "%~dp0\.."
 
-REM Verifica se o ambiente virtual existe
+REM Checks if the virtual environment exists
 if not exist ".venv" (
-    echo ERRO: Ambiente virtual nao encontrado!
-    echo Execute primeiro: scripts\install_windows.bat
+    echo ERRO: Virtual environment not found!
+    echo Run first: scripts\install_windows.bat
     pause
     exit /b 1
 )
 
-REM Ativa o ambiente virtual
+REM Activate the virtual environment
 call .venv\Scripts\activate.bat
 
 if errorlevel 1 (
-    echo ERRO: Falha ao ativar ambiente virtual.
+    echo ERRO: Failed to activate virtual environment.
     pause
     exit /b 1
 )
 
-echo Ambiente virtual ativado!
+echo Virtual environment activated!
 echo Python: %VIRTUAL_ENV%\Scripts\python.exe
 echo Pip: %VIRTUAL_ENV%\Scripts\pip.exe
 echo.
-echo Agora voce pode executar:
-echo   python panvita.py [opcoes]
+echo Now you can run:
+echo   python panvita.py [options]
 echo.
-echo Para desativar o ambiente virtual, digite: deactivate
+echo To deactivate the virtual environment, type: deactivate
 echo.
 
 REM Inicia um novo prompt de comando para o usuário
