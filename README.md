@@ -108,6 +108,8 @@ python panvita.py -b ncbi_table.csv
 python panvita.py -m ncbi_table.csv
 ```
 
+Warning: **NCBI Features are in testing**
+
 ### Database Update
 
 ```bash
