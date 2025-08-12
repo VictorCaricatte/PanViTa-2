@@ -123,65 +123,65 @@ def install_basemap():
         
         # Try different installation methods for basemap
         methods = [
-            # Método 1: conda (se disponível)
+            # Método 1: conda (if available)
             ["conda", "install", "-c", "conda-forge", "basemap", "-y"],
-            # Método 2: pip com repositório específico
+            # Method 2: pip with specific repository
             [sys.executable, "-m", "pip", "install", "basemap-data"],
             [sys.executable, "-m", "pip", "install", "basemap", "--upgrade"]
         ]
         
         for method in methods:
             try:
-                print(f"   Tentando: {' '.join(method)}")
+                print(f"   Trying: {' '.join(method)}")
                 subprocess.check_call(method)
-                # Verifica se a instalação funcionou
+                # Check if the installation worked
                 from mpl_toolkits.basemap import Basemap
-                print("✅ basemap instalado com sucesso")
+                print("✅ basemap installed successfully")
                 return True
             except (subprocess.CalledProcessError, ImportError, FileNotFoundError):
                 continue
         
-        print("⚠️  Aviso: Não foi possível instalar basemap automaticamente.")
-        print("   O PanVITA funcionará, mas funcionalidades de mapa podem não estar disponíveis.")
-        print("   Para instalar manualmente:")
-        print("   - Com conda: conda install -c conda-forge basemap")
-        print("   - Com pip: pip install basemap basemap-data")
+        print("⚠️  Warning: Unable to install basemap automatically.")
+        print("   PanVITA will work, but map functionality may not be available.")
+        print("   To install manually:")
+        print("   - With conda: conda install -c conda-forge basemap")
+        print("   - With pip: pip install basemap basemap-data")
         return False
 
 def install_all_dependencies():
-    """Instala todas as dependências necessárias"""
-    print("🔧 Instalando dependências do PanVITA...\n")
+    """Installs all required dependencies"""
+    print("🔧 Installing PanVITA dependencies...\n")
     
-    # Lista de pacotes necessários (core)
+    # List of required packages (core)
     packages = [
         ("pandas", "pandas"),
         ("matplotlib", "matplotlib"),
         ("seaborn", "seaborn"),
         ("wget", "wget"),
-        ("numpy", "numpy"),          # Adicionado explicitamente
-        ("scipy", "scipy"),          # Dependência do seaborn
+        ("numpy", "numpy"),          # Explicitly added
+        ("scipy", "scipy"),          # Seaborn dependence
     ]
     
     success_count = 0
-    total_count = len(packages) + 1  # +1 para basemap
+    total_count = len(packages) + 1  # +1 for basemap
     
-    # Instala pacotes regulares
+    # Install regular packages
     for package_name, import_name in packages:
         if install_package(package_name, import_name):
             success_count += 1
         else:
-            print(f"⚠️  Falha ao instalar {package_name}, tentando continuar...")
+            print(f"⚠️  Failed to install {package_name}, trying to continue...")
     
-    # Instala basemap (caso especial) - opcional
-    print("\n📍 Instalando basemap (opcional para funcionalidades de mapa)...")
+    # Install basemap (special case) - optional
+    print("\n📍 Installing basemap (optional for map functionality)...")
     if install_basemap():
         success_count += 1
     else:
-        print("⚠️  Basemap não foi instalado, mas o PanVITA funcionará sem mapas.")
+        print("⚠️  Basemap was not installed, but PanVITA will work without maps.")
     
-    print(f"\n📊 Resultado da instalação: {success_count}/{total_count} pacotes")
+    print(f"\n📊 Installation result: {success_count}/{total_count} packages")
     
-    # Mesmo que nem todos os pacotes tenham sido instalados, verifica os essenciais
+    # Even if not all packages have been installed, check the essential ones
     essential_packages = ["pandas", "matplotlib", "seaborn", "wget", "numpy"]
     essential_installed = 0
     
@@ -193,16 +193,16 @@ def install_all_dependencies():
             pass
     
     if essential_installed == len(essential_packages):
-        print("🎉 Todas as dependências essenciais foram instaladas com sucesso!")
+        print("🎉 All essential dependencies have been installed successfully!")
         return True
     else:
-        print(f"⚠️  Algumas dependências essenciais não foram instaladas ({essential_installed}/{len(essential_packages)}).")
-        print("   O PanVITA pode não funcionar corretamente.")
+        print(f"⚠️  Some essential dependencies were not installed ({essential_installed}/{len(essential_packages)}).")
+        print("   PanVITA may not work properly.")
         return False
 
 def test_imports():
-    """Testa se todos os imports funcionam corretamente"""
-    print("\n🧪 Testando imports...")
+    """Tests that all imports work correctly"""
+    print("\n🧪 Testing imports...")
     
     imports_to_test = [
         ("import pandas as pd", "pandas"),
@@ -211,12 +211,12 @@ def test_imports():
         ("import wget", "wget"),
     ]
     
-    # Teste especial para basemap
+    # Special test for basemap
     try:
         exec("from mpl_toolkits.basemap import Basemap")
         print("✅ basemap - OK")
     except ImportError:
-        print("⚠️  basemap - Não disponível (funcionalidades de mapa limitadas)")
+        print("⚠️  basemap - Not available (limited map functionality)")
     
     failed_imports = []
     
@@ -229,20 +229,20 @@ def test_imports():
             failed_imports.append(package_name)
     
     if not failed_imports:
-        print("\n🎉 Todos os imports foram bem-sucedidos!")
+        print("\n🎉 All imports were successful!")
         return True
     else:
-        print(f"\n❌ Falha nos imports: {', '.join(failed_imports)}")
+        print(f"\n❌ Import failure: {', '.join(failed_imports)}")
         return False
 
 def show_usage_instructions():
-    """Mostra instruções de uso após a instalação"""
+    """Shows instructions for use after installation"""
     print("\n" + "=" * 60)
-    print("  INSTALAÇÃO CONCLUÍDA")
+    print("  INSTALLATION COMPLETE")
     print("=" * 60)
     print()
     
-    # Detecta o ambiente
+    # Detects the environment
     in_venv = (
         hasattr(sys, 'real_prefix') or 
         (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix) or
@@ -250,10 +250,10 @@ def show_usage_instructions():
     )
     
     if in_venv:
-        print("📋 Próximos passos (ambiente virtual ativo):")
+        print("📋 Next steps (ambiente virtual ativo):")
         print("   python panvita.py [opções]")
         print()
-        print("💡 Para futuras execuções:")
+        print("💡 For future executions:")
         if os.name == 'nt':  # Windows
             print("   scripts\\activate_env.bat    # Ativar ambiente")
         else:  # Unix/Linux
@@ -261,72 +261,72 @@ def show_usage_instructions():
             print("   # OU")
             print("   ./scripts/activate_env.sh   # Script de ativação")
     else:
-        print("📋 Próximos passos:")
+        print("📋 Next steps:")
         if os.name == 'nt':  # Windows
             print("   python panvita.py [opções]")
         else:  # Unix/Linux
             print("   python3 panvita.py [opções]")
     
     print()
-    print("📁 Certifique-se de que você tem:")
-    print("   - Arquivos GenBank (.gbk, .gbf, .gbff)")
-    print("   - Banco de dados configurado")
-    print("   - BLAST e/ou DIAMOND instalados")
+    print("📁 Make sure you have:")
+    print("   - GenBank Files (.gbk, .gbf, .gbff)")
+    print("   - Configured database")
+    print("   - BLAST and/or DIAMOND installed")
     print()
-    print("🔗 Para mais informações, consulte o README.md")
+    print("🔗 For more information, see README.md")
     print()
 
 def main():
-    """Função principal do script"""
+    """Main function of the script"""
     print_banner()
     
-    # Verifica Python
+    # Check Python
     if not check_python_version():
         sys.exit(1)
     
     print()
     
-    # Verifica ambiente virtual
+    # Check virtual environment
     if not check_virtual_env():
         sys.exit(1)
     
     print()
     
-    # Verifica pip
+    # Check pip
     if not check_pip():
         sys.exit(1)
     
     print()
     
-    # Instala dependências
+    # Install dependencies
     installation_success = install_all_dependencies()
     
-    # Testa imports
+    # Test imports
     import_success = test_imports()
     
-    # Mostra instruções finais
+    # Shows final instructions
     if installation_success and import_success:
         show_usage_instructions()
         sys.exit(0)
     else:
-        print("\n❌ Instalação não foi totalmente bem-sucedida.")
-        print("   Verifique os erros acima e tente instalar manualmente os pacotes que falharam.")
+        print("\n❌ Installation was not fully successful.")
+        print("   Check the errors above and try manually installing the failed packages.")
         if os.environ.get('VIRTUAL_ENV'):
-            print("   Comando exemplo: pip install pandas numpy matplotlib seaborn wget scipy")
+            print("   Example command: pip install pandas numpy matplotlib seaborn wget scipy")
         else:
             if os.name == 'nt':
-                print("   Comando exemplo: python -m pip install pandas numpy matplotlib seaborn wget scipy")
+                print("   Example command: python -m pip install pandas numpy matplotlib seaborn wget scipy")
             else:
-                print("   Comando exemplo: pip3 install pandas numpy matplotlib seaborn wget scipy")
+                print("   Example command: pip3 install pandas numpy matplotlib seaborn wget scipy")
         sys.exit(1)
 
 if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print("\n\n⚠️  Instalação cancelada pelo usuário.")
+        print("\n\n⚠️  Installation canceled by user.")
         sys.exit(1)
     except Exception as e:
-        print(f"\n❌ Erro inesperado: {e}")
-        print("   Por favor, reporte este erro no repositório do projeto.")
+        print(f"\n❌ Unexpected error: {e}")
+        print("   Please report this bug in the project repository.")
         sys.exit(1)
