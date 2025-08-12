@@ -2,7 +2,7 @@
 PanViTa utilizes four main databases for analyzing antimicrobial resistance and virulence factors in bacterial genomes. 
 Each database has specific characteristics that complement pan-genomic analysis. Details for each are below:
 
-## [BacMet - Antibacterial Biocide & Metal Resistence Genes Database](mailto:http://bacmet.biomedicine.gu.se/)
+## [BacMet - Antibacterial Biocide & Metal Resistence Genes Database](http://bacmet.biomedicine.gu.se/)
 
 **What is it?**
 BacMet is a database focused on biocide and heavy metal resistance genes in bacteria. 
@@ -13,7 +13,7 @@ It contains information on genes that confer resistance to compounds such as mer
 
 - Complementarity: Expands resistance analysis beyond antibiotics to include disinfectants and metals.
 
-## [CARD - The Comprehensive Antibiotic Resistance Database](malito:https://card.mcmaster.ca/)
+## [CARD - The Comprehensive Antibiotic Resistance Database](https://card.mcmaster.ca/)
 
 **What is it?**
 CARD is a comprehensive database of antibiotic resistance genes, including mechanisms such as enzyme inactivation, efflux, and target modification.
@@ -23,7 +23,7 @@ CARD is a comprehensive database of antibiotic resistance genes, including mecha
 
 - Detailed: Provides information on resistance mechanisms and affected antibiotic classes.
 
-## [VFDB - Virulence Factors Database](malito:https://www.mgc.ac.cn/VFs/main.htm)
+## [VFDB - Virulence Factors Database](https://www.mgc.ac.cn/VFs/main.htm)
 
 **What is it?**
 The VFDB catalogs bacterial virulence genes, such as toxins, adhesins, and secretion systems, essential for pathogenicity.
@@ -33,7 +33,7 @@ The VFDB catalogs bacterial virulence genes, such as toxins, adhesins, and secre
 
 - Detailed mechanisms: Classifies genes by function (e.g., invasion, immune evasion).
 
-## [MegaRes - Antimicrobial Resistance Database for High-Throughput Sequencing](malito:https://www.meglab.org/megares/)
+## [MegaRes - Antimicrobial Resistance Database for High-Throughput Sequencing](https://www.meglab.org/megares/)
 
 **What is it?**
 MEGARes is a database focused on antibiotic resistance genes, including point mutations and genes acquired through HGT (Horizontal Gene Transfer).
