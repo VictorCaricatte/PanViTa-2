@@ -21,31 +21,31 @@ scripts\install_windows.bat
 
 ### Linux/macOS
 ```bash
-# Torne o script executável e execute (cria ambiente virtual automaticamente)
+# Make the script executable and run (creates virtual environment automatically)
 chmod +x scripts/install_linux.sh
 ./scripts/install_linux.sh
 ```
 
-### Instalação Manual com Ambiente Virtual
+### Manual Installation with Virtual Environment
 ```bash
-# 1. Crie um ambiente virtual
+# 1. Create a virtual environment
 python3 -m venv .venv
 
-# 2. Ative o ambiente virtual
+# 2. Activate the virtual environment
 # Linux/macOS:
 source .venv/bin/activate
 # Windows:
 .venv\Scripts\activate.bat
 
-# 3. Execute o script de instalação
+# 3. Run the installation script
 python scripts/install_dependencies.py
 ```
 
 ## 🔧 Uso após Instalação
 
-### Ativação do Ambiente Virtual
+### Use after Installation
 
-**Scripts de Ativação Automática:**
+**Automatic Activation Scripts:**
 ```bash
 # Linux/macOS
 ./scripts/activate_env.sh
@@ -54,7 +54,7 @@ python scripts/install_dependencies.py
 scripts\activate_env.bat
 ```
 
-**Ativação Manual:**
+**Manual Activation:**
 ```bash
 # Linux/macOS
 source .venv/bin/activate
@@ -63,39 +63,39 @@ source .venv/bin/activate
 .venv\Scripts\activate.bat
 ```
 
-### Execução do PanVITA
+### Execution of PanVITA
 ```bash
-# Com ambiente virtual ativo
+# With active virtual environment
 python panvita.py [opções]
 
-# Para desativar o ambiente virtual
+# To deactivate the virtual environment
 deactivate
 ```
 
-## 📦 Dependências Incluídas
+## 📦 Dependencies Included
 
-### Pacotes Obrigatórios
-- **pandas** (>=1.3.0): Manipulação e análise de dados
-- **matplotlib** (>=3.3.0): Criação de gráficos
-- **seaborn** (>=0.11.0): Visualização estatística
-- **wget** (>=3.2): Download de arquivos
-- **numpy** (>=1.19.0): Computação numérica
-- **scipy** (>=1.6.0): Algoritmos científicos
+### Required Packages
+- **pandas** (>=1.3.0): Data manipulation and analysis
+- **matplotlib** (>=3.3.0): Graphing
+- **seaborn** (>=0.11.0): Statistical visualization
+- **wget** (>=3.2): File download
+- **numpy** (>=1.19.0): Numerical computation
+- **scipy** (>=1.6.0): Scientific algorithms
 
-### Pacotes Opcionais
-- **basemap** (>=1.3.0): Visualização de mapas geográficos (pode falhar em algumas instalações)
+### Optional Packages
+- **basemap** (>=1.3.0): Viewing geographic maps (may fail on some installations)
 
-## 🛠️ Instalação Manual por Pacote
+## 🛠️ Manual Installation per Package
 
-Se a instalação automática falhar, você pode instalar cada pacote individualmente no ambiente virtual:
+If the automatic installation fails, you can install each package individually in the virtual environment.:
 
 ```bash
-# Ative o ambiente virtual primeiro
+# Activate the virtual environment first
 source .venv/bin/activate  # Linux/macOS
-# OU
+# Or
 .venv\Scripts\activate.bat  # Windows
 
-# Instale os pacotes
+# Install the packages
 pip install pandas>=1.3.0
 pip install matplotlib>=3.3.0
 pip install seaborn>=0.11.0
@@ -103,21 +103,21 @@ pip install wget>=3.2
 pip install basemap basemap-data
 ```
 
-### Usando requirements.txt
+### Using requirements.txt
 ```bash
 pip install -r requirements.txt
 ```
 
-## 🔧 Solução de Problemas
+## 🔧 Troubleshooting
 
-### Erro: "Python não encontrado"
-**Solução**: Instale Python 3.7+ e adicione ao PATH do sistema
+### Error: "Python not found"
+**Solution**: Install Python 3.7+ and add it to your system PATH
 - Windows: https://www.python.org/downloads/
 - Linux: `sudo apt install python3 python3-pip` (Ubuntu/Debian)
 - macOS: `brew install python3`
 
-### Erro: "pip não encontrado"
-**Solução**: Instale pip
+### Error: "pip not found"
+**Solution**: Install pip
 ```bash
 # Linux
 sudo apt install python3-pip
@@ -129,27 +129,27 @@ brew install python3
 python -m ensurepip --upgrade
 ```
 
-### Erro na instalação do basemap
-**Soluções alternativas**:
-1. **Com conda** (recomendado):
+### Error installing basemap
+**Alternative solutions**:
+1. **With conda** (recomended):
    ```bash
    conda install -c conda-forge basemap
    ```
 
-2. **Instalar dependências do sistema** (Linux):
+2. **Install system dependencies** (Linux):
    ```bash
    sudo apt install libproj-dev proj-data proj-bin libgeos-dev
    pip install basemap
    ```
 
-### Erro: "Permission denied"
-**Soluções**:
+### Error: "Permission denied"
+**Solution**:
 - Use `--user` flag: `pip install --user package_name`
-- Use ambiente virtual: `python -m venv panvita_env && source panvita_env/bin/activate`
+- Use virtual environment: `python -m venv panvita_env && source panvita_env/bin/activate`
 - Linux/macOS: Use `sudo` com cuidado: `sudo pip install package_name`
 
-### Problemas de conectividade
-Se houver problemas de download:
+### Connectivity issues
+If there are download problems:
 ```bash
 # Use mirror alternativo
 pip install -i https://pypi.douban.com/simple/ package_name
@@ -157,16 +157,16 @@ pip install -i https://pypi.douban.com/simple/ package_name
 # Ou baixe arquivos .whl manualmente de https://pypi.org/
 ```
 
-## 🧪 Verificação da Instalação
+## 🧪 Installation Verification
 
-Execute o teste de verificação:
+Run the verification test:
 ```bash
 python install_dependencies.py
 ```
 
-Ou teste manualmente:
+Or test manually:
 ```python
-# Teste básico
+# Basic test
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -175,54 +175,54 @@ import wget
 print("✅ Todas as dependências estão funcionando!")
 ```
 
-## 📊 Uso de Memória
+## 📊 Memory Usage
 
-| Pacote | Tamanho Aproximado | Uso de RAM |
+| Package | Approximate Size | RAM Usage |
 |--------|-------------------|------------|
 | pandas | ~25MB | Médio |
 | matplotlib | ~40MB | Médio |
 | seaborn | ~5MB | Baixo |
 | basemap | ~200MB | Alto |
 
-**Total aproximado**: ~270MB de espaço + 2-4GB RAM durante execução
+**Approximate total**: ~270MB of space + 2-4GB RAM during execution
 
-## 🐍 Ambientes Virtuais (Recomendado)
+## 🐍 Virtual Environments (RECOMENDED)
 
-Para evitar conflitos de dependências:
+To avoid dependency conflicts:
 
 ```bash
-# Criar ambiente virtual
+# Create virtual environment
 python -m venv panvita_env
 
-# Ativar (Linux/macOS)
+# Active (Linux/macOS)
 source panvita_env/bin/activate
 
-# Ativar (Windows)
+# Active (Windows)
 panvita_env\Scripts\activate
 
-# Instalar dependências
+# Install dependencies
 pip install -r requirements.txt
 
-# Desativar
+# Desactive
 deactivate
 ```
 
-## 📞 Suporte
+## 📞 Support
 
-Se ainda tiver problemas:
+If you still have problems:
 
-1. **Verifique os logs** de erro detalhados
-2. **Atualize pip**: `pip install --upgrade pip`
-3. **Limpe cache**: `pip cache purge`
-4. **Reporte problemas** no repositório do projeto
+1. **Check the logs** detailed error reports
+2. **Update pip**: `pip install --upgrade pip`
+3. **Clear cache**: `pip cache purge`
+4. **Report problems** in the project repository
 
-## 🔄 Atualizações
+## 🔄 Updates
 
-Para atualizar todas as dependências:
+To update all dependencies:
 ```bash
 pip install --upgrade -r requirements.txt
 ```
 
 ---
 
-**Nota**: Este instalador foi testado em Python 3.7-3.12 em Windows 10/11, Ubuntu 20.04+, e macOS 10.15+.
+**Notice**: This installer has been tested on Python 3.7-3.12 on Windows 10/11, Ubuntu 20.04+, and macOS 10.15+.
