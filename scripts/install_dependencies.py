@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """
-PanVITA - Script de Instalação de Dependências
+PanVITA - Dependency Installation Script
 ===============================================
 
-Este script instala automaticamente todas as dependências necessárias 
-para executar o PanVITA (Pan-genome Virulence and Antimicrobial resistance Tool).
+This script automatically installs all the necessary dependencies
+to run PanVITA (Pan-genome Virulence and Antimicrobial Resistance Tool).
 
-Autor: Script gerado para PanVITA v2.0.0
-Data: 03 de agosto de 2025
+Date: August 12, 2025
 """
 
 import sys
@@ -16,15 +15,15 @@ import importlib
 import os
 
 def print_banner():
-    """Exibe o banner do script"""
+    """Displays the script banner"""
     print("=" * 60)
-    print("  PanVITA - Instalador de Dependências Python")
+    print("  PanVITA - Python Dependency Installer")
     print("  Versão: 2.0.0")
     print("=" * 60)
     print()
 
 def check_virtual_env():
-    """Verifica se estamos em um ambiente virtual"""
+    """Checks if we are in a virtual environment"""
     in_venv = (
         hasattr(sys, 'real_prefix') or 
         (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix) or
@@ -33,96 +32,96 @@ def check_virtual_env():
     
     if in_venv:
         venv_path = os.environ.get('VIRTUAL_ENV', 'Unknown')
-        print(f"✅ Executando em ambiente virtual: {venv_path}")
+        print(f"✅ Running in a virtual environment: {venv_path}")
     else:
-        print("⚠️  AVISO: Não detectado ambiente virtual ativo.")
-        print("   Recomendamos usar um ambiente virtual para evitar conflitos.")
-        print("   As dependências serão instaladas no sistema global.")
-        response = input("   Continuar mesmo assim? (s/N): ").strip().lower()
+        print("⚠️  WARNING: No active virtual environment detected.")
+        print("   We recommend using a virtual environment to avoid conflicts.")
+        print("   Dependencies will be installed on the global system.")
+        response = input("   Continue anyway? (s/N)): ").strip().lower()
         if response not in ['s', 'sim', 'y', 'yes']:
-            print("   Instalação cancelada. Execute em um ambiente virtual.")
+            print("   Installation canceled. Run in a virtual environment..")
             return False
     
     return True
 
 def check_python_version():
-    """Verifica se a versão do Python é compatível"""
+    """Check if the Python version is compatible"""
     version = sys.version_info
     if version.major < 3 or (version.major == 3 and version.minor < 7):
-        print("❌ ERRO: PanVITA requer Python 3.7 ou superior.")
-        print(f"   Versão atual: {version.major}.{version.minor}.{version.micro}")
-        print("   Por favor, atualize o Python e tente novamente.")
+        print("❌ ERROR: PanVITA requires Python 3.7 or higher.")
+        print(f"   Current version: {version.major}.{version.minor}.{version.micro}")
+        print("   Please update Python and try again.")
         return False
     
-    print(f"✅ Python {version.major}.{version.minor}.{version.micro} - Compatível")
+    print(f"✅ Python {version.major}.{version.minor}.{version.micro} - Compatible")
     return True
 
 def check_pip():
-    """Verifica se o pip está disponível"""
+    """Check if pip is available"""
     try:
         import pip
-        print("✅ pip está disponível")
+        print("✅ pip is available")
         return True
     except ImportError:
-        print("❌ pip não encontrado. Tentando instalar...")
+        print("❌ pip not found. Trying to install...")
         try:
-            # Tenta instalar o pip
+            # Try installing pip
             subprocess.check_call([sys.executable, "-m", "ensurepip", "--upgrade"])
-            print("✅ pip instalado com sucesso")
+            print("✅ pip installed successfully")
             return True
         except subprocess.CalledProcessError:
-            print("❌ Falha ao instalar pip. Instale manualmente e tente novamente.")
+            print("❌ Failed to install pip. Please install manually and try again.")
             return False
 
 def install_package(package_name, import_name=None, upgrade=True):
     """
-    Instala um pacote Python usando pip
+    Install a Python package using pip
     
     Args:
-        package_name (str): Nome do pacote para instalar via pip
-        import_name (str): Nome para importar (se diferente do package_name)
-        upgrade (bool): Se deve tentar atualizar o pacote
+        package_name (str): Package name to install via pip
+        import_name (str): Name to import (if different from package_name)
+        upgrade (bool): Whether to try updating the package
     """
     if import_name is None:
         import_name = package_name
     
     try:
-        # Tenta importar o pacote
+        # Try importing the package
         importlib.import_module(import_name)
-        print(f"✅ {package_name} já está instalado")
+        print(f"✅ {package_name} is already installed")
         return True
     except ImportError:
-        print(f"📦 Instalando {package_name}...")
+        print(f"📦 Installing {package_name}...")
         try:
-            # Monta comando de instalação
+            # Mount installation command
             cmd = [sys.executable, "-m", "pip", "install", package_name]
             if upgrade:
                 cmd.append("--upgrade")
             
-            # Instala o pacote
+            # Install the package
             subprocess.check_call(cmd)
-            print(f"✅ {package_name} instalado com sucesso")
+            print(f"✅ {package_name} successfully installed")
             
-            # Verifica se realmente foi instalado
+            # Check if it was actually installed
             importlib.import_module(import_name)
             return True
         except subprocess.CalledProcessError as e:
-            print(f"❌ Erro ao instalar {package_name}: {e}")
+            print(f"❌ Error when installing {package_name}: {e}")
             return False
         except ImportError:
-            print(f"⚠️  {package_name} foi instalado mas não pode ser importado. Pode ser necessário reiniciar.")
+            print(f"⚠️  {package_name} was installed but could not be imported. A restart may be required..")
             return False
 
 def install_basemap():
-    """Instalação especial para basemap (mais complexa)"""
+    """Special installation for basemap (more complex)"""
     try:
         from mpl_toolkits.basemap import Basemap
-        print("✅ basemap já está instalado")
+        print("✅ basemap is already installed")
         return True
     except ImportError:
-        print("📦 Instalando basemap (pode demorar alguns minutos)...")
+        print("📦 Installing basemap (may take a few minutes)...")
         
-        # Tenta diferentes métodos de instalação para basemap
+        # Try different installation methods for basemap
         methods = [
             # Método 1: conda (se disponível)
             ["conda", "install", "-c", "conda-forge", "basemap", "-y"],
