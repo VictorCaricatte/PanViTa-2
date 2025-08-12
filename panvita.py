@@ -1,3 +1,17 @@
+"""
+# ==============================================================================
+# Author:       Victor S Caricatte De Araújo
+# Co-author:    Diego Neres, Vinicius Oliveira
+# Email:        victorsc@ufmg.br , dlnrodrigues@ufmg.br , vinicius.oliveira.1444802@sga.pucminas.br
+# Intitution:   Universidade federal de Minas Gerais
+# Version:      2.0.0
+# Date:         August, 12, 2025
+# ...................................
+# ==============================================================================
+"""
+
+
+
 # Standard library imports
 import gzip
 import math
