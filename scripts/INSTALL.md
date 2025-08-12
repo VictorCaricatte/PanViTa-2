@@ -1,21 +1,21 @@
-# PanVITA - Guia de Instalação de Dependências
+# PanVITA - Dependency Installation Guide
 
-Este guia fornece instruções detalhadas para instalar todas as dependências necessárias para executar o PanVITA usando ambientes virtuais Python.
+This guide provides detailed instructions for installing all the dependencies required to run PanVITA using Python virtual environments.
 
-## 📋 Requisitos do Sistema
+## 📋 Sistem requiriment
 
-- **Python**: 3.7 ou superior
-- **Sistema Operacional**: Windows, Linux, ou macOS
-- **Memória**: Mínimo 4GB RAM (recomendado 8GB+)
-- **Espaço em disco**: Mínimo 2GB livres
+- **Python**: 3.7 ou upper.
+- **Operating System**: Windows, Linux, ou macOS
+- **Memory**: Minimum 4GB RAM (recomended 8GB+)
+- **Disk space**: Minimum 2GB livres
 
-## 🚀 Instalação Rápida (RECOMENDADA)
+## 🚀 Fast instalation (RECOMENDED)
 
-Os scripts de instalação agora criam automaticamente um ambiente virtual Python para evitar conflitos com outras instalações.
+Installation scripts now automatically create a Python virtual environment to avoid conflicts with other installations.
 
 ### Windows
 ```batch
-# Execute o arquivo batch (cria ambiente virtual automaticamente)
+# Run the batch file (creates virtual environment automatically)
 scripts\install_windows.bat
 ```
 
