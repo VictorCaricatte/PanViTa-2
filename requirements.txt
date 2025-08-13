@@ -6,8 +6,5 @@ pandas>=1.3.0
 matplotlib>=3.3.0
 seaborn>=0.11.0
 
-# Maps
-basemap>=1.3.0
-
 # File download
 wget>=3.2

@@ -2836,15 +2836,10 @@ Contact: dlnrodrigues@ufmg.br
         # Unpack based on actual length returned
         if len(output_setup) == 17:  # CARD and MEGARes case (17 elements: 7 base + 10 specific)
             outputs, t1, t2, t3, t4, l1, l2, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15 = output_setup
-            t16 = None
-        elif len(output_setup) == 18:  # BACMET case (18 elements: 7 base + 11 specific)
-            outputs, t1, t2, t3, t4, l1, l2, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16 = output_setup
-        elif len(output_setup) == 16:  # VFDB case (16 elements: 7 base + 9 specific)
+        elif len(output_setup) == 16:  # VFDB and BACMET case (16 elements: 7 base + 9 specific)
             outputs, t1, t2, t3, t4, l1, l2, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15 = output_setup + [None]
-            t16 = None
         else:  # Fallback for any other case
             outputs, t1, t2, t3, t4, l1, l2, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15 = output_setup + [None] * (17 - len(output_setup))
-            t16 = None
         
         t5 = t3.replace("csv", fileType)
         outputs.append(t5)
@@ -2950,7 +2945,7 @@ Contact: dlnrodrigues@ufmg.br
         elif db_param == "-vfdb":
             self._process_vfdb_distribution(t1, t6, t7, t10, t12, t14, fileType, outputs)
         elif db_param == "-bacmet":
-            self._process_bacmet_distribution(t1, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, fileType, outputs)
+            self._process_bacmet_distribution(t1, t6, t7, t8, t10, t12, t14, fileType, outputs)
         elif db_param == "-megares":
             self._process_megares_distribution(t1, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, fileType, outputs)
         
@@ -3017,12 +3012,7 @@ Contact: dlnrodrigues@ufmg.br
                     "pan_analysis": f"bacmet_pan{suffix}.csv",
                     "heavy_metals": f"bacmet_heavy_metals{suffix}.csv",
                     "all_compounds": f"bacmet_all_compounds{suffix}.csv",
-                    "mechanisms": f"bacmet_mechanisms{suffix}.csv",
-                    "filtered_table": f"bacmet_filtered_table{suffix}.csv",
                     "heavy_metals_plot": f"bacmet_heavy_metals_barplot{suffix}.{fileType}",
-                    "compounds_barplot": f"bacmet_compounds_barplot{suffix}.{fileType}",
-                    "mechanisms_barplot": f"bacmet_mechanisms_barplot{suffix}.{fileType}",
-                    "compound_mechanism_heatmap": f"bacmet_compound_mechanism_heatmap{suffix}.{fileType}",
                     "heavy_metals_scatter": f"bacmet_heavy_metals_scatterplot{suffix}.{fileType}",
                     "heavy_metals_bubble": f"bacmet_heavy_metals_bubble{suffix}.{fileType}",
                     "heavy_metals_strip": f"bacmet_heavy_metals_strip{suffix}.{fileType}"
@@ -3110,14 +3100,13 @@ Contact: dlnrodrigues@ufmg.br
                 config["files"]["heavy_metals"],         # t6
                 config["files"]["all_compounds"],        # t7
                 config["files"]["heavy_metals_plot"],    # t8
-                config["files"]["mechanisms"],           # t9
+                None,                                     # t9 (not used for BacMet)
                 config["files"]["heavy_metals_scatter"], # t10
-                config["files"]["filtered_table"],       # t11
+                None,                                     # t11 (not used for BacMet)
                 config["files"]["heavy_metals_bubble"],  # t12
-                config["files"]["compounds_barplot"],    # t13
+                None,                                     # t13 (not used for BacMet)
                 config["files"]["heavy_metals_strip"],   # t14
-                config["files"]["mechanisms_barplot"],   # t15
-                config["files"]["compound_mechanism_heatmap"]  # t16
+                None                                      # t15 (not used for BacMet)
             ]
         elif db_param == "-megares":
             return base_return + [
@@ -3344,75 +3333,33 @@ Contact: dlnrodrigues@ufmg.br
         except Exception as e:
             print(f"Error generating plots: {e}")
 
-    def _process_bacmet_distribution(self, t1, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, fileType, outputs):
-        """Process BacMet database distribution analysis with enhanced visualization"""
-        print("\nMaking the BacMet pan-distribution with enhanced analysis...")
-        
-        # Load BacMet database
+    def _process_bacmet_distribution(self, t1, t6, t7, t8, t10, t12, t14, fileType, outputs):
+        """Process BacMet database distribution analysis"""
         db = pd.read_csv(os.path.join(self.dbpath, "bacmet_2.txt"), sep="\t")
-        
-        # Read gene count results
-        genes_df = pd.read_csv(t1, sep=";")
-        detected_genes = set(genes_df["Genes"].tolist())
-        
-        # Create mapping columns for BacMet (assuming the structure)
-        if "Gene_name" in db.columns:
-            gene_col = "Gene_name"
-        elif "GeneName" in db.columns:
-            gene_col = "GeneName"
-        else:
-            gene_col = db.columns[0]  # Use first column as gene identifier
-            
-        if "Compound" in db.columns:
-            compound_col = "Compound"
-        else:
-            compound_col = db.columns[2] if len(db.columns) > 2 else db.columns[1]
-            
-        if "Mechanism" in db.columns:
-            mechanism_col = "Mechanism"
-        else:
-            # Try to find mechanism column or create one based on compound
-            mechanism_col = None
-            for col in db.columns:
-                if "mechanism" in col.lower() or "type" in col.lower():
-                    mechanism_col = col
-                    break
-        
-        # Filter only detected genes
-        bacmet_filtered = db[db[gene_col].isin(detected_genes)]
-        
-        # Save filtered table with all detected compounds and mechanisms
-        if t11 is not None:
-            bacmet_filtered.to_csv(t11, index=False)
-            print(f"Filtered BacMet table saved: {t11}")
-        
-        # Extract compounds for analysis
-        genes_list = db[gene_col].tolist()
-        compostos = db[compound_col].tolist()
+        genes_list = db["Gene_name"].tolist()
+        compostos = db["Compound"].tolist()
         comp = []
         
         for i in compostos:
-            if "," in str(i):
-                temp = str(i).split(",")
+            if "," in i:
+                temp = i.split(",")
                 for j in temp:
                     if j.strip() not in comp:
                         comp.append(j.strip())
             else:
-                if str(i).strip() not in comp:
-                    comp.append(str(i).strip())
+                if i.strip() not in comp:
+                    comp.append(i.strip())
         
-        # Create gene-compound mapping
         dic = {}
         for i in range(0, len(genes_list)):
-            if "," not in str(compostos[i]):
+            if "," not in compostos[i]:
                 dic[genes_list[i]] = compostos[i]
             else:
-                temp = str(compostos[i]).split(', ')
+                temp = compostos[i].split(', ')
                 for j in range(0, len(temp)):
                     temp[j] = temp[j].strip()
                 dic[genes_list[i]] = temp
         
-        # Analyze gene categories (core, accessory, exclusive)
         matriz = pd.read_csv(t1, sep=";")
         my_genes = {}
         for i in range(0, len(matriz["Genes"].tolist())):
@@ -3429,9 +3376,10 @@ Contact: dlnrodrigues@ufmg.br
             else:
                 exclusive_ome.append(i)
         
-        # Heavy metals and all compounds analysis (existing functionality)
+        # Heavy metals file
         with open(t6, 'w') as outa:
             outa.write("Compound;Core;Accessory;Exclusive\n")
+            # All compounds file
             with open(t7, 'w') as outb:
                 outb.write("Compound;Core;Accessory;Exclusive\n")
                 
@@ -3484,90 +3432,9 @@ Contact: dlnrodrigues@ufmg.br
                         if ("(" in k) and ("[" not in k):
                             outa.write(k + ";" + str(core) + ";" + str(accessory) + ";" + str(exclusive) + "\n")
                         outb.write(k + ";" + str(core) + ";" + str(accessory) + ";" + str(exclusive) + "\n")
-        
-        # Create mechanisms analysis if mechanism column exists
-        if t9 is not None and mechanism_col is not None:
-            with open(t9, 'w') as mech_file:
-                mech_file.write("Mechanism;Core;Accessory;Exclusive\n")
-                
-                # Get unique mechanisms from filtered data
-                mechanisms = bacmet_filtered[mechanism_col].unique()
-                mechanisms = [m for m in mechanisms if pd.notna(m)]  # Remove NaN values
-                
-                for mechanism in mechanisms:
-                    core_count = accessory_count = exclusive_count = 0
-                    
-                    # Get genes for this mechanism
-                    mechanism_genes = set(bacmet_filtered[bacmet_filtered[mechanism_col] == mechanism][gene_col])
-                    
-                    for gene in core_ome:
-                        if gene in mechanism_genes:
-                            core_count += 1
-                    
-                    for gene in accessory_ome:
-                        if gene in mechanism_genes:
-                            accessory_count += 1
-                    
-                    for gene in exclusive_ome:
-                        if gene in mechanism_genes:
-                            exclusive_count += 1
-                    
-                    if (core_count != 0) or (accessory_count != 0) or (exclusive_count != 0):
-                        mech_file.write(f"{mechanism};{core_count};{accessory_count};{exclusive_count}\n")
 
         try:
-            
-            # Generate enhanced plots with all detected compounds (no limit)
-            if t13 is not None and len(bacmet_filtered) > 0:
-                plt.figure(figsize=(max(10, len(bacmet_filtered[compound_col].unique()) * 0.4), 6))
-                bacmet_filtered[compound_col].value_counts().plot(kind="bar", color="steelblue")
-                plt.title("Compounds with Detected Resistance Genes (BacMet)", fontsize=14)
-                plt.ylabel("Number of Genes", fontsize=12)
-                plt.xticks(rotation=75, ha="right", fontsize=10)
-                plt.tight_layout()
-                if fileType == "png":
-                    plt.savefig(t13, dpi=300, bbox_inches='tight')
-                else:
-                    plt.savefig(t13, bbox_inches='tight')
-                plt.close()
-                outputs.append(t13)
-                print(f"Compounds barplot saved: {t13}")
-            
-            # Generate mechanisms barplot if mechanism data exists
-            if t15 is not None and mechanism_col is not None and len(bacmet_filtered) > 0:
-                plt.figure(figsize=(max(8, len(bacmet_filtered[mechanism_col].unique()) * 0.4), 6))
-                bacmet_filtered[mechanism_col].value_counts().plot(kind="bar", color="darkorange")
-                plt.title("Resistance Mechanisms Detected (BacMet)", fontsize=14)
-                plt.ylabel("Number of Genes", fontsize=12)
-                plt.xticks(rotation=75, ha="right", fontsize=10)
-                plt.tight_layout()
-                if fileType == "png":
-                    plt.savefig(t15, dpi=300, bbox_inches='tight')
-                else:
-                    plt.savefig(t15, bbox_inches='tight')
-                plt.close()
-                outputs.append(t15)
-                print(f"Mechanisms barplot saved: {t15}")
-            
-            # Heatmap Compound × Mechanism (all detected) if both columns exist
-            if t16 is not None and mechanism_col is not None and len(bacmet_filtered) > 0:
-                pivot_table = bacmet_filtered.groupby([compound_col, mechanism_col]).size().unstack(fill_value=0)
-                if not pivot_table.empty:
-                    plt.figure(figsize=(max(12, len(pivot_table.columns) * 0.5), max(8, len(pivot_table) * 0.4)))
-                    sns.heatmap(pivot_table, cmap="YlGnBu", annot=False)
-                    plt.title("Heatmap: Compounds × Mechanisms (BacMet)", fontsize=14)
-                    plt.ylabel("Compound", fontsize=12)
-                    plt.xlabel("Mechanism", fontsize=12)
-                    plt.tight_layout()
-                    if fileType == "png":
-                        plt.savefig(t16, dpi=300, bbox_inches='tight')
-                    else:
-                        plt.savefig(t16, bbox_inches='tight')
-                    plt.close()
-                    outputs.append(t16)
-                    print(f"Compound × Mechanism heatmap saved: {t16}")
-            
-            # Generate existing plots (heavy metals barplot and scatterplots)
+            # Generate barplot and scatterplot with separate file names
             if t8 is not None:
                 Visualization.generate_barplot(t6, "Compound", t8, fileType, outputs)
             if t10 is not None:
@@ -3576,11 +3443,8 @@ Contact: dlnrodrigues@ufmg.br
                 Visualization.generate_scatterplot_with_continuous_hues_and_sizes(t6, "Compound", t12, fileType, outputs)
             if t14 is not None:
                 Visualization.generate_regression_fit_over_strip_plot(t6, "Compound", t14, fileType, outputs)
-                
         except Exception as e:
-            print(f"Error generating enhanced BacMet plots: {e}")
-            import traceback
-            traceback.print_exc()
+            print(f"Error generating plots: {e}")
 
     def _process_megares_distribution(self, t1, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, fileType, outputs):
         """Process MEGARes database distribution analysis"""
