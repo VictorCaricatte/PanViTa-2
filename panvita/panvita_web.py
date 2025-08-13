@@ -19,7 +19,7 @@ def main():
         import streamlit
         
         # Caminho para o arquivo da aplicação Streamlit
-        app_path = Path(__file__).parent / "panvita" / "interfaces" / "streamlit_app.py"
+        app_path = Path(__file__).parent / "interfaces" / "streamlit_app.py"
         
         if not app_path.exists():
             print(f"Erro: Arquivo da aplicação não encontrado: {app_path}")

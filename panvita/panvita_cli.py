@@ -9,7 +9,7 @@ import os
 from pathlib import Path
 
 # Adicionar o diretório panvita ao path
-sys.path.insert(0, str(Path(__file__).parent / "panvita"))
+sys.path.insert(0, str(Path(__file__).parent))
 
 try:
     from interfaces.cli import main
