@@ -79,8 +79,19 @@ python panvita.py -diamond -card file.gbk
 python panvita.py -blast -vfdb file.gbk
 
 # Using both aligners
-python panvita.py -both -card -vfdb file.gbk
+python panvita.py -both -card -vfdb file.gbkcd 
 ```
+
+# Versão original (mantida)
+python panvita.py -card -vfdb arquivo.csv
+
+# Nova versão CLI
+python panvita_cli.py -card -vfdb arquivo.csv
+
+# Nova versão Web
+python panvita_web.py
+# Ou diretamente:
+streamlit run panvita/interfaces/streamlit_app.py
 
 ### Main Parameters
 

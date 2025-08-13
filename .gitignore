@@ -9,6 +9,12 @@
 !install_windows.bat
 !scripts/
 !scripts/*
+!DataBase
+!DataBase/**
+!panvita/
+!panvita/*
+!panvita/core/*
+!panvita/interfaces/*
 
 # Don't ignore the main script
 !panvita.py

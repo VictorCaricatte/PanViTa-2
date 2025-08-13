@@ -1,6 +1,7 @@
 # PanVITA - Python Dependencies
 # Data analysis
 pandas>=1.3.0
+numpy>=1.21.0
 
 # Visualization
 matplotlib>=3.3.0
@@ -8,3 +9,7 @@ seaborn>=0.11.0
 
 # File download
 wget>=3.2
+
+# Web interface (opcional - para versão Streamlit)
+streamlit>=1.28.0
+plotly>=5.0.0
