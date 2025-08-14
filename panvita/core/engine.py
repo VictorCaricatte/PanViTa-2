@@ -513,6 +513,20 @@ Contact: dlnrodrigues@ufmg.br
                 # Generate matrix
                 titulo, dicl, totalgenes, found_genes_per_strain = Visualization.generate_matrix(p, outputs, comp, aligner_suffix)
                 
+                # Verify that the matrix file was created successfully
+                if not os.path.exists(titulo):
+                    erro_string = f"ERROR: Matrix file {titulo} was not created. Skipping analysis for {p}{f' with {aligner_suffix}' if aligner_suffix else ''}."
+                    print(erro_string)
+                    self.erro.append(erro_string)
+                    continue
+                
+                # Check if the matrix file has content
+                if os.path.getsize(titulo) == 0:
+                    erro_string = f"ERROR: Matrix file {titulo} is empty. Skipping analysis for {p}{f' with {aligner_suffix}' if aligner_suffix else ''}."
+                    print(erro_string)
+                    self.erro.append(erro_string)
+                    continue
+                
                 # Save found genes to individual .faa files if requested
                 if "-save-genes" in sys.argv:
                     self._save_found_genes(found_genes_per_strain, p, aligner_suffix)
@@ -522,8 +536,14 @@ Contact: dlnrodrigues@ufmg.br
                     self._generate_positions_files(p, comp, aligner_suffix)
                 
                 # Load matrix for visualization
-                df = pd.read_csv(titulo, sep=';')
-                df = df.set_index('Strains')
+                try:
+                    df = pd.read_csv(titulo, sep=';')
+                    df = df.set_index('Strains')
+                except Exception as e:
+                    erro_string = f"ERROR: Could not read matrix file {titulo}: {str(e)}. Skipping analysis for {p}{f' with {aligner_suffix}' if aligner_suffix else ''}."
+                    print(erro_string)
+                    self.erro.append(erro_string)
+                    continue
                 
                 # Generate heatmap
                 Visualization.generate_heatmap(titulo, p, outputs, self.erro, aligner_suffix)
