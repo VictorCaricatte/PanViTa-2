@@ -9,6 +9,8 @@
 !install_windows.bat
 !scripts/
 !scripts/*
+!Extension/
+!Extension/*
 
 # Don't ignore the main script
 !panvita.py

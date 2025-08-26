@@ -1065,6 +1065,9 @@ class Aligner:
                 cmd = (f"{self.diamond_exe} blastp -q {input_file} -d {db_path}.dmnd -o {output_file} "
                        "--quiet -k 1 -e 5e-6 -f 6 qseqid sseqid pident qcovhsp mismatch gapopen qstart qend sstart send evalue bitscore")
         elif aligner_type == "blast":
+            # Configure BLAST environment variable to fix mdb_env_open error
+            os.environ['BLASTDB_LMDB_MAP_SIZE'] = '1000000'
+            
             if db_type == "nucleotide":
                 # Use tblastn for nucleotide databases (protein query vs translated nucleotide db)
                 cmd = (f"{self.tblastn_exe} -query {input_file} -db {db_path} -out {output_file} "
