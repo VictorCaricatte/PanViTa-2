@@ -700,7 +700,7 @@ def execute_panvita_analysis():
     with progress_container:
         st.markdown("""
         <div style="
-            background: linear-gradient(90deg, #f0f2f6 0%, #e8eaf6 100%);
+            background: black;
             padding: 20px;
             border-radius: 10px;
             border-left: 4px solid #1f77b4;
@@ -738,14 +738,25 @@ def execute_panvita_analysis():
     
     # Executar análise em thread separada com contexto adequado
     def run_analysis_with_progress():
-        # Configurar contexto do Streamlit para evitar warnings
+        # Configurar contexto do Streamlit de forma mais robusta
         try:
-            from streamlit.runtime.scriptrunner import add_script_run_ctx
+            from streamlit.runtime.scriptrunner import add_script_run_ctx, get_script_run_ctx
             import threading
-            add_script_run_ctx(threading.current_thread())
+            
+            # Tentar obter o contexto atual e aplicá-lo à thread
+            try:
+                ctx = get_script_run_ctx()
+                if ctx:
+                    add_script_run_ctx(threading.current_thread(), ctx)
+            except:
+                # Fallback: tentar adicionar contexto sem parâmetros
+                add_script_run_ctx(threading.current_thread())
         except Exception:
-            # Se não conseguir adicionar contexto, continuar sem ele
-            pass
+            # Se não conseguir configurar contexto, suprimir warnings localmente
+            import warnings
+            warnings.filterwarnings('ignore', message='.*missing ScriptRunContext.*')
+            import logging
+            logging.getLogger('streamlit').setLevel(logging.ERROR)
         
         try:
             # Backup do sys.argv original
@@ -820,9 +831,33 @@ def execute_panvita_analysis():
     original_level = streamlit_logger.level
     streamlit_logger.setLevel(logging.ERROR)  # Só mostrar erros, não warnings
     
+    # Criar thread com contexto adequado
+    def create_thread_with_context():
+        """Cria thread com contexto do Streamlit adequado"""
+        try:
+            from streamlit.runtime.scriptrunner import add_script_run_ctx, get_script_run_ctx
+            import threading
+            
+            # Obter contexto atual
+            current_ctx = get_script_run_ctx()
+            
+            # Criar thread
+            thread = threading.Thread(target=run_analysis_with_progress)
+            thread.daemon = True
+            
+            # Adicionar contexto à thread antes de iniciar
+            if current_ctx:
+                add_script_run_ctx(thread, current_ctx)
+            
+            return thread
+        except Exception:
+            # Fallback: criar thread normal
+            thread = threading.Thread(target=run_analysis_with_progress)
+            thread.daemon = True
+            return thread
+    
     # Executar análise
-    analysis_thread = threading.Thread(target=run_analysis_with_progress)
-    analysis_thread.daemon = True
+    analysis_thread = create_thread_with_context()
     analysis_thread.start()
     
     # Loop de atualização da interface com melhorias visuais
@@ -907,14 +942,32 @@ def execute_panvita_analysis():
         if not analysis_thread.is_alive():
             break
     
-    # Aguardar thread terminar completamente
-    analysis_thread.join(timeout=1.0)
-    
-    # Restaurar nível de logging original
+    # Aguardar thread terminar completamente com gestão de recursos
     try:
-        streamlit_logger.setLevel(original_level)
-    except:
-        pass
+        analysis_thread.join(timeout=2.0)  # Timeout aumentado
+        
+        # Verificar se a thread ainda está viva após timeout
+        if analysis_thread.is_alive():
+            st.warning("⚠️ A análise está demorando mais que o esperado. Aguarde...")
+            analysis_thread.join(timeout=5.0)  # Timeout adicional
+            
+        # Limpeza de recursos da thread
+        del analysis_thread
+        
+    except Exception as e:
+        st.error(f"Erro ao finalizar análise: {str(e)}")
+    finally:
+        # Sempre restaurar configurações originais
+        try:
+            streamlit_logger.setLevel(original_level)
+            # Limpar filtros de warnings
+            warnings.resetwarnings()
+        except:
+            pass
+        
+        # Garantir que o estado seja resetado mesmo em caso de erro
+        if 'analysis_running' in st.session_state:
+            st.session_state.analysis_running = False
     
     # Atualização final com indicadores visuais aprimorados
     if tracker.is_complete:
@@ -946,7 +999,6 @@ def execute_panvita_analysis():
         
         # Mostrar resultados com melhor apresentação
         if hasattr(st.session_state, 'analysis_success') and st.session_state.analysis_success:
-            st.balloons()  # Animação de celebração
             
             # Card de sucesso personalizado
             st.markdown("""
