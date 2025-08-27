@@ -2267,7 +2267,7 @@ Parameters:
 
 Note: If no aligner is specified, the program will prompt you to choose between DIAMOND, BLAST, or both.
 
-Contact: dlnrodrigues@ufmg.br
+Contact: victorsc@ufmg.br , dlnrodrigues@ufmg.br
         ''')
 
     def _determine_aligners(self, aligner):
