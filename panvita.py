@@ -1,16 +1,17 @@
-"""
+
 # ==============================================================================
 # Author:       Victor S Caricatte De Araújo
 # Co-author:    Diego Neres, Vinicius Oliveira
 # Email:        victorsc@ufmg.br , dlnrodrigues@ufmg.br , vinicius.oliveira.1444802@sga.pucminas.br
 # Intitution:   Universidade federal de Minas Gerais
 # Version:      2.0.0
-# Date:         August, 12, 2025
-# ...................................
+# Date:         August, 25, 2025
+# Notes: You may need deactivate conda. 
 # ==============================================================================
-"""
+
 
 # Standard library imports
+import concurrent.futures
 import gzip
 import math
 import os
@@ -33,6 +34,7 @@ import pandas as pd
 import seaborn as sns
 import numpy as np
 import wget
+
 
 class PanViTaConfig:
     VERSION = "2.0.0"
@@ -1055,19 +1057,16 @@ class Aligner:
         if aligner_type == "diamond":
             if db_type == "nucleotide":
                 # DIAMOND doesn't support tblastn, so skip MEGARes for DIAMOND
-                print("Warning: DIAMOND cannot be used with nucleotide databases (MEGARes). Skipping MEGARes alignment...")
+                print(f"Warning: DIAMOND cannot be used with nucleotide databases (MEGARes). Skipping alignment for {os.path.basename(input_file)}...")
                 # Create empty output file
                 with open(output_file, 'w') as f:
                     pass
-                return
+                return f"Skipped {os.path.basename(input_file)} for DIAMOND (nucleotide db)"
             else:
                 # Use blastp for protein databases (protein query vs protein db)
                 cmd = (f"{self.diamond_exe} blastp -q {input_file} -d {db_path}.dmnd -o {output_file} "
                        "--quiet -k 1 -e 5e-6 -f 6 qseqid sseqid pident qcovhsp mismatch gapopen qstart qend sstart send evalue bitscore")
         elif aligner_type == "blast":
-            # Configure BLAST environment variable to fix mdb_env_open error
-            os.environ['BLASTDB_LMDB_MAP_SIZE'] = '1000000'
-            
             if db_type == "nucleotide":
                 # Use tblastn for nucleotide databases (protein query vs translated nucleotide db)
                 cmd = (f"{self.tblastn_exe} -query {input_file} -db {db_path} -out {output_file} "
@@ -1076,9 +1075,10 @@ class Aligner:
                 # Use blastp for protein databases
                 cmd = (f"{self.blastp_exe} -query {input_file} -db {db_path} -out {output_file} "
                        '-max_target_seqs 1 -evalue 5e-6 -outfmt "6 qseqid sseqid pident qcovhsp mismatch gapopen qstart qend sstart send evalue bitscore"')
-                
-        print(f"Aligning {input_file}...\n")
+        
+        # print(f"Aligning {input_file}...")
         os.system(cmd)
+        return f"Aligned {os.path.basename(input_file)}"
 
 class DataProcessor:
     @staticmethod
@@ -1102,7 +1102,7 @@ class DataProcessor:
             except BaseException:
                 cobertura = 70
                 
-        print(_out)
+        # print(_out)
         try:
             with open(_in, 'rt') as fileO:
                 file = fileO.readlines()
@@ -1251,7 +1251,7 @@ class DataProcessor:
                 # Debug: Print first few unique genes
                 if unique_genes:
                     sample_genes = sorted(list(unique_genes))[:10]
-                    print(f"  - Sample genes: {', '.join(sample_genes)}")
+                    # print(f"  - Sample genes: {', '.join(sample_genes)}")
                 
                 # Return the mechanisms mapping for MEGARes as third element
                 return comp, genes_comp, mechanisms_comp
@@ -1299,10 +1299,10 @@ class Visualization:
         
         # Debug: Print sample of comp dictionary for MEGARes.
         if db_param == "-megares" and comp:
-            print(f"Sample comp mappings for MEGARes:")
+            # print(f"Sample comp mappings for MEGARes:")
             sample_keys = list(comp.keys())[:5]  # Show first 5 mappings
-            for k in sample_keys:
-                print(f"  {k} -> {comp[k]}")
+            # for k in sample_keys:
+                # print(f"  {k} -> {comp[k]}")
         
         for i in files_in_dir:
             if not i.endswith('.tab'):
@@ -1334,7 +1334,7 @@ class Visualization:
                 
                 # Debug: Print first few subject IDs for MEGARes to understand format
                 if db_param == "-megares" and debug_sample_count < 3:
-                    print(f"  Debug - Subject ID: {linha[1]}")
+                    # print(f"  Debug - Subject ID: {linha[1]}")
                     debug_sample_count += 1
                     
                 gene = None
@@ -1358,8 +1358,8 @@ class Visualization:
                             gene = actual_gene.strip().replace('\n', '').replace('\r', '')  # Clean newlines
                             original_gene = "header_gene:" + actual_gene.strip()
                             # Debug print for this case
-                            if db_param == "-megares" and debug_sample_count <= 10:
-                                print(f"    Using gene from header: {meg_id} -> {gene}")
+                            # if db_param == "-megares" and debug_sample_count <= 10:
+                                # print(f"    Using gene from header: {meg_id} -> {gene}")
                 
                 # If no MEGARes match, try regular substring matching for other databases
                 if gene is None:
@@ -1370,8 +1370,8 @@ class Visualization:
                             break
                 
                 # Debug print for MEGARes
-                if db_param == "-megares" and gene and debug_sample_count <= 10:
-                    print(f"    Matched gene: {gene} (from {original_gene})")
+                # if db_param == "-megares" and gene and debug_sample_count <= 10:
+                    # print(f"    Matched gene: {gene} (from {original_gene})")
                 
                 if gene:
                     try:
@@ -1391,7 +1391,7 @@ class Visualization:
             
             dicl[str(linhagem)] = genes
             found_genes_per_strain[str(linhagem)] = strain_found_genes
-            print(f"  - {linhagem}: {genes_found} genes found")
+            # print(f"  - {linhagem}: {genes_found} genes found")
         
         # Convert set back to sorted list for consistent output
         totalgenes = sorted(list(totalgenes))
@@ -1773,7 +1773,11 @@ class Visualization:
 
     @staticmethod
     def generate_scatterplot_heatmap(data_file, db_param, outputs, erro, aligner_suffix=""):
-        
+        """
+        Generates a scatterplot-based heatmap (dot plot) that scales effectively for large datasets.
+        The size and color intensity of each dot represent the identity of a gene found in a strain.
+        This function replaces the previous implementation with more robust dynamic sizing.
+        """
         fileType = "pdf"
         if "-pdf" in sys.argv:
             fileType = "pdf"
@@ -1784,54 +1788,49 @@ class Visualization:
         out = f"scatter_heatmap_{db_name}{f'_{aligner_suffix}' if aligner_suffix else ''}.{fileType}"
         outputs.append(out)
 
-        # Tema semelhante ao exemplo solicitado
         try:
-            
-            # Aplicar tema temporariamente apenas para este gráfico
             with sns.axes_style("whitegrid"):
-                # Leitura e preparo
                 df = pd.read_csv(data_file, sep=';').set_index('Strains')
-                # Remover colunas não nomeadas
-                for col in list(df.columns):
-                    if "Unnamed:" in col:
-                        df = df.drop(columns=[col])
+                # Clean unnamed columns that may appear from CSV writing/reading
+                df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
 
-                # Long-form: Strains, Gene, Identity
+                # Convert from wide to long format for seaborn's relplot
                 long_df = df.reset_index().melt(id_vars='Strains', var_name='Gene', value_name='Identity')
-                # Garantir tipo numérico para Identity e filtrar zeros/NaN
                 long_df['Identity'] = pd.to_numeric(long_df['Identity'], errors='coerce')
+                # Filter out non-present genes (Identity == 0 or NaN)
                 long_df = long_df[long_df['Identity'] > 0]
+
                 if long_df.empty:
-                    print(f"Warning: No data to plot for scatter heatmap {out}")
+                    print(f"Warning: No data to plot for scatter heatmap {out}. All gene identities are zero or less.")
                     return
 
-                # Limites para normalização de tamanho/cor
                 id_min = float(long_df['Identity'].min())
                 id_max = float(long_df['Identity'].max())
+                
+                # Set a fallback for max identity if all values are the same
                 if id_max <= id_min:
                     id_max = id_min + 1.0
 
-                # Paleta contínua dependente do db_param (seguindo generate_heatmap)
-                if db_param == "-card":
-                    palette = "Blues"
-                elif db_param == "-vfdb":
-                    palette = "Reds"
-                elif db_param == "-bacmet":
-                    palette = "Greens"
-                elif db_param == "-megares":
-                    palette = "Oranges"
-                else:
-                    palette = "viridis"
+                # Define color palette based on database
+                palette_map = {
+                    "-card": "Blues", "-vfdb": "Reds",
+                    "-bacmet": "Greens", "-megares": "Oranges"
+                }
+                palette = palette_map.get(db_param, "viridis")
 
-                # Dimensionamento dinâmico: altura baseada em strains e largura proporcional a genes
+                # --- IMPROVED DYNAMIC SIZING ---
                 n_genes = long_df['Gene'].nunique()
                 n_strains = long_df['Strains'].nunique()
-                # Altura: escala suavemente com o número de strains
-                height = max(5, min(22, 2 + 0.28 * n_strains))
-                # Aspecto (largura/altura): proporcional à razão genes/strains (com limites mais largos para mais espaço no X)
-                aspect_ratio = max(15.0, min(15.0, n_genes / max(n_strains, 1)))
+
+                # Height scales gently with the number of strains
+                height = max(6, min(25, 4 + 0.3 * n_strains))
+                # Aspect ratio (width/height) scales with the gene/strain ratio but is capped
+                # This prevents extremely wide or tall plots.
+                aspect_ratio = max(0.5, min(6.0, (n_genes / max(n_strains, 1)) * 0.8))
 
                 print(f"\nPlotting scatter heatmap{f' ({aligner_suffix})' if aligner_suffix else ''}...")
+                print(f"  - Dimensions: {n_strains} strains, {n_genes} genes.")
+                print(f"  - Figure params (H x Aspect): {height:.1f} x {aspect_ratio:.2f}")
 
                 g = sns.relplot(
                     data=long_df,
@@ -1841,50 +1840,44 @@ class Visualization:
                     hue_norm=(id_min, id_max),
                     edgecolor=".7",
                     height=height,
-                    sizes=(id_min * 10, id_max * 10),  # Tamanho proporcional ao Identity
+                    sizes=(20, 200),  # Adjusted fixed size range for better visuals
                     size_norm=(id_min, id_max),
                     aspect=aspect_ratio
                 )
 
-                # Ajustes de estilo no espírito do exemplo
+                # --- PLOT AESTHETIC ADJUSTMENTS ---
                 g.set(xlabel="Genes", ylabel="Strains")
                 g.despine(left=True, bottom=True)
-                # Reduzir espaçamento vertical entre categorias e margens extras
-                try:
-                    g.ax.set_ylim(-0.5, n_strains - 0.5)
-                except Exception:
-                    pass
-                # Aumentar espaço no X e reduzir ao máximo no Y
-                g.ax.margins(x=.08, y=0.0)
-                # Reduzir padding entre ticks/labels no Y e aumentar no X
-                try:
-                    # Tamanho de fonte dinâmico para Y para compactar visualmente
-                    y_labelsize = max(7, min(11, 12 - int(n_strains * 0.15)))
-                    g.ax.tick_params(axis='y', pad=0, labelsize=y_labelsize)
-                    g.ax.tick_params(axis='x', pad=10)
-                except Exception:
-                    pass
+                
+                # Rotate x-axis (gene) labels for readability
                 for label in g.ax.get_xticklabels():
                     label.set_rotation(90)
+                
+                # Dynamically adjust font size of Y-axis labels to prevent overlap
+                y_labelsize = max(6, min(10, 11 - int(n_strains * 0.1)))
+                g.ax.tick_params(axis='y', labelsize=y_labelsize)
 
-                g.figure.suptitle(f"Scatter Heatmap - {db_name.upper()}", y=1.02, fontweight="bold")
-
-                # Salvar
+                g.figure.suptitle(f"Gene Presence Scatter Heatmap - {db_name.upper()}", y=1.03, fontweight="bold")
+                
                 g.figure.savefig(out, format=fileType, dpi=300, bbox_inches="tight")
                 plt.close(g.figure)
                 print(f"Scatter heatmap saved as: {out}")
 
-        except BaseException as e:
+        except Exception as e:
             erro_string = (
                 f"\nIt was not possible to plot the scatter heatmap {out}...\n"
-                f"Error: {e}\nPlease verify the GenBank files and the matrix_x.csv output."
+                f"Error: {e}\nPlease verify the matrix file is not empty."
             )
             erro.append(erro_string)
             print(erro_string)
 
     @staticmethod
     def generate_scatterplot_with_continuous_hues_and_sizes(data_file, index_col, output_file, fileType, outputs):
-        """Bubble scatter: x=index_col (categorical), y=Category, hue/size by Count (continuous) using seaborn"""
+        """
+        Creates a bubble scatter plot (e.g., for mechanisms) that scales for many categories.
+        X-axis is categorical, Y-axis is categorical, and bubble size/color represent continuous values.
+        This enhanced version improves readability for large numbers of x-axis categories.
+        """
         try:
             data = pd.read_csv(data_file, sep=';', index_col=index_col)
             if data is None or data.empty:
@@ -1892,26 +1885,43 @@ class Visualization:
                 return
 
             long_df = data.reset_index().melt(id_vars=index_col, var_name="Category", value_name="Count")
+            # Filter out zero counts as they won't be visible as bubbles anyway
+            long_df = long_df[long_df['Count'] > 0]
+            if long_df.empty:
+                print(f"No non-zero data to plot for {output_file}")
+                return
 
             num_x = long_df[index_col].nunique()
             num_y = long_df["Category"].nunique()
 
-            base_w, base_h = 10, 6
-            width = max(base_w, min(24, base_w + num_x * 0.7))
-            height = max(base_h, min(16, base_h + num_y * 0.7))
+            # --- IMPROVED DYNAMIC SIZING ---
+            base_w, base_h = 8, 5
+            # Width scales with number of x-axis categories, but is capped
+            width = max(base_w, min(40, base_w + num_x * 0.6))
+            # Height scales with number of y-axis categories
+            height = max(base_h, min(18, base_h + num_y * 0.8))
 
             plt.figure(figsize=(width, height))
             ax = sns.scatterplot(
                 data=long_df, x=index_col, y="Category",
-                hue="Count", size="Count", sizes=(40, 600),
-                palette="viridis", alpha=0.8, edgecolor="black", linewidth=0.4
+                hue="Count", size="Count", sizes=(50, 800), # Increased size range for visual impact
+                palette="viridis_r", alpha=0.8, edgecolor="black", linewidth=0.5
             )
-            ax.set_title(f"Counts by {index_col} and Category", fontweight="bold")
-            ax.set_xlabel(index_col, fontweight="bold")
-            ax.set_ylabel("Category", fontweight="bold")
-            plt.xticks(rotation=45, ha="right")
-            ax.grid(True, linestyle="--", alpha=0.3)  # Use ax.grid() instead of plt.grid()
+            
+            ax.set_title(f"Distribution of {index_col} by Category", fontweight="bold", fontsize=14)
+            ax.set_xlabel(index_col, fontweight="bold", fontsize=12)
+            ax.set_ylabel("Category", fontweight="bold", fontsize=12)
+            
+            # --- DYNAMIC LABEL HANDLING ---
+            # Use 90-degree rotation for many labels to prevent overlap
+            rotation = 90 if num_x > 10 else 45
+            ha = "right" if rotation == 45 else "center"
+            # Reduce font size if labels are very numerous
+            fontsize = 'small' if num_x > 20 else 'medium'
+            plt.xticks(rotation=rotation, ha=ha, fontsize=fontsize)
 
+            ax.grid(True, linestyle="--", alpha=0.4)
+            
             if not isinstance(output_file, str):
                 output_file = str(output_file)
             if not output_file.endswith(f".{fileType}"):
@@ -1922,6 +1932,7 @@ class Visualization:
             plt.close()
             outputs.append(output_file)
             print(f"Bubble scatter saved as: {output_file} (size: {width:.1f}x{height:.1f})")
+            
         except Exception as e:
             print(f"Error generating bubble scatter {output_file}: {e}")
 
@@ -1971,7 +1982,11 @@ class Visualization:
 
     @staticmethod
     def generate_clustermap(data_file, db_param, outputs, erro, aligner_suffix=""):
-        """Hierarchical clustermap using seaborn.clustermap"""
+        """
+        Hierarchical clustermap that is now robust against common errors.
+        This version checks for valid data dimensions before attempting to plot,
+        preventing crashes related to empty or insufficient data.
+        """
         fileType = "pdf"
         if "-pdf" in sys.argv:
             fileType = "pdf"
@@ -1982,151 +1997,137 @@ class Visualization:
         out = f"clustermap_{db_name}{f'_{aligner_suffix}' if aligner_suffix else ''}.{fileType}"
         outputs.append(out)
 
-        if db_param == "-card":
-            cmap = "Blues"
-        elif db_param == "-vfdb":
-            cmap = "Reds"
-        elif db_param == "-bacmet":
-            cmap = "Greens"
-        elif db_param == "-megares":
-            cmap = "Oranges"
-        else:
-            cmap = "viridis"
+        cmap_map = {
+            "-card": "Blues", "-vfdb": "Reds",
+            "-bacmet": "Greens", "-megares": "Oranges"
+        }
+        cmap = cmap_map.get(db_param, "viridis")
 
         try:
             df = pd.read_csv(data_file, sep=';').set_index('Strains')
-            for col in list(df.columns):
-                if "Unnamed:" in col:
-                    df = df.drop(columns=[col])
+            df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
 
             if df.empty or df.shape[1] == 0:
-                print(f"Warning: Empty data for clustermap: {data_file}")
+                print(f"Warning: Empty data for clustermap: {data_file}. Skipping plot.")
                 return
             
-            # Check if we have enough data for clustering
-            num_rows = len(df.index)
-            num_cols = len(df.columns)
-            
-            if num_rows < 2:
-                print(f"Warning: Cannot create clustermap with only {num_rows} sample(s). At least 2 samples are required for hierarchical clustering.")
-                print(f"Skipping clustermap generation for {db_param}. Consider adding more genomes to your analysis.")
-                return
-            
-            if num_cols < 2:
-                print(f"Warning: Cannot create clustermap with only {num_cols} gene(s). At least 2 genes are required for hierarchical clustering.")
-                print(f"Skipping clustermap generation for {db_param}.")
+            # --- ENHANCED ROBUSTNESS FIX ---
+            # Drop columns with no variance (all values are the same) as they cause NaNs during standardization.
+            initial_cols = df.shape[1]
+            df = df.loc[:, df.std() > 0]
+            if df.shape[1] < initial_cols:
+                print(f"Warning: Removed {initial_cols - df.shape[1]} columns with zero variance before clustering.")
+
+            # Clustermap requires at least 2 rows and 2 columns to perform clustering.
+            num_rows, num_cols = df.shape
+            if num_rows < 2 or num_cols < 2:
+                print(f"Warning: Not enough data for clustering ({num_rows} strains x {num_cols} genes after cleaning).")
+                print("Clustermap requires at least 2 of each. Skipping plot.")
                 return
 
-            # Create clustermap
+            # Dynamic figsize to make cells more square-like
+            fig_width = max(10, 0.3 * num_cols)
+            fig_height = max(8, 0.5 * num_rows)
+            
+            print(f"\nPlotting standardized clustermap ({fig_width:.1f} x {fig_height:.1f} inches)...")
+
             g = sns.clustermap(
-                df, cmap=cmap, method="average", metric="euclidean",
-                z_score=None, standard_scale=None, cbar_kws={'label': 'Identity (%)'},
-                figsize=(12, max(6, min(18, 0.4 * len(df.index) + 4)))
+                df,
+                cmap=cmap,
+                method="average",
+                metric="euclidean",
+                standard_scale=1,  # Standardize by column (z-score)
+                cbar_kws={'label': 'Identity (Z-score)'},
+                figsize=(fig_width, fig_height)
             )
+            
             g.fig.suptitle(f"Hierarchical Clustermap - {db_name.upper()}", y=1.02, fontweight="bold")
-
+            plt.setp(g.ax_heatmap.get_xticklabels(), rotation=90)
+            
             g.savefig(out, format=fileType, dpi=300, bbox_inches="tight")
             plt.close(g.fig)
-            print(f"Hierarchical clustermap saved as: {out}")
+            print(f"Standardized hierarchical clustermap saved as: {out}")
+            
         except Exception as e:
             erro_string = f"\nIt was not possible to plot the clustermap {out}: {e}"
             erro.append(erro_string)
             print(erro_string)
 
+
+
     @staticmethod
     def generate_lineplot(data_file, title, pan_label, core_label, output_file, fileType, outputs):
-        """Generate pan-genome lineplot with proper parameter handling"""
+        """Generate pan-genome lineplot with improved axis tick handling for readability."""
         try:
-            # Generate pan-genome plot with validation
             df_pan = pd.read_csv(data_file, sep=";")
             
-            # Validate data before plotting
             if len(df_pan) == 0:
                 print("Warning: No data found for pan-genome analysis!")
-                return outputs
+                return
             
             df_pan["Number of Genomes"] = list(range(1, len(df_pan["Strains"]) + 1))
             df_pan = df_pan.rename(columns={'Core': 'Core Genes'})
             
             # Validate that core never exceeds pan
-            invalid_rows = df_pan[df_pan["Core Genes"] > df_pan["Pan"]]
-            if len(invalid_rows) > 0:
-                print("Warning: Found rows where core > pan, correcting...")
-                df_pan.loc[df_pan["Core Genes"] > df_pan["Pan"], "Core Genes"] = df_pan["Pan"]
+            if "Core Genes" in df_pan.columns and "Pan" in df_pan.columns:
+                invalid_rows = df_pan[df_pan["Core Genes"] > df_pan["Pan"]]
+                if not invalid_rows.empty:
+                    print("Warning: Found rows where core > pan, correcting...")
+                    df_pan.loc[df_pan["Core Genes"] > df_pan["Pan"], "Core Genes"] = df_pan["Pan"]
             
-            # Obter valores únicos dos dados para ajustar o tamanho da figura
-            unique_values = sorted(set(df_pan["Pan"].tolist() + df_pan["Core Genes"].tolist()))
-            # Adicionar 0 se não estiver presente
-            if 0 not in unique_values and min(unique_values) > 0:
-                unique_values = [0] + unique_values
-            # Usar apenas valores inteiros
-            unique_values = [int(val) for val in unique_values if val == int(val)]
-            
-            # Ajustar a altura com base no número de valores únicos
-            num_unique_values = len(unique_values)
-            # Garantir espaçamento adequado entre os valores do eixo Y
-            y_size = max(8, min(10, 4 + num_unique_values * 0.8))
-            
-            plt.figure(figsize=(12, y_size))
-            plt.subplot(1, 1, 1)
+            plt.figure(figsize=(12, 8)) # Standardized figure size
             
             # Create line plots with better styling
-            sns.lineplot(x=df_pan["Number of Genomes"], y=df_pan["Pan"], 
+            sns.lineplot(x="Number of Genomes", y="Pan", data=df_pan, 
                          marker='o', linewidth=2.5, markersize=8, color='#1f77b4', alpha=0.8, label=pan_label)
-            sns.lineplot(x=df_pan["Number of Genomes"], y=df_pan["Core Genes"], 
+            sns.lineplot(x="Number of Genomes", y="Core Genes", data=df_pan, 
                          marker='s', linewidth=2.5, markersize=8, color='#ff7f0e', alpha=0.8, label=core_label)
             
             plt.xlabel('Number of Genomes', fontsize=14, fontweight='bold')
             plt.ylabel('Number of Genes', fontsize=14, fontweight='bold')
             plt.title(title, fontsize=16, fontweight='bold', pad=20)
-            plt.legend(fontsize=12, frameon=True, shadow=True, loc='upper left')
-            plt.grid(True, alpha=0.3, linestyle='--')
+            plt.legend(fontsize=12, frameon=True, shadow=True, loc='best')
+            plt.grid(True, alpha=0.4, linestyle='--')
             
-            # Set integer ticks for x-axis
-            plt.xticks(range(1, len(df_pan) + 1))
+            # --- IMPROVED TICK HANDLING ---
+            # Use MaxNLocator to automatically find the best integer ticks for both axes
+            from matplotlib.ticker import MaxNLocator
+            plt.gca().xaxis.set_major_locator(MaxNLocator(integer=True))
+            plt.gca().yaxis.set_major_locator(MaxNLocator(integer=True))
+            plt.xlim(left=0) # Start x-axis at 0 for better visualization
+            plt.ylim(bottom=0) # Start y-axis at 0
             
-            # Garantir que o eixo Y mostre valores exatos correspondentes aos dados
-            from matplotlib.ticker import FixedLocator
-            # Definir os ticks exatamente nos valores dos dados
-            plt.gca().yaxis.set_major_locator(FixedLocator(unique_values))
-            
-            # Add annotations for first and last points
-            if len(df_pan) > 1:
-                plt.annotate(f'Final Pan: {df_pan["Pan"].iloc[-1]}', 
-                            xy=(len(df_pan), df_pan["Pan"].iloc[-1]), 
-                            xytext=(10, 10), textcoords='offset points',
-                            bbox=dict(boxstyle='round,pad=0.3', fc='lightblue', alpha=0.7),
+            # Add annotations for the final points
+            if len(df_pan) > 0:
+                final_pan = df_pan["Pan"].iloc[-1]
+                final_core = df_pan["Core Genes"].iloc[-1]
+                num_genomes = len(df_pan)
+                
+                plt.annotate(f'Final Pan: {final_pan}', 
+                            xy=(num_genomes, final_pan), 
+                            xytext=(0, 15), textcoords='offset points',
+                            ha='right', va='bottom',
+                            bbox=dict(boxstyle='round,pad=0.4', fc='lightblue', alpha=0.8),
                             fontsize=10)
-                plt.annotate(f'Final Core: {df_pan["Core Genes"].iloc[-1]}', 
-                            xy=(len(df_pan), df_pan["Core Genes"].iloc[-1]), 
-                            xytext=(10, -15), textcoords='offset points',
-                            bbox=dict(boxstyle='round,pad=0.3', fc='orange', alpha=0.7),
+                plt.annotate(f'Final Core: {final_core}', 
+                            xy=(num_genomes, final_core), 
+                            xytext=(0, -15), textcoords='offset points',
+                            ha='right', va='top',
+                            bbox=dict(boxstyle='round,pad=0.4', fc='orange', alpha=0.8),
                             fontsize=10)
             
             plt.tight_layout()
             
-            # Ensure output_file is a string and has proper extension
             if not isinstance(output_file, str):
                 output_file = str(output_file)
             if not output_file.endswith(f'.{fileType}'):
                 output_file = f"{output_file}.{fileType}"
             
-            plt.savefig(output_file, format=fileType, dpi=300, bbox_inches="tight")
+            plt.savefig(output_file, format=fileType, dpi=300)
             plt.close()
             outputs.append(output_file)
             
-            print(f"Pan-genome analysis completed:")
-            print(f"  - Total genomes analyzed: {len(df_pan)}")
-            print(f"  - Final pan-genome size: {df_pan['Pan'].iloc[-1]} genes")
-            print(f"  - Final core-genome size: {df_pan['Core Genes'].iloc[-1]} genes")
-            print(f"  - Pan-genome plot saved as: {output_file}")
-            
-            # Additional statistics
-            if len(df_pan) > 1:
-                pan_growth = df_pan['Pan'].iloc[-1] - df_pan['Pan'].iloc[0]
-                core_reduction = df_pan['Core Genes'].iloc[0] - df_pan['Core Genes'].iloc[-1]
-                print(f"  - Pan-genome growth: +{pan_growth} genes")
-                print(f"  - Core-genome reduction: -{core_reduction} genes")
+            print(f"Pan-genome analysis completed and plot saved as: {output_file}")
                 
         except Exception as e:
             print(f"Error generating lineplot {output_file}: {e}")
@@ -2184,8 +2185,8 @@ class PanViTa:
         # Extract and save proteins
         self._extract_and_save_proteins()
         
-        # Align and mine
-        self._align_and_mine(aligner_types, aligner_exes, aligner_names)
+        # *** OPTIMIZATION: Align and mine in parallel ***
+        self._align_and_mine_parallel(aligner_types, aligner_exes, aligner_names)
         
         # Run main analysis workflow
         self._run_analysis_workflow(aligner_types, aligner_names)
@@ -2511,70 +2512,76 @@ Contact: victorsc@ufmg.br , dlnrodrigues@ufmg.br
                                     k = []
                         for l in k:
                             faa.write(l)
+    
+    def _run_single_alignment(self, strain, db_path, tabular1_dir, aligner_type, db_type):
+        """Helper function to run a single alignment process for parallel execution."""
+        aligner = Aligner(self.dppath)
+        input_file = os.path.join("faa", f"{strain}.faa")
+        output_file = os.path.join(tabular1_dir, f"{strain}.tab")
+        return aligner.align(input_file, db_path, output_file, aligner_type, db_type)
 
-    def _align_and_mine(self, aligner_types, aligner_exes, aligner_names):
-        """Perform alignments and mining for each database"""
+    def _align_and_mine_parallel(self, aligner_types, aligner_exes, aligner_names):
+        """Perform alignments in parallel and then mine the results."""
+        # Use as many workers as CPU cores, but cap at a reasonable number if needed
+        max_workers = os.cpu_count()
+        print(f"\nUsing up to {max_workers} CPU cores for parallel alignments.")
+
         for p in self.parameters:
-            outputs = []
-            current_files = os.listdir()
-            
-            # Create specific directories for each database and aligner combination
-            db_name = p[1:]  # Remove the '-' from parameter name
-            
-            # Loop through each aligner
+            db_name = p[1:]  # Remove '-'
+
             for aligner_type, aligner_exe, aligner_name in zip(aligner_types, aligner_exes, aligner_names):
-                # Create directories with aligner suffix if using multiple aligners
                 if len(aligner_types) > 1:
-                    tabular1_dir = f"Tabular_1_{db_name}_{aligner_name.lower()}"
-                    tabular2_dir = f"Tabular_2_{db_name}_{aligner_name.lower()}"
+                    suffix = f"_{aligner_name.lower()}"
                 else:
-                    tabular1_dir = f"Tabular_1_{db_name}"
-                    tabular2_dir = f"Tabular_2_{db_name}"
+                    suffix = ""
                 
-                # Align
-                if tabular1_dir not in os.listdir():
-                    os.mkdir(tabular1_dir)
-                    outputs.append(tabular1_dir)
-                else:
-                    shutil.rmtree(tabular1_dir)
-                    os.mkdir(tabular1_dir)
-                    outputs.append(tabular1_dir)
-                    
-                # Select database path based on aligner type
-                if "-card" == p:
-                    b = os.path.join(self.dbpath, "card_protein_homolog_model")
-                elif "-vfdb" == p:
-                    b = os.path.join(self.dbpath, "vfdb_core")
-                elif "-bacmet" == p:
-                    b = os.path.join(self.dbpath, "bacmet_2")
-                elif "-megares" == p:
-                    b = os.path.join(self.dbpath, "megares_v3")
-                    
-                print(f"\nStarting {aligner_name} alignments for {db_name.upper()}\n")
-                aligner = Aligner(self.dppath)
+                tabular1_dir = f"Tabular_1_{db_name}{suffix}"
+                tabular2_dir = f"Tabular_2_{db_name}{suffix}"
                 
-                for i in self.strains:
-                    a = os.path.join("faa", i + ".faa")
-                    c = os.path.join(tabular1_dir, i + ".tab")
-                    
-                    # Determine database type for alignment
-                    if "-megares" == p:
-                        db_type = "nucleotide"  # MEGARes contains nucleotide sequences
-                    else:
-                        db_type = "protein"     # CARD, VFDB, BacMet contain protein sequences
-                    
-                    aligner.align(a, b, c, aligner_type, db_type)
-                    
-                # Mine
-                if tabular2_dir not in os.listdir():
-                    os.mkdir(tabular2_dir)
-                    outputs.append(tabular2_dir)
+                # Setup directories
+                for d in [tabular1_dir, tabular2_dir]:
+                    if os.path.exists(d):
+                        shutil.rmtree(d)
+                    os.mkdir(d)
+                
+                # Determine DB path and type
+                if p == "-card":
+                    db_path = os.path.join(self.dbpath, "card_protein_homolog_model")
+                    db_type = "protein"
+                elif p == "-vfdb":
+                    db_path = os.path.join(self.dbpath, "vfdb_core")
+                    db_type = "protein"
+                elif p == "-bacmet":
+                    db_path = os.path.join(self.dbpath, "bacmet_2")
+                    db_type = "protein"
+                elif p == "-megares":
+                    db_path = os.path.join(self.dbpath, "megares_v3")
+                    db_type = "nucleotide"
                 else:
-                    shutil.rmtree(tabular2_dir)
-                    os.mkdir(tabular2_dir)
-                    outputs.append(tabular2_dir)
+                    continue
+
+                print(f"\nStarting PARALLEL {aligner_name} alignments for {db_name.upper()}...")
+                
+                # *** PARALLEL EXECUTION ***
+                tasks = []
+                with concurrent.futures.ProcessPoolExecutor(max_workers=max_workers) as executor:
+                    for strain in self.strains:
+                        tasks.append(
+                            executor.submit(self._run_single_alignment, strain, db_path, tabular1_dir, aligner_type, db_type)
+                        )
                     
-                print(f"\nMining {aligner_name} alignments for {db_name.upper()}...\n")
+                    # Wait for all jobs to complete and print progress
+                    for i, future in enumerate(concurrent.futures.as_completed(tasks)):
+                        try:
+                            result = future.result()
+                            print(f"({i+1}/{len(self.strains)}) - {result}")
+                        except Exception as exc:
+                            print(f'Alignment generated an exception: {exc}')
+
+                print(f"\nAll alignments for {db_name.upper()} complete.")
+                print(f"Mining {aligner_name} alignments for {db_name.upper()}...")
+                
+                # Mining step (still sequential, but fast)
                 for i in os.listdir(tabular1_dir):
                     DataProcessor.blastmining_specific(i, tabular1_dir, tabular2_dir)
 
@@ -2625,6 +2632,15 @@ Contact: victorsc@ufmg.br , dlnrodrigues@ufmg.br
                 # Generate matrix
                 titulo, dicl, totalgenes, found_genes_per_strain = Visualization.generate_matrix(p, outputs, comp, aligner_suffix)
                 
+                # Check if the matrix file was created and is not empty before proceeding.
+                # This prevents crashes in all downstream plotting functions.
+                if not os.path.exists(titulo) or os.path.getsize(titulo) == 0:
+                    print(f"\n❌ CRITICAL WARNING: Matrix file '{titulo}' was not generated or is empty.")
+                    print("   This usually means no significant alignment results were found for this database.")
+                    print(f"   Skipping the rest of the analysis for {p}{f' with {aligner_suffix}' if aligner_suffix else ''}.")
+                    # Move to the next item in the loop (e.g., next aligner or database).
+                    continue
+
                 # Save found genes to individual .faa files if requested
                 if "-save-genes" in sys.argv:
                     self._save_found_genes(found_genes_per_strain, p, aligner_suffix)
@@ -3576,7 +3592,7 @@ Contact: victorsc@ufmg.br , dlnrodrigues@ufmg.br
             try:
                 if os.path.exists(i):
                     shutil.move(i, atual)
-                    print(f"Moved {i} to {atual}")
+                    # print(f"Moved {i} to {atual}")
                 else:
                     print(f"Warning: {i} not found, skipping...")
             except BaseException as e:
@@ -3646,5 +3662,6 @@ Do not forget to quote the databases used.\n''')
         print('')
 
 if __name__ == '__main__':
+    # This ensures multiprocessing works correctly on all platforms (especially Windows)
     panvita = PanViTa()
     panvita.run()
