@@ -2011,7 +2011,6 @@ class Visualization:
                 print(f"Warning: Empty data for clustermap: {data_file}. Skipping plot.")
                 return
             
-            # --- ENHANCED ROBUSTNESS FIX ---
             # Drop columns with no variance (all values are the same) as they cause NaNs during standardization.
             initial_cols = df.shape[1]
             df = df.loc[:, df.std() > 0]
