@@ -1982,11 +1982,6 @@ class Visualization:
 
     @staticmethod
     def generate_clustermap(data_file, db_param, outputs, erro, aligner_suffix=""):
-        """
-        Hierarchical clustermap that is now robust against common errors.
-        This version checks for valid data dimensions before attempting to plot,
-        preventing crashes related to empty or insufficient data.
-        """
         fileType = "pdf"
         if "-pdf" in sys.argv:
             fileType = "pdf"
@@ -2007,20 +2002,15 @@ class Visualization:
             df = pd.read_csv(data_file, sep=';').set_index('Strains')
             df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
 
+            # Check if there is data to plot
             if df.empty or df.shape[1] == 0:
                 print(f"Warning: Empty data for clustermap: {data_file}. Skipping plot.")
                 return
-            
-            # Drop columns with no variance (all values are the same) as they cause NaNs during standardization.
-            initial_cols = df.shape[1]
-            df = df.loc[:, df.std() > 0]
-            if df.shape[1] < initial_cols:
-                print(f"Warning: Removed {initial_cols - df.shape[1]} columns with zero variance before clustering.")
 
             # Clustermap requires at least 2 rows and 2 columns to perform clustering.
             num_rows, num_cols = df.shape
             if num_rows < 2 or num_cols < 2:
-                print(f"Warning: Not enough data for clustering ({num_rows} strains x {num_cols} genes after cleaning).")
+                print(f"Warning: Not enough data for clustering ({num_rows} strains x {num_cols} genes).")
                 print("Clustermap requires at least 2 of each. Skipping plot.")
                 return
 
@@ -2028,15 +2018,16 @@ class Visualization:
             fig_width = max(10, 0.3 * num_cols)
             fig_height = max(8, 0.5 * num_rows)
             
-            print(f"\nPlotting standardized clustermap ({fig_width:.1f} x {fig_height:.1f} inches)...")
+            print(f"\nPlotting clustermap ({fig_width:.1f} x {fig_height:.1f} inches)...")
 
             g = sns.clustermap(
                 df,
                 cmap=cmap,
                 method="average",
                 metric="euclidean",
-                standard_scale=1,  # Standardize by column (z-score)
-                cbar_kws={'label': 'Identity (Z-score)'},
+                linewidths=0.5,          
+                linecolor='white',       
+                cbar_kws={'label': 'Identity (%)'},
                 figsize=(fig_width, fig_height)
             )
             
@@ -2045,7 +2036,7 @@ class Visualization:
             
             g.savefig(out, format=fileType, dpi=300, bbox_inches="tight")
             plt.close(g.fig)
-            print(f"Standardized hierarchical clustermap saved as: {out}")
+            print(f"Hierarchical clustermap saved as: {out}")
             
         except Exception as e:
             erro_string = f"\nIt was not possible to plot the clustermap {out}: {e}"
