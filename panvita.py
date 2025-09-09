@@ -3,7 +3,7 @@
 # Co-author:    Diego Neres, Vinicius Oliveira
 # Email:        victorsc@ufmg.br , dlnrodrigues@ufmg.br , vinicius.oliveira.1444802@sga.pucminas.br
 # Intitution:   Universidade federal de Minas Gerais
-# Version:      2.1.0
+# Version:      2.0.0
 # Date:         September 03, 2025
 # Notes: You may need deactivate conda. 
 # ==============================================================================
