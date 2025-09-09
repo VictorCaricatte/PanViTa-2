@@ -1,11 +1,10 @@
-
 # ==============================================================================
 # Author:       Victor S Caricatte De Araújo
 # Co-author:    Diego Neres, Vinicius Oliveira
 # Email:        victorsc@ufmg.br , dlnrodrigues@ufmg.br , vinicius.oliveira.1444802@sga.pucminas.br
 # Intitution:   Universidade federal de Minas Gerais
-# Version:      2.0.0
-# Date:         August, 27, 2025
+# Version:      2.1.0
+# Date:         September 03, 2025
 # Notes: You may need deactivate conda. 
 # ==============================================================================
 
@@ -37,7 +36,7 @@ import wget
 
 
 class PanViTaConfig:
-    VERSION = "2.0.0"
+    VERSION = "2.1.0"
     
     @staticmethod
     def is_windows():
@@ -1482,161 +1481,112 @@ class Visualization:
 
     @staticmethod
     def generate_barplot(data_file, index_col, output_file, fileType, outputs):
-        """Generate barplot from a semicolon-separated data file with dynamic sizing"""
+        """
+        Generates a bar chart from a data file, with sorting and dynamic sizing for clarity.
+        This is the appropriate method for comparing counts across unordered categories.
+        """
         try:
             data = pd.read_csv(data_file, sep=";", index_col=index_col)
+            if data.empty:
+                print(f"Warning: No data to plot in {output_file}")
+                return
 
-            if data is not None and not data.empty:
+            # Sum counts to sort categories from highest to lowest for better readability
+            data['Total'] = data.sum(axis=1)
+            data_sorted = data.sort_values('Total', ascending=False).drop(columns='Total')
 
-                # Prepare data for seaborn barplot
-                data_melted = data.reset_index().melt(id_vars=index_col, var_name='Category', value_name='Count')
-                
-                # Calculate dynamic figure size based on data dimensions
-                num_categories = len(data.index)
-                num_series = len(data.columns)
-                
-                # Base dimensions
-                base_width = 10
-                base_height = 6
-                
-                # Dynamic width calculation - scale with number of categories
-                width = max(base_width, min(20, base_width + num_categories * 0.8))
-                
-                # Dynamic height calculation - scale with number of series and max values
-                max_value = data.values.max()
-                height = max(base_height, min(15, base_height + num_series * 0.5 + max_value * 0.01))
-                
-                plt.figure(figsize=(width, height))
-                ax = sns.barplot(data=data_melted, x=index_col, y='Count', hue='Category', errorbar=None)
-                
-                # Add value labels on top of bars - format as integers
-                for container in ax.containers:
-                    ax.bar_label(container, fontsize=max(8, min(12, 10 - num_categories * 0.1)), fmt='%.0f')
-                
-                ax.set_xlabel(index_col, fontsize=12)
-                ax.set_ylabel('Number of Genes', fontsize=12)
-                ax.set_title(f'{index_col} Distribution', fontsize=14, fontweight='bold')
-                
-                # Force integer ticks on y-axis
-                ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
-                
-                # Dynamic rotation based on category name length
-                max_label_length = max(len(str(label)) for label in data.index)
-                rotation_angle = 45 if max_label_length > 10 or num_categories > 8 else 0
-                
-                plt.xticks(rotation=rotation_angle, ha='right' if rotation_angle > 0 else 'center')
-                
-                # Adjust layout based on rotation
-                if rotation_angle > 0:
-                    plt.subplots_adjust(bottom=0.2)
-                
-                plt.tight_layout()
-                
-                # Ensure output_file is a string and has proper extension
-                if not isinstance(output_file, str):
-                    output_file = str(output_file)
-                if not output_file.endswith(f'.{fileType}'):
-                    output_file = f"{output_file}.{fileType}"
-                
-                ax.figure.savefig(output_file, format=fileType, dpi=300, bbox_inches="tight")
-                plt.close()
-                outputs.append(output_file)
-                print(f"Barplot saved as: {output_file} (size: {width:.1f}x{height:.1f})")
-            else:
-                print(f"No data to plot for {output_file}")
+            # Melt dataframe to long format for seaborn
+            data_melted = data_sorted.reset_index().melt(id_vars=index_col, var_name='Category', value_name='Count')
+
+            num_categories = len(data_sorted.index)
+            # Dynamic figure sizing
+            width = max(12, min(30, 8 + num_categories * 0.8))
+            height = 8
+
+            plt.figure(figsize=(width, height))
+            ax = sns.barplot(data=data_melted, x=index_col, y='Count', hue='Category',
+                             palette={"Core": "#1f77b4", "Accessory": "#ff7f0e", "Exclusive": "#2ca02c"})
+
+            ax.set_xlabel(index_col.replace('_', ' ').title(), fontsize=12, fontweight='bold')
+            ax.set_ylabel('Number of Genes', fontsize=12, fontweight='bold')
+            ax.set_title(f'Distribution of Genes by {index_col.replace("_", " ").title()}', fontsize=16, fontweight='bold')
+
+            plt.xticks(rotation=45, ha='right')
+            ax.grid(axis='y', linestyle='--', alpha=0.7)
+
+            ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
+            plt.tight_layout()
+
+            plt.savefig(output_file, format=fileType, dpi=300)
+            plt.close()
+            
+            outputs.append(output_file)
+            print(f"Bar chart saved as: {output_file}")
+        
         except Exception as e:
-            print(f"Error generating barplot {output_file}: {e}")
+            print(f"Error generating bar chart {output_file}: {e}")
 
     @staticmethod
-    def generate_scatterplot(data_file, index_col, output_file, fileType, outputs):
-        """Generate scatterplot from a semicolon-separated data file with dynamic sizing"""
+    def generate_bubble_plot(data_file, index_col, output_file, fileType, outputs):
+        """
+        Creates a bubble plot to visualize three dimensions of data:
+        X-axis: Count of Core genes.
+        Y-axis: Count of Accessory genes.
+        Bubble size and color: Count of Exclusive genes.
+        """
         try:
-            data = pd.read_csv(data_file, sep=";", index_col=index_col)
+            data = pd.read_csv(data_file, sep=';', index_col=index_col)
+            if data.empty:
+                print(f"Warning: No data to plot in {output_file}")
+                return
 
-            if data is not None and not data.empty:
-                # Prepare data for scatterplot - we need at least 2 columns
-                if len(data.columns) < 2:
-                    print(f"Error: Need at least 2 columns for scatterplot, found {len(data.columns)}")
-                    return
-                
-                # Use first two columns for x and y
-                x_column = data.columns[0]
-                y_column = data.columns[1]
-                hue_column = data.columns[2] if len(data.columns) > 2 else None
-                
-                # Reset index to make it a regular column for plotting
-                data_reset = data.reset_index()
-                
-                # Calculate dynamic figure size based on data dimensions
-                num_points = len(data)
-                num_categories = len(data.columns)
-                
-                # Base dimensions
-                base_width = 10
-                base_height = 8
-                
-                # Dynamic sizing based on data
-                width = max(base_width, min(16, base_width + num_points * 0.01))
-                height = max(base_height, min(12, base_height + num_categories * 0.5))
-                
-                plt.figure(figsize=(width, height))
-                
-                # Create scatterplot using the first two numeric columns
-                if hue_column is not None:
-                    # Use third column as hue if available
-                    ax = sns.scatterplot(data=data_reset, x=x_column, y=y_column, hue=hue_column,
-                                        s=80, alpha=0.7, edgecolors='black', linewidth=0.5)
-                else:
-                    # Simple scatterplot without hue
-                    ax = sns.scatterplot(data=data_reset, x=x_column, y=y_column,
-                                        s=80, alpha=0.7, edgecolors='black', linewidth=0.5)
-                
-                # Set labels and title
-                ax.set_xlabel(x_column.replace('_', ' ').title(), fontsize=12, fontweight='bold')
-                ax.set_ylabel(y_column.replace('_', ' ').title(), fontsize=12, fontweight='bold')
-                ax.set_title(f'{x_column} vs {y_column} Distribution', fontsize=14, fontweight='bold', pad=20)
-                
-                # Force integer ticks on both axes
-                ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
-                ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
-                
-                # Add grid for better readability
-                plt.grid(True, alpha=0.3, linestyle='--')
-                
-                # Adjust legend if hue is used
-                if hue_column is not None:
-                    legend = ax.legend(title=hue_column.replace('_', ' ').title(), 
-                                        bbox_to_anchor=(1.05, 1), loc='upper left',
-                                        frameon=True, shadow=True)
-                    legend.get_frame().set_facecolor('white')
-                    legend.get_frame().set_alpha(0.9)
-                
-                # Add correlation coefficient if both columns are numeric
-                try:
-                    if pd.api.types.is_numeric_dtype(data[x_column]) and pd.api.types.is_numeric_dtype(data[y_column]):
-                        correlation = data[x_column].corr(data[y_column])
-                        plt.text(0.05, 0.95, f'r = {correlation:.3f}', transform=ax.transAxes,
-                                bbox=dict(boxstyle='round,pad=0.3', facecolor='lightgray', alpha=0.8),
-                                fontsize=11, verticalalignment='top')
-                except Exception:
-                    pass  # Skip correlation if calculation fails
-                
-                plt.tight_layout()
-                
-                # Ensure output_file is a string and has proper extension
-                if not isinstance(output_file, str):
-                    output_file = str(output_file)
-                if not output_file.endswith(f'.{fileType}'):
-                    output_file = f"{output_file}.{fileType}"
-                
-                ax.figure.savefig(output_file, format=fileType, dpi=300, bbox_inches="tight")
-                plt.close()
-                outputs.append(output_file)
-                print(f"Scatterplot saved as: {output_file} (size: {width:.1f}x{height:.1f})")
-            else:
-                print(f"No data to plot for {output_file}")
+            # Ensure required columns exist
+            required_cols = ['Core', 'Accessory', 'Exclusive']
+            if not all(col in data.columns for col in required_cols):
+                print(f"Error: Data for bubble plot must contain columns 'Core', 'Accessory', and 'Exclusive'.")
+                return
+            
+            # Filter out rows where all counts are zero
+            data_filtered = data[(data[required_cols] > 0).any(axis=1)]
+            if data_filtered.empty:
+                print(f"Warning: All data points have zero values. Cannot create bubble plot for {output_file}.")
+                return
+
+            plt.figure(figsize=(14, 10))
+            
+            bubble_plot = sns.scatterplot(
+                data=data_filtered,
+                x="Core",
+                y="Accessory",
+                size="Exclusive",
+                hue="Exclusive",
+                sizes=(20, 500),  # Min and max bubble sizes
+                palette="viridis_r",
+                alpha=0.8,
+                edgecolor="black",
+                linewidth=0.5
+            )
+
+            title = f'Core vs. Accessory Gene Distribution by {index_col.replace("_", " ").title()}'
+            bubble_plot.set_title(title, fontsize=16, fontweight='bold')
+            bubble_plot.set_xlabel("Core Gene Count", fontsize=12, fontweight='bold')
+            bubble_plot.set_ylabel("Accessory Gene Count", fontsize=12, fontweight='bold')
+
+            bubble_plot.grid(True, linestyle="--", alpha=0.6)
+            
+            # Improve legend
+            handles, labels = bubble_plot.get_legend_handles_labels()
+            bubble_plot.legend(handles, labels, title="Exclusive Gene Count", bbox_to_anchor=(1.05, 1), loc='upper left', frameon=True, shadow=True)
+
+            plt.tight_layout()
+            plt.savefig(output_file, format=fileType, dpi=300)
+            plt.close()
+            
+            outputs.append(output_file)
+            print(f"Bubble plot saved as: {output_file}")
+
         except Exception as e:
-            print(f"Error generating scatterplot {output_file}: {e}")
+            print(f"Error generating bubble plot {output_file}: {e}")
 
     @staticmethod
     def generate_joint_and_marginal_distributions(data_file, db_param, outputs, erro, aligner_suffix=""):
@@ -1774,9 +1724,9 @@ class Visualization:
     @staticmethod
     def generate_scatterplot_heatmap(data_file, db_param, outputs, erro, aligner_suffix=""):
         """
-        Generates a scatterplot-based heatmap (dot plot) that scales effectively for large datasets.
-        The size and color intensity of each dot represent the identity of a gene found in a strain.
-        This function replaces the previous implementation with more robust dynamic sizing.
+        Generates a highly dynamic scatterplot-based heatmap (dot plot) that robustly scales 
+        to handle very large datasets (from 10 to 2000+ genomes). The plot dimensions,
+        dot sizes, and font sizes all adjust automatically to ensure readability at any scale.
         """
         fileType = "pdf"
         if "-pdf" in sys.argv:
@@ -1791,47 +1741,56 @@ class Visualization:
         try:
             with sns.axes_style("whitegrid"):
                 df = pd.read_csv(data_file, sep=';').set_index('Strains')
-                # Clean unnamed columns that may appear from CSV writing/reading
                 df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
 
-                # Convert from wide to long format for seaborn's relplot
                 long_df = df.reset_index().melt(id_vars='Strains', var_name='Gene', value_name='Identity')
                 long_df['Identity'] = pd.to_numeric(long_df['Identity'], errors='coerce')
-                # Filter out non-present genes (Identity == 0 or NaN)
                 long_df = long_df[long_df['Identity'] > 0]
 
                 if long_df.empty:
-                    print(f"Warning: No data to plot for scatter heatmap {out}. All gene identities are zero or less.")
+                    print(f"Warning: No data to plot for scatter heatmap {out}. All gene identities are zero.")
                     return
 
                 id_min = float(long_df['Identity'].min())
                 id_max = float(long_df['Identity'].max())
-                
-                # Set a fallback for max identity if all values are the same
-                if id_max <= id_min:
-                    id_max = id_min + 1.0
+                if id_max <= id_min: id_max = id_min + 1.0
 
-                # Define color palette based on database
-                palette_map = {
-                    "-card": "Blues", "-vfdb": "Reds",
-                    "-bacmet": "Greens", "-megares": "Oranges"
-                }
+                palette_map = {"-card": "Blues", "-vfdb": "Reds", "-bacmet": "Greens", "-megares": "Oranges"}
                 palette = palette_map.get(db_param, "viridis")
 
-                # --- IMPROVED DYNAMIC SIZING ---
                 n_genes = long_df['Gene'].nunique()
                 n_strains = long_df['Strains'].nunique()
 
-                # Height scales gently with the number of strains
-                height = max(6, min(25, 4 + 0.3 * n_strains))
-                # Aspect ratio (width/height) scales with the gene/strain ratio but is capped
-                # This prevents extremely wide or tall plots.
-                aspect_ratio = max(0.5, min(6.0, (n_genes / max(n_strains, 1)) * 0.8))
+                # --- ADVANCED DYNAMIC SCALING LOGIC ---
 
-                print(f"\nPlotting scatter heatmap{f' ({aligner_suffix})' if aligner_suffix else ''}...")
+                # 1. Figure Sizing (non-linear scaling)
+                # Height scales with the square root of strains, ensuring it grows but doesn't become enormous.
+                # A base size ensures small plots are still readable.
+                height = min(100, 4 + np.sqrt(n_strains) * 1.5) 
+                
+                # Aspect ratio (width/height) scales similarly with genes.
+                # This makes the plot wider for more genes.
+                width = min(120, 5 + np.sqrt(n_genes) * 2.0)
+                aspect_ratio = width / height
+
+                # 2. Dot Sizing (inversely proportional to data density)
+                # As the number of strains/genes increases, the dots get smaller.
+                # We use a logarithmic scale to gracefully handle the wide range of inputs.
+                density_factor = np.log1p(n_strains + n_genes) # log1p is log(1+x)
+                max_dot_size = max(30, 250 / density_factor)
+                min_dot_size = max(5, max_dot_size / 5)
+                dot_size_range = (min_dot_size, max_dot_size)
+
+                # 3. Font and Line Sizing
+                y_labelsize = max(4, 12 - np.log2(max(1, n_strains))) # Font size decreases slowly
+                grid_linewidth = max(0.2, 1.0 - density_factor * 0.1)
+
+                print(f"\nPlotting fully dynamic scatter heatmap{f' ({aligner_suffix})' if aligner_suffix else ''}...")
                 print(f"  - Dimensions: {n_strains} strains, {n_genes} genes.")
-                print(f"  - Figure params (H x Aspect): {height:.1f} x {aspect_ratio:.2f}")
+                print(f"  - Calculated Figure (H x W): {height:.1f}in x {width:.1f}in")
+                print(f"  - Calculated Dot Size Range: ({min_dot_size:.1f}, {max_dot_size:.1f})")
 
+                # Set the figure grid first to control overall aesthetics
                 g = sns.relplot(
                     data=long_df,
                     x="Gene", y="Strains",
@@ -1840,145 +1799,41 @@ class Visualization:
                     hue_norm=(id_min, id_max),
                     edgecolor=".7",
                     height=height,
-                    sizes=(20, 200),  # Adjusted fixed size range for better visuals
+                    sizes=dot_size_range,
                     size_norm=(id_min, id_max),
-                    aspect=aspect_ratio
+                    aspect=aspect_ratio,
+                    kind='scatter'
                 )
 
-                # --- PLOT AESTHETIC ADJUSTMENTS ---
+                # --- AESTHETIC ADJUSTMENTS ---
                 g.set(xlabel="Genes", ylabel="Strains")
                 g.despine(left=True, bottom=True)
                 
-                # Rotate x-axis (gene) labels for readability
+                # Apply dynamic grid and font sizes
+                g.ax.grid(True, which='major', axis='both', linestyle='--', linewidth=grid_linewidth)
+                g.ax.tick_params(axis='y', labelsize=y_labelsize)
+                
                 for label in g.ax.get_xticklabels():
                     label.set_rotation(90)
-                
-                # Dynamically adjust font size of Y-axis labels to prevent overlap
-                y_labelsize = max(6, min(10, 11 - int(n_strains * 0.1)))
-                g.ax.tick_params(axis='y', labelsize=y_labelsize)
 
-                g.figure.suptitle(f"Gene Presence Scatter Heatmap - {db_name.upper()}", y=1.03, fontweight="bold")
+                g.figure.suptitle(f"Gene Presence Scatter Heatmap - {db_name.upper()}", y=1.02, fontweight="bold")
                 
-                g.figure.savefig(out, format=fileType, dpi=300, bbox_inches="tight")
+                # Use a tight layout before saving
+                plt.tight_layout(rect=[0, 0, 1, 0.98]) 
+
+                g.figure.savefig(out, format=fileType, dpi=300)
                 plt.close(g.figure)
-                print(f"Scatter heatmap saved as: {out}")
+                print(f"Dynamic scatter heatmap saved as: {out}")
 
         except Exception as e:
-            erro_string = (
+            error_message = (
                 f"\nIt was not possible to plot the scatter heatmap {out}...\n"
                 f"Error: {e}\nPlease verify the matrix file is not empty."
             )
-            erro.append(erro_string)
-            print(erro_string)
-
-    @staticmethod
-    def generate_scatterplot_with_continuous_hues_and_sizes(data_file, index_col, output_file, fileType, outputs):
-        """
-        Creates a bubble scatter plot (e.g., for mechanisms) that scales for many categories.
-        X-axis is categorical, Y-axis is categorical, and bubble size/color represent continuous values.
-        This enhanced version improves readability for large numbers of x-axis categories.
-        """
-        try:
-            data = pd.read_csv(data_file, sep=';', index_col=index_col)
-            if data is None or data.empty:
-                print(f"No data to plot for {output_file}")
-                return
-
-            long_df = data.reset_index().melt(id_vars=index_col, var_name="Category", value_name="Count")
-            # Filter out zero counts as they won't be visible as bubbles anyway
-            long_df = long_df[long_df['Count'] > 0]
-            if long_df.empty:
-                print(f"No non-zero data to plot for {output_file}")
-                return
-
-            num_x = long_df[index_col].nunique()
-            num_y = long_df["Category"].nunique()
-
-            # --- IMPROVED DYNAMIC SIZING ---
-            base_w, base_h = 8, 5
-            # Width scales with number of x-axis categories, but is capped
-            width = max(base_w, min(40, base_w + num_x * 0.6))
-            # Height scales with number of y-axis categories
-            height = max(base_h, min(18, base_h + num_y * 0.8))
-
-            plt.figure(figsize=(width, height))
-            ax = sns.scatterplot(
-                data=long_df, x=index_col, y="Category",
-                hue="Count", size="Count", sizes=(50, 800), # Increased size range for visual impact
-                palette="viridis_r", alpha=0.8, edgecolor="black", linewidth=0.5
-            )
-            
-            ax.set_title(f"Distribution of {index_col} by Category", fontweight="bold", fontsize=14)
-            ax.set_xlabel(index_col, fontweight="bold", fontsize=12)
-            ax.set_ylabel("Category", fontweight="bold", fontsize=12)
-            
-            # --- DYNAMIC LABEL HANDLING ---
-            # Use 90-degree rotation for many labels to prevent overlap
-            rotation = 90 if num_x > 10 else 45
-            ha = "right" if rotation == 45 else "center"
-            # Reduce font size if labels are very numerous
-            fontsize = 'small' if num_x > 20 else 'medium'
-            plt.xticks(rotation=rotation, ha=ha, fontsize=fontsize)
-
-            ax.grid(True, linestyle="--", alpha=0.4)
-            
-            if not isinstance(output_file, str):
-                output_file = str(output_file)
-            if not output_file.endswith(f".{fileType}"):
-                output_file = f"{output_file}.{fileType}"
-
-            plt.tight_layout()
-            plt.savefig(output_file, format=fileType, dpi=300, bbox_inches="tight")
-            plt.close()
-            outputs.append(output_file)
-            print(f"Bubble scatter saved as: {output_file} (size: {width:.1f}x{height:.1f})")
-            
-        except Exception as e:
-            print(f"Error generating bubble scatter {output_file}: {e}")
-
-    @staticmethod
-    def generate_regression_fit_over_strip_plot(data_file, index_col, output_file, fileType, outputs):
-        """Strip plot with regression fit (trend over ordered categories) using seaborn"""
-        try:
-            data = pd.read_csv(data_file, sep=';', index_col=index_col)
-            if data is None or data.empty:
-                print(f"No data to plot for {output_file}")
-                return
-
-            long_df = data.reset_index().melt(id_vars=index_col, var_name="Category", value_name="Count")
-            # Map categories to numeric positions
-            x_levels = list(long_df[index_col].unique())
-            x_pos_map = {cat: idx for idx, cat in enumerate(x_levels)}
-            long_df["x_pos"] = long_df[index_col].map(x_pos_map)
-
-            base_w = 10
-            width = max(base_w, min(24, base_w + len(x_levels) * 0.6))
-            height = 8
-
-            plt.figure(figsize=(width, height))
-            # Strip plot (categorical)
-            sns.stripplot(data=long_df, x=index_col, y="Count", hue="Category", jitter=0.25, dodge=True, alpha=0.6)
-            # Regression over numeric x positions (trend across index_col order)
-            sns.regplot(data=long_df, x="x_pos", y="Count", scatter=False, color="black", line_kws={"lw": 2})
-
-            plt.xticks(ticks=range(len(x_levels)), labels=x_levels, rotation=45, ha="right")
-            plt.xlabel(index_col, fontweight="bold")
-            plt.ylabel("Count", fontweight="bold")
-            plt.title(f"Regression Fit over {index_col}", fontweight="bold")
-            plt.grid(True, linestyle="--", alpha=0.3)
-            plt.tight_layout()
-
-            if not isinstance(output_file, str):
-                output_file = str(output_file)
-            if not output_file.endswith(f".{fileType}"):
-                output_file = f"{output_file}.{fileType}"
-
-            plt.savefig(output_file, format=fileType, dpi=300, bbox_inches="tight")
-            plt.close()
-            outputs.append(output_file)
-            print(f"Regression over strip plot saved as: {output_file} (size: {width:.1f}x{height:.1f})")
-        except Exception as e:
-            print(f"Error generating regression over strip plot {output_file}: {e}")
+            erro.append(error_message)
+            print(error_message)
+            import traceback
+            traceback.print_exc()
 
     @staticmethod
     def generate_clustermap(data_file, db_param, outputs, erro, aligner_suffix=""):
@@ -2025,7 +1880,7 @@ class Visualization:
                 cmap=cmap,
                 method="average",
                 metric="euclidean",
-                linewidths=0.5,          
+                linewidths=0,          
                 linecolor='white',       
                 cbar_kws={'label': 'Identity (%)'},
                 figsize=(fig_width, fig_height)
@@ -2042,7 +1897,6 @@ class Visualization:
             erro_string = f"\nIt was not possible to plot the clustermap {out}: {e}"
             erro.append(erro_string)
             print(erro_string)
-
 
 
     @staticmethod
@@ -2843,12 +2697,12 @@ Contact: victorsc@ufmg.br , dlnrodrigues@ufmg.br
         output_setup = self._setup_output_files(db_param, fileType, aligner_suffix)
         
         # Unpack based on actual length returned
-        if len(output_setup) == 17:  # CARD and MEGARes case (17 elements: 7 base + 10 specific)
-            outputs, t1, t2, t3, t4, l1, l2, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15 = output_setup
-        elif len(output_setup) == 16:  # VFDB and BACMET case (16 elements: 7 base + 9 specific)
-            outputs, t1, t2, t3, t4, l1, l2, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15 = output_setup + [None]
-        else:  # Fallback for any other case
-            outputs, t1, t2, t3, t4, l1, l2, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15 = output_setup + [None] * (17 - len(output_setup))
+        if db_param in ["-card", "-megares"]:  # 11 elements
+             outputs, t1, t2, t3, t4, l1, l2, t6, t7, t8, t9, t10, t11 = output_setup
+        elif db_param == "-vfdb":  # 8 elements
+            outputs, t1, t2, t3, t4, l1, l2, t6, t7, t10 = output_setup
+        elif db_param == "-bacmet": # 9 elements
+            outputs, t1, t2, t3, t4, l1, l2, t6, t7, t8, t10 = output_setup
         
         t5 = t3.replace("csv", fileType)
         outputs.append(t5)
@@ -2950,191 +2804,100 @@ Contact: victorsc@ufmg.br , dlnrodrigues@ufmg.br
         
         # Pan-distribution analysis
         if db_param == "-card":
-            self._process_card_distribution(t1, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, fileType, outputs)
+            self._process_card_distribution(t1, t6, t7, t8, t9, t10, t11, fileType, outputs)
         elif db_param == "-vfdb":
-            self._process_vfdb_distribution(t1, t6, t7, t10, t12, t14, fileType, outputs)
+            self._process_vfdb_distribution(t1, t6, t7, t10, fileType, outputs)
         elif db_param == "-bacmet":
-            self._process_bacmet_distribution(t1, t6, t7, t8, t10, t12, t14, fileType, outputs)
+            self._process_bacmet_distribution(t1, t6, t7, t8, t10, fileType, outputs)
         elif db_param == "-megares":
-            self._process_megares_distribution(t1, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, fileType, outputs)
+            self._process_megares_distribution(t1, t6, t7, t8, t9, t10, t11, fileType, outputs)
         
         return outputs
 
     def _setup_output_files(self, db_param, fileType, aligner_suffix=""):
-        """Setup output file names based on database type with enhanced structure and validation"""
-        outputs = []
-        db_name = db_param[1:]  # Remove the '-' from parameter name
-        
-        # Validate inputs
-        if not db_param.startswith('-'):
-            raise ValueError(f"Invalid database parameter: {db_param}")
-        
-        if fileType not in ['pdf', 'png']:
-            fileType = 'pdf'  # Default fallback
-        
+        """Setup output file names based on database type with a clear, validated structure."""
+        db_name = db_param[1:]
         suffix = f"_{aligner_suffix}" if aligner_suffix else ""
         
-        # Database configuration mapping
+        # Base file definitions common to all databases
+        base_files = {
+            "gene_count": f"{db_name}_gene_count{suffix}.csv",
+            "strain_count": f"{db_name}_strain_count{suffix}.csv",
+            "pan_analysis": f"{db_name}_pan{suffix}.csv",
+        }
+        
+        # Database-specific titles and additional files
         db_configs = {
             "-card": {
-                "title": "Pan-resistome development",
-                "pan_label": "Pan-resistome",
-                "core_label": "Core-resistome",
+                "title": "Pan-resistome development", "pan_label": "Pan-resistome", "core_label": "Core-resistome",
                 "files": {
-                    "gene_count": f"card_gene_count{suffix}.csv",
-                    "strain_count": f"card_strain_count{suffix}.csv",
-                    "pan_analysis": f"card_pan{suffix}.csv",
                     "mechanisms": f"card_mechanisms{suffix}.csv",
                     "drug_classes": f"card_drug_classes{suffix}.csv",
-                    "mechanisms_plot": f"card_mechanisms_barplot{suffix}.{fileType}",
-                    "drug_classes_plot": f"card_drug_classes_barplot{suffix}.{fileType}",
-                    "mechanisms_scatter": f"card_mechanisms_scatterplot{suffix}.{fileType}",
-                    "drug_classes_scatter": f"card_drug_classes_scatterplot{suffix}.{fileType}",
-                    "mechanisms_bubble": f"card_mechanisms_bubble{suffix}.{fileType}",
-                    "drug_classes_bubble": f"card_drug_classes_bubble{suffix}.{fileType}",
-                    "mechanisms_strip": f"card_mechanisms_strip{suffix}.{fileType}",
-                    "drug_classes_strip": f"card_drug_classes_strip{suffix}.{fileType}"
+                    "mechanisms_barplot": f"card_mechanisms_barplot{suffix}.{fileType}",
+                    "drug_classes_barplot": f"card_drug_classes_barplot{suffix}.{fileType}",
+                    "mechanisms_bubble_plot": f"card_mechanisms_bubble_plot{suffix}.{fileType}",
+                    "drug_classes_bubble_plot": f"card_drug_classes_bubble_plot{suffix}.{fileType}",
                 }
             },
             "-vfdb": {
-                "title": "Pan-virulome development",
-                "pan_label": "Pan-virulome",
-                "core_label": "Core-virulome",
+                "title": "Pan-virulome development", "pan_label": "Pan-virulome", "core_label": "Core-virulome",
                 "files": {
-                    "gene_count": f"vfdb_gene_count{suffix}.csv",
-                    "strain_count": f"vfdb_strain_count{suffix}.csv",
-                    "pan_analysis": f"vfdb_pan{suffix}.csv",
                     "mechanisms": f"vfdb_mechanisms{suffix}.csv",
-                    "mechanisms_plot": f"vfdb_mechanisms_barplot{suffix}.{fileType}",
-                    "mechanisms_scatter": f"vfdb_mechanisms_scatterplot{suffix}.{fileType}",
-                    "mechanisms_bubble": f"vfdb_mechanisms_bubble{suffix}.{fileType}",
-                    "mechanisms_strip": f"vfdb_mechanisms_strip{suffix}.{fileType}"
+                    "mechanisms_barplot": f"vfdb_mechanisms_barplot{suffix}.{fileType}",
+                    "mechanisms_bubble_plot": f"vfdb_mechanisms_bubble_plot{suffix}.{fileType}",
                 }
             },
             "-bacmet": {
-                "title": "Pan-resistome development",
-                "pan_label": "Pan-resistome",
-                "core_label": "Core-resistome",
+                "title": "Pan-resistome development", "pan_label": "Pan-resistome", "core_label": "Core-resistome",
                 "files": {
-                    "gene_count": f"bacmet_gene_count{suffix}.csv",
-                    "strain_count": f"bacmet_strain_count{suffix}.csv",
-                    "pan_analysis": f"bacmet_pan{suffix}.csv",
                     "heavy_metals": f"bacmet_heavy_metals{suffix}.csv",
                     "all_compounds": f"bacmet_all_compounds{suffix}.csv",
-                    "heavy_metals_plot": f"bacmet_heavy_metals_barplot{suffix}.{fileType}",
-                    "heavy_metals_scatter": f"bacmet_heavy_metals_scatterplot{suffix}.{fileType}",
-                    "heavy_metals_bubble": f"bacmet_heavy_metals_bubble{suffix}.{fileType}",
-                    "heavy_metals_strip": f"bacmet_heavy_metals_strip{suffix}.{fileType}"
+                    "heavy_metals_barplot": f"bacmet_heavy_metals_barplot{suffix}.{fileType}",
+                    "heavy_metals_bubble_plot": f"bacmet_heavy_metals_bubble_plot{suffix}.{fileType}",
                 }
             },
             "-megares": {
-                "title": "Pan-resistome development",
-                "pan_label": "Pan-resistome",
-                "core_label": "Core-resistome",
+                "title": "Pan-resistome development", "pan_label": "Pan-resistome", "core_label": "Core-resistome",
                 "files": {
-                    "gene_count": f"megares_gene_count{suffix}.csv",
-                    "strain_count": f"megares_strain_count{suffix}.csv",
-                    "pan_analysis": f"megares_pan{suffix}.csv",
                     "mechanisms": f"megares_mechanisms{suffix}.csv",
                     "drug_classes": f"megares_drug_classes{suffix}.csv",
-                    "mechanisms_plot": f"megares_mechanisms_barplot{suffix}.{fileType}",
-                    "drug_classes_plot": f"megares_drug_classes_barplot{suffix}.{fileType}",
-                    "mechanisms_scatter": f"megares_mechanisms_scatterplot{suffix}.{fileType}",
-                    "drug_classes_scatter": f"megares_drug_classes_scatterplot{suffix}.{fileType}",
-                    "mechanisms_bubble": f"megares_mechanisms_bubble{suffix}.{fileType}",
-                    "drug_classes_bubble": f"megares_drug_classes_bubble{suffix}.{fileType}",
-                    "mechanisms_strip": f"megares_mechanisms_strip{suffix}.{fileType}",
-                    "drug_classes_strip": f"megares_drug_classes_strip{suffix}.{fileType}"
+                    "mechanisms_barplot": f"megares_mechanisms_barplot{suffix}.{fileType}",
+                    "drug_classes_barplot": f"megares_drug_classes_barplot{suffix}.{fileType}",
+                    "mechanisms_bubble_plot": f"megares_mechanisms_bubble_plot{suffix}.{fileType}",
+                    "drug_classes_bubble_plot": f"megares_drug_classes_bubble_plot{suffix}.{fileType}",
                 }
             }
         }
         
-        # Get configuration for the specified database
-        if db_param not in db_configs:
-            raise ValueError(f"Unsupported database parameter: {db_param}")
-        
         config = db_configs[db_param]
+        all_files = {**base_files, **config['files']}
+        outputs = list(all_files.values())
         
-        # Add core files to outputs (all databases have these)
-        core_files = ["gene_count", "strain_count", "pan_analysis"]
-        for file_key in core_files:
-            if file_key in config["files"]:
-                outputs.append(config["files"][file_key])
-        
-        # Add database-specific files to outputs
-        for file_key, file_path in config["files"].items():
-            if file_key not in core_files:
-                outputs.append(file_path)
-        
-        # Create return tuple based on database type
+        # Return a structured list of parameters for clarity
         base_return = [
             outputs,
-            config["files"]["gene_count"],           # t1
-            config["files"]["strain_count"],         # t2
-            config["files"]["pan_analysis"],         # t3
-            config["title"],                         # t4
-            config["pan_label"],                     # l1
-            config["core_label"]                     # l2
+            all_files["gene_count"], all_files["strain_count"], all_files["pan_analysis"],
+            config["title"], config["pan_label"], config["core_label"]
         ]
         
-        # Add database-specific files with proper None handling
-        if db_param == "-card":
+        if db_param in ["-card", "-megares"]:
             return base_return + [
-                config["files"]["mechanisms"],           # t6
-                config["files"]["drug_classes"],         # t7
-                config["files"]["mechanisms_plot"],      # t8
-                config["files"]["drug_classes_plot"],    # t9
-                config["files"]["mechanisms_scatter"],   # t10
-                config["files"]["drug_classes_scatter"], # t11
-                config["files"]["mechanisms_bubble"],    # t12
-                config["files"]["drug_classes_bubble"],  # t13
-                config["files"]["mechanisms_strip"],     # t14
-                config["files"]["drug_classes_strip"]    # t15
+                all_files["mechanisms"], all_files["drug_classes"],
+                all_files["mechanisms_barplot"], all_files["drug_classes_barplot"],
+                all_files["mechanisms_bubble_plot"], all_files["drug_classes_bubble_plot"]
             ]
         elif db_param == "-vfdb":
             return base_return + [
-                config["files"]["mechanisms"],           # t6
-                config["files"]["mechanisms_plot"],      # t7
-                None,                                     # t8 (not used for VFDB)
-                None,                                     # t9 (not used for VFDB)
-                config["files"]["mechanisms_scatter"],   # t10
-                None,                                     # t11 (not used for VFDB)
-                config["files"]["mechanisms_bubble"],    # t12
-                None,                                     # t13 (not used for VFDB)
-                config["files"]["mechanisms_strip"],     # t14
-                None                                      # t15 (not used for VFDB)
+                all_files["mechanisms"], all_files["mechanisms_barplot"], all_files["mechanisms_bubble_plot"]
             ]
         elif db_param == "-bacmet":
             return base_return + [
-                config["files"]["heavy_metals"],         # t6
-                config["files"]["all_compounds"],        # t7
-                config["files"]["heavy_metals_plot"],    # t8
-                None,                                     # t9 (not used for BacMet)
-                config["files"]["heavy_metals_scatter"], # t10
-                None,                                     # t11 (not used for BacMet)
-                config["files"]["heavy_metals_bubble"],  # t12
-                None,                                     # t13 (not used for BacMet)
-                config["files"]["heavy_metals_strip"],   # t14
-                None                                      # t15 (not used for BacMet)
+                all_files["heavy_metals"], all_files["all_compounds"],
+                all_files["heavy_metals_barplot"], all_files["heavy_metals_bubble_plot"]
             ]
-        elif db_param == "-megares":
-            return base_return + [
-                config["files"]["mechanisms"],           # t6
-                config["files"]["drug_classes"],         # t7
-                config["files"]["mechanisms_plot"],      # t8
-                config["files"]["drug_classes_plot"],    # t9
-                config["files"]["mechanisms_scatter"],   # t10
-                config["files"]["drug_classes_scatter"], # t11
-                config["files"]["mechanisms_bubble"],    # t12
-                config["files"]["drug_classes_bubble"],  # t13
-                config["files"]["mechanisms_strip"],     # t14
-                config["files"]["drug_classes_strip"]    # t15
-            ]
-        
-        # Fallback (should not reach here due to validation above)
-        return base_return + [None, None, None, None, None, None, None, None, None, None]
+        return base_return
 
-    def _process_card_distribution(self, t1, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, fileType, outputs):
+    def _process_card_distribution(self, t1, t6, t7, t8, t9, t10, t11, fileType, outputs):
         """Process CARD database distribution analysis"""
         print("\nMaking the pan-distribution...")
         aro = pd.read_csv(os.path.join(self.dbpath, "aro_index.tsv"), sep="\t")
@@ -3256,39 +3019,19 @@ Contact: victorsc@ufmg.br , dlnrodrigues@ufmg.br
                 if (coreM != 0) or (accessoryM != 0) or (exclusiveM != 0):
                     out2.write(str(k).capitalize() + ";" + str(coreM) + ";" + str(accessoryM) + ";" + str(exclusiveM) + "\n")
 
-        # Generate barplots and scatterplots with separate file names
+        # Generate barplots and bubble plots
         try:
-            # Mechanisms
-            if t8 is not None:
-                Visualization.generate_barplot(t6, "Resistance Mechanism", t8, fileType, outputs)
-            if t10 is not None:
-                Visualization.generate_scatterplot(t6, "Resistance Mechanism", t10, fileType, outputs)
-            if t12 is not None:
-                Visualization.generate_scatterplot_with_continuous_hues_and_sizes(t6, "Resistance Mechanism", t12, fileType, outputs)
-            if t14 is not None:
-                Visualization.generate_regression_fit_over_strip_plot(t6, "Resistance Mechanism", t14, fileType, outputs)
-            
-            # Drug classes
-            if t9 is not None:
-                Visualization.generate_barplot(t7, "Drug Class", t9, fileType, outputs)
-            if t11 is not None:
-                Visualization.generate_scatterplot(t7, "Drug Class", t11, fileType, outputs)
-            if t13 is not None:
-                Visualization.generate_scatterplot_with_continuous_hues_and_sizes(t7, "Drug Class", t13, fileType, outputs)
-            if t15 is not None:
-                Visualization.generate_regression_fit_over_strip_plot(t7, "Drug Class", t15, fileType, outputs)
+            Visualization.generate_barplot(t6, "Resistance Mechanism", t8, fileType, outputs)
+            Visualization.generate_bubble_plot(t6, "Resistance Mechanism", t10, fileType, outputs)
+            Visualization.generate_barplot(t7, "Drug Class", t9, fileType, outputs)
+            Visualization.generate_bubble_plot(t7, "Drug Class", t11, fileType, outputs)
         except Exception as e:
-            print(f"Error generating plots: {e}")
-            import traceback
-            traceback.print_exc()
+            print(f"Error generating CARD distribution plots: {e}")
 
-    def _process_vfdb_distribution(self, t1, t6, t7, t10, t12, t14, fileType, outputs):
+    def _process_vfdb_distribution(self, t1, t6, t7, t10, fileType, outputs):
         """Process VFDB database distribution analysis"""
         print("\nMaking the pan-distribution...")
         
-        # Extrair genes_comp do DatabaseManager ou de onde estiver definido
-        # Se genes_comp foi definido em outro lugar, você precisa acessá-lo corretamente
-        # Aqui estou assumindo que você pode obtê-lo chamando DataProcessor.extract_keys novamente
         comp, genes_comp = DataProcessor.extract_keys("-vfdb", self.dbpath)
         
         genes = pd.read_csv(t1, sep=";")
@@ -3330,19 +3073,12 @@ Contact: victorsc@ufmg.br , dlnrodrigues@ufmg.br
                     out.write(str(mechanism).capitalize() + ";" + str(core_number) + ";" + str(accessory_number) + ";" + str(exclusive_number) + "\n")
 
         try:
-            # Generate barplot and scatterplot with separate file names
-            if t7 is not None:
-                Visualization.generate_barplot(t6, "Virulence Mechanism", t7, fileType, outputs)
-            if t10 is not None:
-                Visualization.generate_scatterplot(t6, "Virulence Mechanism", t10, fileType, outputs)
-            if t12 is not None:
-                Visualization.generate_scatterplot_with_continuous_hues_and_sizes(t6, "Virulence Mechanism", t12, fileType, outputs)
-            if t14 is not None:
-                Visualization.generate_regression_fit_over_strip_plot(t6, "Virulence Mechanism", t14, fileType, outputs)
+            Visualization.generate_barplot(t6, "Virulence Mechanism", t7, fileType, outputs)
+            Visualization.generate_bubble_plot(t6, "Virulence Mechanism", t10, fileType, outputs)
         except Exception as e:
-            print(f"Error generating plots: {e}")
+            print(f"Error generating VFDB distribution plots: {e}")
 
-    def _process_bacmet_distribution(self, t1, t6, t7, t8, t10, t12, t14, fileType, outputs):
+    def _process_bacmet_distribution(self, t1, t6, t7, t8, t10, fileType, outputs):
         """Process BacMet database distribution analysis"""
         db = pd.read_csv(os.path.join(self.dbpath, "bacmet_2.txt"), sep="\t")
         genes_list = db["Gene_name"].tolist()
@@ -3443,19 +3179,12 @@ Contact: victorsc@ufmg.br , dlnrodrigues@ufmg.br
                         outb.write(k + ";" + str(core) + ";" + str(accessory) + ";" + str(exclusive) + "\n")
 
         try:
-            # Generate barplot and scatterplot with separate file names
-            if t8 is not None:
-                Visualization.generate_barplot(t6, "Compound", t8, fileType, outputs)
-            if t10 is not None:
-                Visualization.generate_scatterplot(t6, "Compound", t10, fileType, outputs)
-            if t12 is not None:
-                Visualization.generate_scatterplot_with_continuous_hues_and_sizes(t6, "Compound", t12, fileType, outputs)
-            if t14 is not None:
-                Visualization.generate_regression_fit_over_strip_plot(t6, "Compound", t14, fileType, outputs)
+            Visualization.generate_barplot(t6, "Compound", t8, fileType, outputs)
+            Visualization.generate_bubble_plot(t6, "Compound", t10, fileType, outputs)
         except Exception as e:
-            print(f"Error generating plots: {e}")
+            print(f"Error generating BacMet distribution plots: {e}")
 
-    def _process_megares_distribution(self, t1, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, fileType, outputs):
+    def _process_megares_distribution(self, t1, t6, t7, t8, t9, t10, t11, fileType, outputs):
         """Process MEGARes database distribution analysis"""
         print("\nMaking the MEGARes pan-distribution...")
         
@@ -3528,28 +3257,12 @@ Contact: victorsc@ufmg.br , dlnrodrigues@ufmg.br
                     out2.write(f"{drug_class};{core_count};{accessory_count};{exclusive_count}\n")
 
         try:
-            # Generate barplots and scatterplots with separate file names
-            # Mechanisms
-            if t8 is not None:
-                Visualization.generate_barplot(t6, "Resistance Mechanism", t8, fileType, outputs)
-            if t10 is not None:
-                Visualization.generate_scatterplot(t6, "Resistance Mechanism", t10, fileType, outputs)
-            if t12 is not None:
-                Visualization.generate_scatterplot_with_continuous_hues_and_sizes(t6, "Resistance Mechanism", t12, fileType, outputs)
-            if t14 is not None:
-                Visualization.generate_regression_fit_over_strip_plot(t6, "Resistance Mechanism", t14, fileType, outputs)
-            
-            # Drug classes
-            if t9 is not None:
-                Visualization.generate_barplot(t7, "Drug Class", t9, fileType, outputs)
-            if t11 is not None:
-                Visualization.generate_scatterplot(t7, "Drug Class", t11, fileType, outputs)
-            if t13 is not None:
-                Visualization.generate_scatterplot_with_continuous_hues_and_sizes(t7, "Drug Class", t13, fileType, outputs)
-            if t15 is not None:
-                Visualization.generate_regression_fit_over_strip_plot(t7, "Drug Class", t15, fileType, outputs)
+            Visualization.generate_barplot(t6, "Resistance Mechanism", t8, fileType, outputs)
+            Visualization.generate_bubble_plot(t6, "Resistance Mechanism", t10, fileType, outputs)
+            Visualization.generate_barplot(t7, "Drug Class", t9, fileType, outputs)
+            Visualization.generate_bubble_plot(t7, "Drug Class", t11, fileType, outputs)
         except Exception as e:
-            print(f"Error generating plots: {e}")
+            print(f"Error generating MEGARes distribution plots: {e}")
 
     def _organize_results(self, outputs, db_param, aligner_suffix=""):
         """Organize results into output directory"""
