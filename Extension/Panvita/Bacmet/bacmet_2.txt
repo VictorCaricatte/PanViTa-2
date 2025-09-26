@@ -1,0 +1,754 @@
+BacMet_ID	Gene_name	Accession	Organism	Location	Compound
+BAC0001	abeM	Q5FAM9	Acinetobacter baumanni	Chromosome	4,6-diamidino-2-phenylindole (DAPI) [class: Diamidine], Triclosan [class: Phenolic compounds], Acriflavine [class: Acridine], Hoechst 33342 [class: Bisbenzimide], Rhodamine 6G [class: Xanthene], Ethidium Bromide [class: Phenanthridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0002	abeS	Q2FD83	Acinetobacter baumannii	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine], Chlorhexidine [class: Biguanides], Pyronin Y [class: Xanthene], Rhodamine 6G [class: Xanthene], Methyl Viologen [class: Paraquat], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], 4,6-diamidino-2-phenylindole (DAPI) [class: Diamindine], Acridine Orange [class: Acridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Deoxycholate (SDC) [class: Acid], Crystal Violet [class: Triarylmethane], Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)], Cetylpyridinium Chloride (CPC) [class: Quaternary Ammonium Compounds (QACs)], Dequalinium [class: Quaternary Ammonium Compounds (QACs)]
+BAC0758	abuO	B0VDE7	Acinetobacter baumannii	Chromosome	Acriflavine [class: Acridine], Ethidium Bromide [class: Phenanthridine], Rhodamine 6G [class: Xanthene], Acridine Orange [class: Acridine], 
+BAC0003	acn	O53166	Mycobacterium tuberculosis H37Rv	Chromosome	Iron (Fe)
+BAC0004	acr3	B5LX01	Campylobacter jejuni	Chromosome	Arsenic (As)
+BAC0005	acrA	P0AE06	Escherichia coli (strain K12)	Chromosome	Acriflavine [class: Acridine], Phenol [class: Phenolic compounds], Triclosan [class: Phenolic compounds], p-xylene [class: Aromatic hydrocarbons], Cyclohexane [class: Cycloalkane], Pentane [class: Alkane]
+BAC0006	acrB	P31224	Escherichia coli (strain K12)	Chromosome	Acriflavine [class: Acridine], Phenol [class: Phenolic compounds], Triclosan [class: Phenolic compounds], p-xylene [class: Aromatic hydrocarbons], Cyclohexane [class: Cycloalkane], Pentane [class: Alkane]
+BAC0007	acrC	Q1LMP2	Escherichia coli (strain K12)	Chromosome	Acriflavine [class: Acridine]
+BAC0563	acrD	Q8ZN77	Salmonella enterica serovar Typhimurium	Chromosome	Copper (Cu), Zinc (Zn)
+BAC0008	acrD/yffA	P24177	Escherichia coli (strain K12)	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Deoxycholate (SDC) [class: Acid]
+BAC0009	acrE/envC	P24180	Escherichia coli (strain K12)	Chromosome	Acriflavine [class: Acridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Deoxycholate (SDC) [class: Acid], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Methyl Viologen [class: Paraquat], Ethidium Bromide [class: Phenanthridine]
+BAC0010	acrF/envD	P24181	Escherichia coli (strain K12)	Chromosome	Acriflavine [class: Acridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Deoxycholate (SDC) [class: Acid], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Methyl Viologen [class: Paraquat], Ethidium Bromide [class: Phenanthridine]
+BAC0011	acrR/ybaH	P0ACS9	Escherichia coli (strain K12)	Chromosome	Acriflavine [class: Acridine]
+BAC0567	actA	Q52910	Rhizobium meliloti TG2-6	Chromosome	Copper (Cu), Zinc (Zn), Hydrochloric acid (HCl) [class: Acid]
+BAC0012	actP	Q9X5X3	Sinorhizobium medicae (strain WSM419) (Ensifer medicae)	Plasmid pSMED01 (Sinorhizobium medicae (strain WSM419))	Copper (Cu), Sodium acetate [class: Acetate]
+BAC0568	actP	Q9X5V3	Rhizobium leguminosarum bv. Viciae	Chromosome	Copper (Cu)
+BAC0570	actP	D5AU53	Rhodobacter capsulatus B100	Chromosome	Tellurium (Te)
+BAC0564	actP/yjcG	P32705	Escherichia coli (strain K12)	Chromosome	Sodium Glycocholate [class: Acid], Sodium acetate [class: Acetate]
+BAC0565	actR	A6UEL7	Rhizobium meliloti strain WSM419	Chromosome	Cadmium (Cd), Zinc (Zn), Hydrochloric acid (HCl) [class: Acid], Sodium azide [class: Azide]
+BAC0566	actS	Q52912	Rhizobium meliloti strain WSM419	Chromosome	Cadmium (Cd), Zinc (Zn), Hydrochloric acid (HCl) [class: Acid], Sodium azide [class: Azide]
+BAC0471	adeA	Q93E20	Acinetobacter baumanni	Chromosome	Pyronin Y [class: Xanthene], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Acriflavine [class: Acridine], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], 4,6-diamidino-2-phenylindole (DAPI) [class: Diamindine], Sodium Deoxycholate (SDC) [class: Acid],  Ethidium Bromide [class: Phenanthridine], Methyl Viologen [class: Paraquat], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Rhodamine 123 [class: Xanthene], Synergize [class: QAC-Glutaraldehyde], Wex-cide-128 [class: Phenyl]
+BAC0472	adeB	Q93E19	Acinetobacter baumanni	Chromosome	Pyronin Y [class: Xanthene], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Acriflavine [class: Acridine], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], 4,6-diamidino-2-phenylindole (DAPI) [class: Diamindine], Sodium Deoxycholate (SDC) [class: Acid],  Ethidium Bromide [class: Phenanthridine], Methyl Viologen [class: Paraquat], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Rhodamine 123 [class: Xanthene], Synergise, Wex-cide-128.
+BAC0473	adeC	Q93E18	Acinetobacter baumanni	Chromosome	Pyronin Y [class: Xanthene], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Acriflavine [class: Acridine], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], 4,6-diamidino-2-phenylindole (DAPI) [class: Diamindine], Sodium Deoxycholate (SDC) [class: Acid],  Ethidium Bromide [class: Phenanthridine], Methyl Viologen [class: Paraquat], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Rhodamine 123 [class: Xanthene], Synergize [class: QAC-Glutaraldehyde], Wex-cide-128 [class: Phenyl]
+BAC0474	adeD	Q67GM1	Acinetobacter sp. 4365	Chromosome	Ethidium Bromide [class: Phenanthridine]
+BAC0013	adeE	Q8GKU1	Acinetobacter  sp. 4356	Chromosome	Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine]
+BAC0014	adeF	Q2FD82	Acinetobacter baumanni	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Ethidium Bromide [class: Phenanthridine], Safranin O [class: Azin], Acridine Orange [class: Acridine]
+BAC0015	adeG	Q2FD81	Acinetobacter baumannii (strain AB0057)	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Ethidium Bromide [class: Phenanthridine], Safranin O [class: Azin], Acridine Orange [class: Acridine]
+BAC0016	adeH	Q2FD80	Acinetobacter baumannii (strain AB0057)	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Ethidium Bromide [class: Phenanthridine], Safranin O [class: Azin], Acridine Orange [class: Acridine]
+BAC0017	adeI	Q2FD95	Acinetobacter baumannii (strain AB0057)	Chromosome	Acridine Orange [class: Acridine], Safranin O [class: Azin], Pyronin Y [class: Xanthene], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Acriflavine [class: Acridine], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Crystal Violet [class: Triarylmethane], 4,6-diamidino-2-phenylindole (DAPI) [class: Diamidine], Sodium Deoxycholate (SDC) [class: Acid], Ethidium Bromide [class: Phenanthridine], Methyl Viologen [class: Paraquat], Rhodamine 123 [class: Xanthene], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Synergize [class: QAC-Glutaraldehyde], Virkon S [class: Peroxysulfate], Wex-cide-128 [class: Phenyl]
+BAC0018	adeJ	Q24LT7	Acinetobacter baumannii (strain AB0057)	Chromosome	Acridine Orange [class: Acridine], Safranin O [class: Azin], Pyronin Y [class: Xanthene], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0019	adeK	Q24LT6	Acinetobacter baumannii (strain AB0057)	Chromosome	Acridine Orange [class: Acridine], Safranin O [class: Azin], Pyronin Y [class: Xanthene], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0508	adeL	A3M732	Acinetobacter baumanni	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Ethidium Bromide [class: Phenanthridine], Safranin O [class: Azin], Acridine Orange [class: Acridine]
+BAC0496	adeN	B7H1T7	Acinetobacter baumanni	Chromosome	Safranin O [class: Azin], Acridine Orange [class: Acridine], Pyronin Y [class: Xanthene], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0478	adeT1	C7F8K6	Acinetobacter baumanni AC0037	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Acriflavine [class: Acridine], Rhodamine 123 [class: Xanthene], Methyl Viologen [class: Paraquat], 4,6-diamidino-2-phenylindole (DAPI) [class: Diamindine], Acridine Orange [class: Acridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Deoxycholate (SDC) [class: Acid], Synergize [class: QAC-Glutaraldehyde], Wex-cide-128 [class: Phenyl]
+BAC0479	adeT2	C7F8K7	Acinetobacter baumanni	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine], Rhodamine 123 [class: Xanthene], Methyl Viologen [class: Paraquat], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], 4,6-diamidino-2-phenylindole (DAPI) [class: Diamindine], Acridine Orange [class: Acridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Deoxycholate (SDC) [class: Acid], Crystal Violet [class: Triarylmethane], Synergize [class: QAC-Glutaraldehyde], Wex-cide-128 [class: Phenyl]
+BAC0020	aioA/aoxB	Q8GGJ6	Herminiimonas arsenicoxydans	Chromosome	Arsenic (As)
+BAC0021	aioB/aoxA	Q8GGJ7	Herminiimonas arsenicoxydans	Chromosome	Arsenic (As)
+BAC0715	aioE	W1L7N4	Argobacterium tumefaciens GW4 	Chromosome	Arsenic (As)
+BAC0022	aioR/aoxR	Q2VGB1	Rhizobium radiobacter (Agrobacterium tumefaciens) (Agrobacterium radiobacter)	Chromosome	Arsenic (As)
+BAC0023	aioS/aoxS	Q2VGB2	Rhizobium radiobacter (Agrobacterium tumefaciens) (Agrobacterium radiobacter)	Chromosome	Arsenic (As)
+BAC0024	aioX/aoxX	G8XNW6	Rhizobium radiobacter (Agrobacterium tumefaciens) (Agrobacterium radiobacter)	Chromosome	Arsenic (As)
+BAC0489	ALU1-P	O52119	Arthrobacter viscosus ALRJJ6	Chromosome	Aluminium (Al)
+BAC0025	amvA	C4PAW9	Acinetobacter baumannii	Chromosome	Acriflavine [class: Acridine], Chlorhexidine [class: Biguanides], Methyl Viologen [class: Paraquat], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine], Sodium Deoxycholate (SDC) [class: Acid]
+BAC0709	arrA	Q7WTU0	Shewanella sp. strain ANA-3	Chromosome	Arsenic (As)
+BAC0710	arrB	AAQ01673	Shewanella sp. strain ANA-3	Chromosome	Arsenic (As)
+BAC0030	arsA	P52145	Escherichia coli	Plasmid IncN R46	Arsenic (As), Antimony (Sb)
+BAC0571	arsA	O50593	Acidiphilium multivorum (strain DSM 11245 / JCM 8867 / AIU301)	Plasmid pKW301	Arsenic (As), Antimony (Sb)
+BAC0572	arsA	P08690	Escherichia coli	Plasmid R773	Arsenic (As), Antimony (Sb)
+BAC0031	arsB	P08691	Escherichia coli	Plasmid R773 (E. coli), Plasmid IncN R46 (E. coli), Plasmid R46 (Salmonella typhimurium)	Arsenic (As), Antimony (Sb)
+BAC0573	arsB	P45946	Bacillus subtilis (strain 168)	Chromosome	Arsenic (As)
+BAC0574	arsB	P30329	Staphylococcus aureus	Plasmid pI258	Arsenic (As), Antimony (Sb)
+BAC0575	arsB	Q01255	Staphylococcus xylosus	Plasmid pSX267	Arsenic (As), Antimony (Sb)
+BAC0576	arsB	P52146	Escherichia coli	Plasmid IncN R46	Arsenic (As), Antimony (Sb)
+BAC0577	arsB	P74985	Yersinia enterocolitica	Plasmid pYV	Arsenic (As)
+BAC0578	arsB	O50594	Acidiphilium multivorum (strain DSM 11245 / JCM 8867 / AIU301)	Plasmid pKW301	Arsenic (As), Antimony (Sb)
+BAC0579	arsB	P74311	Synechocystis sp. PCC 6803	Chromosome	Arsenic (As), Antimony (Sb)
+BAC0032	arsC	P0A006	Staphylococcus aureus	Plasmid pI258	Arsenic (As)
+BAC0580	arsC	Q01257	Staphylococcus xylosus	Plasmid pSX267	Arsenic (As)
+BAC0581	arsC	P45947	Bacillus subtilis (strain 168)	Chromosome	Arsenic (As)
+BAC0582	arsC	P08692	Escherichia coli	Plasmid R773	Arsenic (As), Antimony (Sb)
+BAC0583	arsC	P52147	Escherichia coli	Plasmid IncN R46	Arsenic (As), Antimony (Sb)
+BAC0584	arsC	O50595	Acidiphilium multivorum (strain DSM 11245 / JCM 8867 / AIU301)	Plasmid pKW301	Arsenic (As), Antimony (Sb)
+BAC0585	arsC	P74984	Yersinia enterocolitica	Plasmid pYV	Arsenic (As), Antimony (Sb)
+BAC0586	arsC	P74313	Synechocystis sp. PCC 6803	Chromosome	Arsenic (As)
+BAC0033	arsD	P46003	Escherichia coli	Plasmid R773 (E. coli), Plasmid R64 (Salmonella typhimurium)	Arsenic (As)
+BAC0587	arsD	P52148	Escherichia coli	Plasmid IncN R46	Arsenic (As), Antimony (Sb)
+BAC0034	arsH	E8PS81	Yersinia pestis Java 9	Plasmid pKPN-IT (Klebsiella pneumoniae), Plasmid R485 (Morganella morganii (Proteus morganii))	Arsenic (As)
+BAC0595	arsH	P74312	Synechocystis sp. PCC 6803	Chromosome	Arsenic (As), Menadione [class: Naphthoquinone]
+BAC0035	arsM	Q6N3Y0	Rhodopseudomonas palustris CGA009	Chromosome	Arsenic (As)
+BAC0036	arsP	B5LWZ8	Campylobacter jejuni	Chromosome	Arsenic (As)
+BAC0588	arsR	P74986	Yersinia enterocolitica	Plasmid pYV	Arsenic (As)
+BAC0589	arsR	P15905	Escherichia coli	Plasmid R773	Arsenic (As), Antimony (Sb), Bismuth (Bi)
+BAC0590	arsR	P30338	Staphylococcus aureus	Plasmid pI258	Arsenic (As), Antimony (Sb), Bismuth (Bi)
+BAC0591	arsR	P52144	Escherichia coli	Plasmid IncN R46	Arsenic (As), Antimony (Sb), Bismuth (Bi)
+BAC0592	arsR	Q01256	Staphylococcus xylosus	Plasmid pSX267	Arsenic (As), Antimony (Sb), Bismuth (Bi)
+BAC0593	arsR	P45949	Bacillus subtilis (strain 168)	Chromosome	Arsenic (As)
+BAC0594	arsR	P37309	Escherichia coli (strain K12)	Chromosome	Arsenic (As)
+BAC0714	arsT	B7FB00	Microbacterium sp. A33	Chromosome	Arsenic (As)
+BAC0038	asr	P36560	Escherichia coli (strain K12)	Chromosome	Hydrochloric acid (HCl) [class: Acid]
+BAC0039	baeR	P69228	Escherichia coli (strain K12)	Chromosome	Zinc (Zn), Tungsten (W), Sodium Deoxycholate (SDC) [class: Acid]
+BAC0596	baeR	D0ZNE3	Salmonella Typhimurium	Chromosome	Copper (Cu), Zinc (Zn), Tungsten (W), Sodium Deoxycholate (SDC) [class: Acid]
+BAC0040	baeS	P30847	Escherichia coli (strain K12)	Chromosome	Zinc (Zn), Tungsten (W), Sodium Deoxycholate (SDC) [class: Acid]
+BAC0597	baeS	D0ZNE2	Salmonella Typhimurium	Chromosome	Copper (Cu), Zinc (Zn), Tungsten (W), Sodium Deoxycholate (SDC) [class: Acid]
+BAC0041	bcr	P28246	Escherichia coli (strain K12)	Chromosome	Acriflavine [class: Acridine]
+BAC0704	bcrA	I7B1B9	Listeria monocytogenes	Plasmid	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0705	bcrB	I7A797	Listeria monocytogenes	Plasmid	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0706	bcrC	I6ZWM1	Listeria monocytogenes	Plasmid	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0042	bepC	Q8G0Y6	Brucella suis biovar 1 (strain 1330)	Chromosome	Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)], Acriflavine [class: Acridine], Crystal Violet [class: Triarylmethane],  Ethidium Bromide [class: Phenanthridine], Rhodamine 6G [class: Xanthene], Sodium Deoxycholate (SDC) [class: Acid], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0043	bepD	Q8G2M7	Brucella suis biovar 1 (strain 1330)	Chromosome	Sodium Deoxycholate (SDC) [class: Acid], Ethidium Bromide [class: Phenanthridine], Crystal Violet [class: Triarylmethane]
+BAC0044	bepE	Q8G2M6	Brucella suis biovar 1 (strain 1330)	Chromosome	Sodium Deoxycholate (SDC) [class: Acid], Ethidium Bromide [class: Phenanthridine], Crystal Violet [class: Triarylmethane]
+BAC0045	bepF	Q8FWV8	Brucella suis biovar 1 (strain 1330)	Chromosome	Sodium Deoxycholate (SDC) [class: Acid], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0046	bepG	Q8FWV9	Brucella suis biovar 1 (strain 1330)	Chromosome	Sodium Deoxycholate (SDC) [class: Acid], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0047	bexA	Q93HR0	Bacteroides thetaiotaomicron	Chromosome	Ethidium Bromide [class: Phenanthridine]
+BAC0048	bfrA	P63697	Mycobacterium tuberculosis	Chromosome	Iron (Fe)
+BAC0049	bhsA/ycfR/comC	P0AB40	Escherichia coli (strain K12)	Chromosome	Copper (Cu)
+BAC0050	blt	P39843	Bacillus subtilis (strain 168)	Chromosome	Ethidium Bromide [class: Phenanthridine], Rhodamine 6G [class: Xanthene], Acridine Orange [class: Acridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0051	bltD	P39909	Bacillus subtilis (strain 168)	Chromosome	Spermidine [class: Polyamines], Spermine [class: Polyamines]
+BAC0052	bltR	P39842	Bacillus subtilis (strain 168)	Chromosome	Ethidium Bromide [class: Phenanthridine], Rhodamine 6G [class: Xanthene], Acridine Orange [class: Acridine]
+BAC0053	bmr	P33449	Bacillus subtilis (strain 168)	Chromosome	Ethidium Bromide [class: Phenanthridine], Rhodamine 6G [class: Xanthene], Acridine Orange [class: Acridine], Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0054	bmrR	P39075	Bacillus subtilis (strain 168)	Chromosome	Ethidium Bromide [class: Phenanthridine], Rhodamine 6G [class: Xanthene], Acridine Orange [class: Acridine]
+BAC0055	cadA/yvgW	Q59465	Helicobacter pylori (strain ATCC 700392/26695)(Campylobacter pylori)	Plasmids pI258 (S. aureus), Chromosome	Cadmium (Cd), Zinc (Zn)
+BAC0056	cadC	P20047	Staphylococcus aureus	Plasmid pI258 (Staphylococcus aureus)	Cadmium (Cd), Bismuth (Bi), Zinc (Zn), Lead (Pb)
+BAC0057	cadD	Q7A320	Staphylococcus aureus (strain N315)	Plasmid pN315 (Staphylococcus aureus (strain N315)),  Plasmid pLUH02 (Staphylococcus aureus (strain ECT-R 2) ), Chromosome	Cadmium (Cd), Zinc (Zn)
+BAC0058	cadR	Q93TP7	Pseudomonas putida (Arthrobacter siderocapsulatus)	Plasmid pECd1 (uncultured bacterium), Chromosome	Cadmium (Cd)
+BAC0059	cadX	A7LHQ4	Streptococcus salivarius	Plasmid pLUG10 (Staphylococcus lugdunensis)	Cadmium (Cd), Zinc (Zn)
+BAC0060	cdeA	Q7WZ38	Clostridium difficile	Chromosome	Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine]
+BAC0061	cepA	Q8RR17	Klebsiella pneumoniae	Chromosome	Chlorhexidine [class: Biguanides]
+BAC0062	ceuE	D3UGE4	Psudomonas aeruginosa	Plasmid pUM505 (pseudomonas aeruginosa), Plasmid pB4 (uncultured bacterium), Plasmid pMOL28 (Ralstonia metallidurans (strain CH34/ATCC 43123/DSM2839))	Chromium (Cr)
+BAC0063	chrA	P14285	Psudomonas aeruginosa	Plasmid pUM505  (pseudomonas aeruginosa)	Chromium (Cr)
+BAC0026	chrA	A4UQR4	Ochrobactrum tritici	Chromosome (transposon TnOtChr)	Chromium (Cr)
+BAC0548	chrA1	P17551	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM2839)	Plasmid pMOL28 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839)), Plasmid pB4 (uncultured bacterium)	Chromium (Cr)
+BAC0027	chrB	A4UQR5	Ochrobactrum tritici	Chromosome (transposon TnOtChr)	Chromium (Cr), Methyl Viologen [class: Paraquat], Menadione [class: Naphthoquinone]
+BAC0064	chrB1	P17552	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM2839)	Plasmid pMOL28 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839)), Plasmid pB4 (uncultured bacterium)	Chromium (Cr)
+BAC0547	chrC	P17550	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM2839)	Plasmid pMOL28 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839)), Plasmid pB4 (uncultured bacterium)	Chromium (Cr)
+BAC0028	chrC	A4UQR3	Ochrobactrum tritici	Chromosome (transposon TnOtChr)	Chromium (Cr), Methyl Viologen [class: Paraquat], Menadione [class: Naphthoquinone]
+BAC0065	chrE	Q5NUZ8	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM2839)	Plasmid pMOL28 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839)), Plasmid pB4 (uncultured bacterium)	Chromium (Cr)
+BAC0066	chrF	Q5NUZ7	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM2839)	Plasmid pMOL28 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839)), Plasmid pB4 (uncultured bacterium)	Chromium (Cr)
+BAC0029	chrF	A4UQR2	Ochrobactrum tritici	Chromosome (transposon TnOtChr)	Chromium (Cr), Methyl Viologen [class: Paraquat], Menadione [class: Naphthoquinone]
+BAC0361	chrI	Q1L9W3	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM2839)	Plasmid pMOL28 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839)), Plasmid pB4 (uncultured bacterium)	Chromium (Cr)
+BAC0538	chrR	Q7BD45	Pseudomonas putida	Chromosome	Chromium (Cr), Iron (Fe), Hydrogen Peroxide (H2O2) [class: Peroxides], 2,6-dichloroindophenol [class: Phenolic Compounds]
+BAC0539	chrR	P96977	Pseudomonas sp. (strain G-1)	Chromosome	Chromium (Cr)
+BAC0707	chtR	ZP_06677963	Enterococcus faecium	Chromosome	Chlorhexidine [class: Biguanides]
+BAC0708	chtS	ZP_06677962	Enterococcus faecium	Chromosome	Chlorhexidine [class: Biguanides]
+BAC0067	cinA	Q9I036	Pseudomonas aeruginosa PAO1	Chromosome	Copper (Cu)
+BAC0068	cmeA	Q8RTE5	Campylobacter jejuni	Chromosome	Copper (Cu), Cobalt (Co), Sodium Chenodeoxycholate [class: Acid], Sodium Deoxycholate [class: Acid], Sodium Cholate [class: Acid], Sodium Taurocholate [class: Acid], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Ethidium Bromide [class: Phenanthridine]
+BAC0613	cmeB	Q8RTE4	Campylobacter jejuni	Chromosome	Copper (Cu), Cobalt (Co), Sodium Chenodeoxycholate [class: Acid], Sodium Deoxycholate [class: Acid], Sodium Cholate [class: Acid], Sodium Taurocholate [class: Acid], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Ethidium Bromide [class: Phenanthridine], Acridine orange [class: Acridine]
+BAC0614	cmeC	Q8RTE3	Campylobacter jejuni	Chromosome	Copper (Cu), Cobalt (Co), Sodium Chenodeoxycholate [class: Acid], Sodium Deoxycholate [class: Acid], Sodium Cholate [class: Acid], Sodium Taurocholate [class: Acid], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Ethidium Bromide [class: Phenanthridine]  
+BAC0615	cmeD	Q0P9M1	Campylobacter jejuni	Chromosome	Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Triton X-100 [class: Polyethylene glycol], Tween 20 [class: Polyoxyethylene], Empigen [class: Amine betaine], Sodium Cholate [class: Acid], Sodium Glycocholate [class: Acid], Sodium Taurocholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Chenodeoxycholate [class: Acid]
+BAC0616	cmeE	Q0P9M0	Campylobacter jejuni	Chromosome	Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Triton X-100 [class: Polyethylene glycol], Tween 20 [class: Polyoxyethylene], Empigen [class: Amine betaine], Sodium Cholate [class: Acid], Sodium Glycocholate [class: Acid], Sodium Taurocholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Chenodeoxycholate [class: Acid]
+BAC0069	cmeF	Q0P9L9	Campylobacter jejuni	Chromosome	Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Triton X-100 [class: Polyethylene glycol], Tween 20 [class: Polyoxyethylene], Empigen [class: Amine betaine], Sodium Cholate [class: Acid], Sodium Glycocholate [class: Acid], Sodium Taurocholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Chenodeoxycholate [class: Acid]
+BAC0070	cmeR	Q7B8P6	Campylobacter jejuni 81-176	Chromosome	Sodium Cholate [class: Acid]
+BAC0071	cmtR	P67731	Mycobacterium tuberculosis	Chromosome	Cobalt (Co), Nickel (Ni)
+BAC0203	cnrA	P37972	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL28 (Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839))	Cobalt (Co), Nickel (Ni)
+BAC0542	cnrA	B0B0H8	Bradyrhizobium sp. STM 2465	Chromosome	Cobalt (Co), Nickel (Ni)
+BAC0543	cnrA	A9DF56	Bradyrhizobium sp. STM 2464	Chromosome	Cobalt (Co), Nickel (Ni)
+BAC0544	cnrA	A9DF42	Bradyrhizobium sp. STM 2457	Chromosome	Cobalt (Co), Nickel (Ni)
+BAC0545	cnrA	A9DF51	Bradyrhizobium sp. STM 2460	Chromosome	Cobalt (Co), Nickel (Ni)
+BAC0546	cnrA	A9DF47	Bradyrhizobium sp. STM 2458	Chromosome	Cobalt (Co), Nickel (Ni)
+BAC0204	cnrB	P37973	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL28 (Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839))	Cobalt (Co), Nickel (Ni)
+BAC0072	cnrC	P37974	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL28 (Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839))	Cobalt (Co), Nickel (Ni)
+BAC0073	cnrH	P37978	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL28 (Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839))	Cobalt (Co), Nickel (Ni)
+BAC0291	cnrR/cnrX	P37975	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL28 (Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839))	Cobalt (Co), Nickel (Ni)
+BAC0074	cnrT	Q5NUX6	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL28 (Cupriavidus metallidurans)	Cobalt (Co), Nickel (Ni)
+BAC0075	cnrY	P56621	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL28 (Cupriavidus metallidurans)	Cobalt (Co), Nickel (Ni)
+BAC0076	comR/ycfQ	P75952	Escherichia coli (strain K12)	Chromosome	Copper (Cu)
+BAC0077	copA	P12374	Pseudomonas syringae pv. Tomato	Plasmid pPT23D (Pseudomonas syringae pv. Tomato), Plasmid pRJ1004 (E. coli)	Copper (Cu), Silver (Ag)
+BAC0078	copA	O32220	Bacillus subtilis (strain 168)	Chromosome	Copper (Cu)
+BAC0619	copA	Q7WYH1	Pseudomonas putida PNL-MK25	Chromosome	Copper (Cu)
+BAC0620	copA	P32113	Enterococcus hirae (strain ATCC 9790 / DSM 20160 / JCM 8729 / LMG 6399 / NBRC 3181 / NCIMB 6459 / NCDO 1258)	Chromosome	Copper (Cu)
+BAC0621	copA	F4ZBX3	Xanthomonas citri subsp. Citri	Chromosome	Copper (Cu)
+BAC0622	copA	O29777	Archaeoglobus fulgidus (strain ATCC 49558 / VC-16 / DSM 4304 / JCM 9628 / NBRC 100126)	Chromosome	Copper (Cu), Silver (Ag)
+BAC0623	copA	Q59467	Helicobacter pylori (Campylobacter pylori)	Chromosome	Copper (Cu)
+BAC0624	copA	O32619	Helicobacter felis (strain ATCC 49179 / NCTC 12436 / CS1)	Chromosome	Copper (Cu)
+BAC0625	copA	F4ZCZ9	Xanthomonas alfalfae subsp. Citrumelonis	Chromosome	Copper (Cu)
+BAC0716	copA	D4PBS1	Achromobacter sp. AO22	Chromosome	Copper (Cu)
+BAC0723	copA	Q9L914	Aeromonas veronii bv. Sobria	Transposon	Copper (Cu)
+BAC0725	copA	Q59385	Escherichia coli K-12	Chromosome	Copper (Cu)
+BAC0626	copB	P12375	Pseudomonas syringae pv. Tomato	Plasmid pPT23D	Copper (Cu)
+BAC0627	copB	F4ZD00	Xanthomonas alfalfae subsp. Citrumelonis	Chromosome	Copper (Cu)
+BAC0628	copB	F4ZBX4	Xanthomonas citri subsp. Citri	Chromosome	Copper (Cu)
+BAC0629	copB	O30085	Archaeoglobus fulgidus (strain ATCC 49558 / VC-16 / DSM 4304 / JCM 9628 / NBRC 100126)	Chromosome	Copper (Cu)
+BAC0079	copB	P05425	Enterococcus hirae (strain ATCC 9790 / DSM 20160 / JCM 8729 / LMG 6399 / NBRC 3181 / NCIMB 6459 / NCDO 1258)	Chromosome	Copper (Cu), Silver (Ag)
+BAC0718	copB	D4PBS2	Achromobacter sp. AO22	Chromosome	Copper (Cu)
+BAC0722	copB	Q9L913	Aeromonas veronii bv. Sobria	Transposon	Copper (Cu)
+BAC0730	copB	Q7WYH0	Pseudomonas putida	Chromosome	Copper (Cu)
+BAC0630	copC	P12376	Pseudomonas syringae pv. Tomato	Plasmid pPT23D	Copper (Cu)
+BAC0631	copC	F4ZBX9	Xanthomonas citri subsp. Citri	Chromosome	Copper (Cu)
+BAC0639	copC	C6FFR6 	Pseudomonas fluorescens	Chromosome	Copper (Cu)
+BAC0721	copC	Q9L912	Aeromonas veronii bv. Sobria	Transposon	Copper (Cu)
+BAC0729	copC	Q7WYG9	Pseudomonas putida	Chromosome	Copper (Cu)
+BAC0738	copC	Q9KWM9	Pseudomonas syringae	Plasmid	Copper (Cu)
+BAC0749	copC	Q7X4G2	Xanthomonas euvesicatoria	Chromosome	Copper (Cu)
+BAC0632	copD	P12377	Pseudomonas syringae pv. Tomato	Plasmid pPT23D	Copper (Cu)
+BAC0633	copD	Q7WYG8	Pseudomonas putida PNL-MK25	Chromosome	Copper (Cu)
+BAC0640	copD	C6FFR7	Pseudomonas fluorescens	Chromosome	Copper (Cu)
+BAC0739	copD	Q9KWM8	Pseudomonas syringae	Plasmid	Copper (Cu)
+BAC0748	copD	F4ZBY0	Xanthomonas citri subsp. Citri	Chromosome	Copper (Cu)
+BAC0747	copF	F4ZBY1	Xanthomonas citri subsp. Citri	Chromosome	Copper (Cu)
+BAC0717	copG	D4PBS3	Achromobacter sp. AO22	Chromosome	Copper (Cu)
+BAC0746	copG	F4ZBX7	Xanthomonas citri subsp. Citri	Chromosome	Copper (Cu)
+BAC0080	copJ	Q58AE1	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL30 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839) ),	Copper (Cu)
+BAC0081	copK	Q58AD3	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL30 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839) )	Copper (Cu)
+BAC0082	copL	Q5YKV8	Xanthomonas perforans	Chromosome	Copper (Cu)
+BAC0743	copL	F4ZBX2	Xanthomonas citri subsp. Citri	Chromosome	Copper (Cu)
+BAC0713	copM	A0A0F6QDN6	Synechocystis sp. PCC 6803	Plasmid	Copper (Cu)
+BAC0745	copM	F4ZBX5	Xanthomonas citri subsp. Citri	Chromosome	Copper (Cu)
+BAC0634	copP	O32620	Helicobacter felis (strain ATCC 49179 / NCTC 12436 / CS1)	Chromosome	Copper (Cu)
+BAC0635	copP	Q9ZM70	Helicobacter pylori (strain J99 / ATCC 700824) (Campylobacter pylori J99)	Chromosome	Copper (Cu)
+BAC0083	copR	Q02540	Pseudomonas syringae pv. Tomato	Plasmid pPT23D (Pseudomonas syringae pv. Tomato), Plasmid pPaCu1 (Pseudomonas syringae)	Copper (Cu)
+BAC0638	copR	C6FFR4	Pseudomonas fluorescens	Chromosome	Copper (Cu)
+BAC0719	copR	D4PBS0	Achromobacter sp. AO22	Chromosome	Copper (Cu)
+BAC0753	copR	Q7X4F8	Xanthomonas euvesicatoria	Chromosome	Copper (Cu)
+BAC0757	copR	B2CQV6	Sulfolobus solfataricus 98/2	Chromosome	Copper (Cu)
+BAC0637	copS	C6FFR5	Pseudomonas fluorescens	Chromosome	Copper (Cu)
+BAC0537	copS	Q02541	Pseudomonas syringae	Plasmid pPT23D (Pseudomonas syringae pv. Tomato), Plasmid pPaCu1 (Pseudomonas syringae)	Copper (Cu)
+BAC0720	copS	D4PBR9	Achromobacter sp. AO23	Chromosome	Copper (Cu)
+BAC0752	copS	Q7X4F9	Xanthomonas euvesicatoria	Chromosome	Copper (Cu)
+BAC0744	cop-unnamed	F4ZBX1	Xanthomonas citri subsp. Citri	Chromosome	Copper (Cu)
+BAC0750	cop-unnamed	Q7X4G1	Xanthomonas euvesicatoria	Chromosome	Copper (Cu)
+BAC0756	copV	Q1LA62	Cupriavidus metallidurans CH34	Plasmid	Copper (Cu)
+BAC0084	copY/tcrY	Q47839	Enterococcus hirae	Chromosome	Copper (Cu)
+BAC0085	copZ	Q47840	Enterococcus hirae	Chromosome	Copper (Cu)
+BAC0724	copZ	O32221	Bacillus subtilis	Chromosome	Copper (Cu)
+BAC0731	copZ	Q2FV63	Staphylococcus aureus	Chromosome	Copper (Cu)
+BAC0086	corA	P0ABI4	Escherichia coli (strain K12)	Chromosome	Magnesium (Mg), Cobalt (Co), Nickel (Ni), Manganese (Mn)
+BAC0641	corA	P0A2R8	Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)	Chromosome	Magnesium (Mg), Cobalt (Co), Nickel (Ni), Manganese (Mn)
+BAC0643	corB	Q9X621	Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)	Chromosome	Cobalt (Co), Magnesium (Mg)
+BAC0088	corC	P0A2L3	Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)	Chromosome	Cobalt (Co), Magnesium (Mg)
+BAC0644	corD	Q56017	Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)	Chromosome	Cobalt (Co), Magnesium (Mg)
+BAC0089	corR	Q1D6V8	Myxococcus xanthus (strain DK 1622)	Chromosome	Copper (Cu)
+BAC0090	corR/coaR	H0P0Y2	Synechocystis sp. PCC 6803 substr. GT-I	Chromosome	Cobalt (Co), Magnesium (Mg)
+BAC0091	corS	Q1D6V7	Myxococcus xanthus (strain DK 1622)	Chromosome	Copper (Cu)
+BAC0092	corT/coaT	H0P0Y3	Synechocystis sp. PCC 6803 substr. GT-I	Chromosome	Cobalt (Co)
+BAC0532	cpxA	C4WZK5	Klebsiella pneumoniae subsp. pneumoniae NTUH-K2044	Chromosome	Hydrogen Peroxide (H2O2) [class: Peroxides], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides]
+BAC0533	cpxR	C4WZK6	Klebsiella pneumoniae subsp. pneumoniae NTUH-K2044	Chromosome	Hydrogen Peroxide (H2O2) [class: Peroxides], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides]
+BAC0093	crdA	O25884	Helicobacter pylori (strain ATCC 700392 / 26695) (Campylobacter pylori)	Chromosome	Copper (Cu)
+BAC0094	crdB	O25885	Helicobacter pylori (strain ATCC 700392 / 26695) (Campylobacter pylori)	Chromosome	Copper (Cu)
+BAC0095	crdR	O25918	Helicobacter pylori (strain ATCC 700392 / 26695) (Campylobacter pylori)	Chromosome	Copper (Cu)
+BAC0096	crdS	O25917	Helicobacter pylori (strain ATCC 700392 / 26695) (Campylobacter pylori)	Chromosome	Copper (Cu)
+BAC0558	csoR	O32222	Bacillus subtilis 168	Chromosome	Copper (Cu)
+BAC0098	ctpC	P0A502	Mycobacterium tuberculosis	Chromosome	Manganese (Mn), Zinc (Zn)
+BAC0099	ctpD	A0R3A7	Mycobacterium smegmatis	Chromosome	Cobalt (Co), Nickel (Ni)
+BAC0100	ctpG	P63689	Mycobacterium tuberculosis	Chromosome	Copper (Cu)
+BAC0101	ctpV	P77894	Mycobacterium tuberculosis	Chromosome	Copper (Cu)
+BAC0102	cueA	Q8KWW2	Pseudomonas putida (Arthrobacter siderocapsulatus)	Chromosome	Copper (Cu), Silver (Ag)
+BAC0103	cueO	P36649	Escherichia coli (strain K12)	Chromosome	Copper (Cu)
+BAC0104	cueP	Q8ZL99	Salmonella enterica serovar Typhimurium	Chromosome	Copper (Cu)
+BAC0736	cueR	O07586	Bacillus subtilis	Chromosome	Copper (Cu)
+BAC0105	cueR/ybbI	P0A9G4	Escherichia coli (strain K12)	Chromosome	Copper (Cu)
+BAC0106	cuiD	Q8ZRS2	Salmonella enterica serovar Typhimurium	Chromosome	Copper (Cu), Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0107	cusA/ybdE	P38054	Escherichia coli (strain K12)	Plasmid megaplasmid CH34 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839)),	Copper (Cu), Silver (Ag)
+BAC0108	cusB	P77239	Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839)	Plasmid megaplasmid CH34 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839)),	Copper (Cu), Silver (Ag)
+BAC0109	cusC/ylcB	P77211	Escherichia coli (strain K12)	Plasmid megaplasmid CH34 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839))	Copper (Cu), Silver (Ag)
+BAC0110	cusF/cusX	P77214	Escherichia coli (strain K12)	Plasmid pkPN3 (Klebsiella pneumoniae subsp. pneumoniae MGH 78578), Plasmid pAPEC-O2-R	Copper (Cu), Silver (Ag)
+BAC0111	cusR/ylcA	P0ACZ8	Escherichia coli (strain K12)	Plasmid pECL_A (Enterobacter cloacae subsp. cloacae (strain ATCC 13047 / DSM 30054 / NBRC 13535 / NCDC 279-56))	Copper (Cu), Silver (Ag)
+BAC0112	cusS	P77485	Escherichia coli (strain K12)	Chromosome	Copper (Cu), Silver (Ag)
+BAC0113	cutA	P69488	Escherichia coli (strain K12)	Chromosome	Copper (Cu)
+BAC0114	cutC	P67826	Escherichia coli (strain K12)	Chromosome	Copper (Cu)
+BAC0115	cutE/lnt	P23930	Escherichia coli (strain K12)	Chromosome	Copper (Cu)
+BAC0116	cutF/nlpE	P40710	Escherichia coli (strain K12)	Chromosome	Copper (Cu)
+BAC0117	cutO	D5AV58	Rhodobacter capsulatus	Chromosome	Copper (Cu)
+BAC0118	cutR	D5AV59	Rhodobacter capsulatus (strain ATCC BAA-309 / NBRC 16581 / SB1003)	Chromosome	Copper (Cu)
+BAC0119	czcA	P13511	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL30 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839) ),	Cadmium (Cd), Zinc (Zn), Cobalt (Co)
+BAC0120	czcB	P13510	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL30 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839) ),	Cadmium (Cd), Zinc (Zn), Cobalt (Co)
+BAC0121	czcC	P13509	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL30 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839) ),	Cadmium (Cd), Zinc (Zn), Cobalt (Co)
+BAC0751	czcC	Q7X4G0	Xanthomonas euvesicatoria	Chromosome	Copper (Cu)
+BAC0122	czcD	P13512	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL30 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839) ),	Cadmium (Cd), Zinc (Zn), Cobalt (Co)
+BAC0123	czcE	Q1LAJ1	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL30 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839) ),	Cadmium (Cd), Zinc (Zn), Cobalt (Co)
+BAC0124	czcP	Q1LAJ7	Cupriavidus metallidurans CH34	Plasmid pMOL30 (Cupriavidus metallidurans CH34)	Cadmium (Cd), Zinc (Zn), Cobalt (Co)
+BAC0125	czcR	Q44006	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL30 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839) ),	Cadmium (Cd), Zinc (Zn), Cobalt (Co)
+BAC0126	czcS	Q44007	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL30 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839) )	Cadmium (Cd), Zinc (Zn), Cobalt (Co)
+BAC0127	cznA	D3UHQ0	Helicobacter mustelae (strain ATCC 43772/LMG 18044/NCTC 12198/12198)(Campylobacter mustelae)	Chromosome	Cadmium (Cd), Zinc (Zn), Nickel (Ni)
+BAC0128	cznB	D3UHP9	Helicobacter mustelae (strain ATCC 43772/LMG 18044/NCTC 12198/12198)(Campylobacter mustelae)	Chromosome	Cadmium (Cd), Zinc (Zn), Nickel (Ni)
+BAC0129	cznC	D3UHP8	Helicobacter mustelae (strain ATCC 43772/LMG 18044/NCTC 12198/12198) (Campylobacter mustelae)	Chromosome	Cadmium (Cd), Zinc (Zn), Nickel (Ni)
+BAC0130	czrA	Q9RLI8	Pseudomonas aeruginosa	Chromosome	Zinc (Zn), Cadmium (Cd)
+BAC0131	czrB	Q9RLI9	Pseudomonas aeruginosa	Chromosome	Zinc (Zn), Cadmium (Cd)
+BAC0132	dmeF	Q1LRZ2	Wautersia metallidurans CH34	Plasmid pMOL28 (Wautersia metallidurans CH34)	Cobalt (Co), Cadmium (Cd), Nickel (Ni)
+BAC0482	dmeF	Q1MJL2	Rhizobium leguminosarum bv. viciae UPM791	Chromosome	Cobalt (Co), Nickel (Ni)
+BAC0475	dmeR	Q1MJL3	Rhizobium leguminosarum bv. viciae UPM791	Chromosome	Cobalt (Co), Nickel (Ni)
+BAC0134	dpr/dps	P0CB53	Streptococcus suis	Chromosome	Iron (Fe), Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0135	dpsA	Q8KR86	Burkholderia pseudomallei 1710b	Chromosome	Iron (Fe), Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0136	dsbA	P0AEG4	Escherichia coli (strain K12)	Chromosome	Cadmium (Cd), Zinc (Zn), Mercury (Hg)
+BAC0137	dsbB	P0A6M2	Escherichia coli (strain K12)	Chromosome	Cadmium (Cd), Mercury (Hg)
+BAC0138	dsbC	P0AEG6	Escherichia coli (strain K12)	Chromosome	Copper (Cu)
+BAC0139	ebrA	P0CW81	Bacillus subtilis	Chromosome	Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine], Pyronin Y [class: Xanthene], Safranin O [class: Azin]
+BAC0140	ebrB	P0CW83	Bacillus subtilis	Chromosome	Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine], Pyronin Y [class: Xanthene], Safranin O [class: Azin]
+BAC0494	eefA	A8CY69	Klebsiella pneumoniae LM21	Chromosome	Hydrochloric acid (HCl) [class: Acid]
+BAC0495	eefX	A8CY68	Klebsiella pneumoniae LM21	Chromosome	Hydrochloric acid (HCl) [class: Acid]
+BAC0141	emeA	Q8GR72	Only gram -ve, Enterococcus faecalis (Streptococcus faecalis)	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0142	emhA	Q4KH22	Pseudomonas fluorescens (strain Pf-5 / ATCC BAA-477)	Chromosome	Ethidium Bromide [class: Phenanthridine], Crystal Violet [class: Triarylmethane], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0143	emhB	C1KA85	Pseudomonas fluorescens (strain Pf-5 / ATCC BAA-477)	Chromosome	Ethidium Bromide [class: Phenanthridine], Crystal Violet [class: Triarylmethane], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0144	emhC	Q4KH24	Pseudomonas fluorescens (strain Pf-5 / ATCC BAA-477)	Chromosome	Ethidium Bromide [class: Phenanthridine], Crystal Violet [class: Triarylmethane], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0145	emhR	Q4KH21	Pseudomonas fluorescens (strain Pf-5 / ATCC BAA-477)	Chromosome	Ethidium Bromide [class: Phenanthridine], Crystal Violet [class: Triarylmethane], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0146	emmdR	D5CJ69	Enterobacter cloacae	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine], Rhodamine 6G [class: Xanthene]
+BAC0147	emrA	P27303	Escherichia coli (strain K12)	Chromosome	Phenylmercury Acetate [class: Organo-mercury], 2-Chlorophenylhydrazine [class: Hydrazine], Carbonylcyanide m-chlorophenyl hydrazone (CCCP) [class: Hydrazone], Tetrachlorosalicylanilide (TCS) [class: Salicylanilide]
+BAC0499	emrAsm	B2FIC9	Stenotrophomonas maltophilia (strain K279a)	Chromosome	Carbonyl cyanide 3-chlorophenylhydrazone (CCCP) [class: Hydrazone], Tetrachlorosalicylanilide (TCS) [class: Salicylanilide]
+BAC0148	emrB	P0AEJ0	Escherichia coli (strain K12)	Chromosome	Phenylmercury Acetate [class: Organo-mercury], 2-Chlorophenylhydrazine [class: Hydrazine], Carbonylcyanide m-chlorophenyl hydrazone (CCCP) [class: Hydrazone]
+BAC0500	emrBsm	B2FID0	Stenotrophomonas maltophilia (strain K279a)	Chromosome	Carbonyl cyanide 3-chlorophenylhydrazone (CCCP) [class: Hydrazone], Tetrachlorosalicylanilide (TCS) [class: Salicylanilide]
+BAC0501	emrCsm	B2FIC8	Stenotrophomonas maltophilia (strain K279a)	Chromosome	Carbonyl cyanide 3-chlorophenylhydrazone (CCCP) [class: Hydrazone], Tetrachlorosalicylanilide (TCS) [class: Salicylanilide]
+BAC0149	emrD	P31442	Escherichia coli (strain K12)	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0534	emrD-3	A5EYZ6	Vibrio cholerae O395	Chromosome	Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine], Rhodamine 6G [class: Xanthene], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0150	emrE/mvrC	P23895	Escherichia coli (Strain K12)	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Methyl Viologen [class: Paraquat], Ethidium Bromide [class: Phenanthridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0151	emrK	P52599	Escherichia coli (strain K12)	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Crystal Violet [class: Triarylmethane], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Sodium Deoxycholate (SDC) [class: Acid], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0559	emrR	P0ACR9	Escherichia coli (strain K12)	Chromosome	Carbonyl cyanide 3-chlorophenylhydrazone (CCCP) [class: Hydrazone]
+BAC0502	emrRsm	B2FIC7	Stenotrophomonas maltophilia (strain K279a)	Chromosome	Carbonyl cyanide 3-chlorophenylhydrazone (CCCP) [class: Hydrazone], Tetrachlorosalicylanilide (TCS) [class: Salicylanilide]
+BAC0153	emrY	P52600	Escherichia coli (strain K12)	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Ethidium Bromide [class: Phenanthridine]
+BAC0154	evgA	P0ACZ4	Only gram -ve, Escherichia coli (Strain K12)	Chromosome	Sodium Deoxycholate (SDC) [class: Acid]
+BAC0155	evgS	P58402	Escherichia coli (strain K12)	Chromosome	Sodium Deoxycholate (SDC) [class: Acid]
+BAC0156	fabI	P0AEK4	Escherichia coli (strain K12)	Chromosome	Triclosan [class: Phenolic compounds]
+BAC0157	fabK	Q9FBC5	Streptococcus pneumoniae	Chromosome	Triclosan [class: Phenolic compounds]
+BAC0158	fabL/ygaA	P71079	Bacillus subtilis (strain 168)	Chromosome	Triclosan [class: Phenolic compounds]
+BAC0159	fabV	Q9KRA3	Vibrio chloerae serotype O1 (strain ATCC 39315 / El Tor Inaba N16961)	Chromosome	Triclosan [class: Phenolic compounds]
+BAC0503	farA	Q9RQ30	Neisseria gonorrhoeae F19	Chromosome	Phenylmercury Acetate [class: Organo-mercury], Carbonyl cyanide 3-chlorophenylhydrazone (CCCP) [class: Hydrazone], Oleic acid [class: Free Fatty Acids], Linoleic acid [class: Free Fatty Acids], Palmitic acid [class: Free Fatty Acids], Triton X-100 [class: Polyethylene glycol]
+BAC0504	farB	Q9RQ29	Neisseria gonorrhoeae F19	Chromosome	Phenylmercury Acetate [class: Organo-mercury], Carbonyl cyanide 3-chlorophenylhydrazone (CCCP) [class: Hydrazone], Oleic acid [class: Free Fatty Acids], Linoleic acid [class: Free Fatty Acids], Palmitic acid [class: Free Fatty Acids], Triton X-100 [class: Polyethylene glycol]
+BAC0505	farR	Q7DD70	Neisseria gonorrhoeae, Neisseria meningitidis serogroup B (strain MC58)	Chromosome	Palmitic acid [class: Free Fatty Acids]
+BAC0160	fbpA	P35755	Haemophilus influenzae (strain ATCC 51907 / DSM 11121 / KW20 / Rd)	Chromosome	Iron (Fe), Gallium (Ga)
+BAC0161	fbpB	P71338	Haemophilus influenzae (strain ATCC 51907 / DSM 11121 / KW20 / Rd)	Chromosome	Iron (Fe), Gallium (Ga)
+BAC0162	fbpC	P44513	Haemophilus influenzae (strain ATCC 51907 / DSM 11121 / KW20 / Rd)	Chromosome	Iron (Fe), Gallium (Ga)
+BAC0163	fecD	P15029	Escherichia coli (strain K12)	Chromosome	Nickel (Ni), Cobalt (Co)
+BAC0164	fecE	P15031	Escherichia coli (strain K12)	Chromosome	Nickel (Ni), Cobalt (Co)
+BAC0165	fetA/ybbL	P77279	Escherichia coli (strain K12)	Chromosome	Iron (Fe), Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0166	fetB/ybbM	P77307	Escherichia coli (strain K12)	Chromosome	Iron (Fe), Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0167	fieF/yiip	P69380	Escherichia coli (strain K12)	Chromosome	Iron (Fe), Zinc (Zn), Cobalt (Co), Cadmium (Cd), Nickel (Ni)
+BAC0168	fptA	P42512	Pseudomonas aeruginosa (strain ATCC 15692 / PAO1 / 1C / PRS 101 / LMG 12228)	Chromosome	Iron (Fe), Cobalt (Co), Nickel (Ni), Gallium (Ga)
+BAC0169	fpvA	P48632	Pseudomonas aeruginosa (strain ATCC 15692 / PAO1 / 1C / PRS 101 / LMG 12228)	Chromosome	Manganese (Mn), Iron (Fe), Cobalt (Co), Zinc (Zn), Nickel (Ni), Copper (Cu), Cadmium (Cd), Gallium (Ga)
+BAC0170	frnE	Q9RWK7	Deinococcus radiodurans	Chromosome	Cadmium (Cd), Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0171	furA	P0A582	Mycobacterium tuberculosis	Chromosome	Iron (Fe)
+BAC0490	G2alt	B0FSM1	Anoxybacillus gonensis G2	Chromosome	Aluminium (Al)
+BAC0172	gadA	P69908	Escherichia coli (strain K12)	Chromosome	Hydrochloric acid (HCl) [class: Acid]
+BAC0173	gadB	P69910	Escherichia coli (strain K12)	Chromosome	Hydrochloric acid (HCl) [class: Acid]
+BAC0174	gadC/xasA	P63235	Escherichia coli (strain K12)	Chromosome	Hydrochloric acid (HCl) [class: Acid]
+BAC0175	gadE/yhiE	P63204	Escherichia coli (strain K12)	Chromosome	Hydrochloric acid (HCl) [class: Acid]
+BAC0176	gadW/yhiW	P63201	Escherichia coli (strain K12)	Chromosome	Hydrochloric acid (HCl) [class: Acid]
+BAC0177	gadX	P37639	Escherichia coli (strain K12)	Chromosome	Hydrochloric acid (HCl) [class: Acid], Rhodamine 6G [class: Xanthene], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0755	galE	A0A1Z2RUL8	Uncultured bacterium	Chromosome	Cetyltrimethylammonium bromide (CTAB) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0178	gesA	Q8ZRG8	Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)	Chromosome	Gold (Au), Methylene Blue [class: Thiazinium], Crystal Violet [class: Triarylmethane]
+BAC0179	gesB	Q8ZRG9	Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)	Chromosome	Gold (Au), Methylene Blue [class: Thiazinium], Crystal Violet [class: Triarylmethane]
+BAC0180	gesC	Q8ZRH0	Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)	Chromosome	Gold (Au), Methylene Blue [class: Thiazinium], Crystal Violet [class: Triarylmethane]
+BAC0181	glpF	P0AER0	Escherichia coli (strain K12)	Chromosome	Antimony (Sb), Arsenic (As), Glycerol [class: Alcohol]
+BAC0182	golS	Q8ZRG6	Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)	Chromosome	Gold (Au)
+BAC0183	golT	Q8ZRG7	Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)	Chromosome	Copper (Cu), Gold (Au)
+BAC0184	hasF	Q6GW09	Serratia marcescens	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Ethidium Bromide [class: Phenanthridine]
+BAC0185	hdeA/yhiB	P0AES9	Escherichia coli (strain K12)	Chromosome	Hydrochloric acid (HCl) [class: Acid]
+BAC0186	hdeB/yhiC	P0AET2	Escherichia coli (strain K12)	Chromosome	Hydrochloric acid (HCl) [class: Acid]
+BAC0187	hefA	B6JLI8	Helicobacter pylori (strain P12)	Chromosome	Hydrochloric acid (HCl) [class: Acid]
+BAC0188	hefC	B6JLJ0	Helicobacter pylori (strain P12)	Chromosome	Hydrochloric acid (HCl) [class: Acid]
+BAC0189	hmrM	P45272	Haemophilus influenzae	Chromosome	Acriflavine [class: Acridine], 4,6-diamidino-2-phenylindole (DAPI) [class: Diamidine], Ethidium Bromide [class: Phenanthridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Sodium Deoxycholate (SDC) [class: Acid], Hoechst 33342 [class: Bisbenzimide]
+BAC0569	hmrR	Q9X5V4	Rhizobium leguminosarum bv. Viciae	Chromosome	Copper (Cu), Hydrochloric acid (HCl) [class: Acid]
+BAC0190	hmrR	Q9X5X4	Sinorhizobium medicae (strain WSM419) (Ensifer medicae), Plasmid pSymA (Rhizobium meliloti (strain 1021) (Ensifer meliloti) (Sinorhizobium meliloti))	Plasmid pSMED01	Copper (Cu), Hydrochloric acid (HCl) [class: Acid]
+BAC0191	hoxN	P23516	Cupriavidus necator (strain ATCC 17699 / H16 / DSM 428 / Stanier 337) (Ralstonia eutropha)	Plasmid megaplasmid pHG1 (Cupriavidus necator (strain ATCC 17699 / H16 / DSM 428 / Stanier 337) (Ralstonia eutropha)),	Nickel (Ni)
+BAC0617	hpcopA	P77871	Helicobacter pylori (Campylobacter pylori)	Chromosome	Copper (Cu)
+BAC0618	hpcopP	Q48271	Helicobacter pylori (Campylobacter pylori)	Chromosome	Copper (Cu)
+BAC0192	hsmR	B0R6K7	Halobacterium salinarum (strain ATCC 29341 / DSM 671 / R1)	Chromosome	Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0483	hupE	P27650	Rhizobium leguminosarum bv. Viciae	Plasmid pSym (Rhizobium leguminosarum bv. viciae)	Nickel (Ni)
+BAC0484	hupE2	D2WPE1	Rhizobium leguminosarum bv. viciae UPM791	Plasmid pRLUPM791b (Rhizobium leguminosarum bv. viciae UPM791b)	Nickel (Ni)
+BAC0193	hupN	Q43955	Azotobacter chroococcum mcd 1	Chromosome	Nickel (Ni)
+BAC0194	ibpA	P0C054	Escherichia coli (strain K12)	Chromosome	Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0195	ibpB	P0C058	Escherichia coli (strain K12)	Chromosome	Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0196	iclR	P16528	Escherichia coli (strain K12)	Chromosome	Sodium acetate [class: Acetate]
+BAC0498	ideR	P0A672	Mycobacterium tuberculosis	Chromosome	Iron (Fe), Hydrogen Peroxide (H2O2) [class: Peroxides], Plumbagin [class: Naphthoquinone]
+BAC0197	irlR	O31395	Burkholderia pseudomallei (strain K96243)	Chromosome	Cadmium (Cd), Zinc (Zn)
+BAC0198	irlS	O31396	Burkholderia pseudomallei (strain K96243)	Chromosome	Cadmium (Cd), Zinc (Zn)
+BAC0491	kdeA	A6T6T9	Klebsiella pneumoniae (strain MGH 78578)	Chromosome	Acriflavine [class: Acridine], Ethidium Bromide [class: Phenanthridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0492	kexD	A6TA71	Klebsiella pneumoniae	Chromosome	Rhodamine 6G [class: Xanthene], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine], Sodium Cholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid] 
+BAC0199	klaB/telA/kilB	Q52328	Escherichia coli	Plasmid IncP-alpha RK2 (E. coli), Plasmid pBS228 (Pseudomonas aeruginosa)	Tellurium (Te)
+BAC0200	klaC/telB	Q52329	Escherichia coli	Plasmid IncP-alpha RK2 (E. coli), Plasmid pBS228 (Pseudomonas aeruginosa)	Tellurium (Te)
+BAC0493	kmrA	C4X8X9	Klebsiella pneumoniae	Chromosome	Acriflavine [class: Acridine], 4,6-diamidino-2-phenylindole (DAPI) [class: Diamindine], Hoechst 33342 [class: Bisbenzimide], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Methyl Viologen [class: Paraquat], Ethidium Bromide [class: Phenanthridine], Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0201	kmtR	O53838	Mycobacterium tuberculosis	Chromosome	Nickel (Ni), Cobalt (Co)
+BAC0476	kpnE	C4X7Z3	Klebsiella pneumoniae NTUH-K2044	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Deoxycholate (SDC) [class: Acid], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Triclosan [class: Phenolic compounds], Methyl Viologen [class: Paraquat], Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0477	kpnF	C4X7Z4	Klebsiella pneumoniae NTUH-K2044	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Deoxycholate (SDC) [class: Acid], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Triclosan [class: Phenolic compounds], Methyl Viologen [class: Paraquat], Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0529	kpnO	C4XBC3	Klebsiella pneumoniae NTUH-K2044	Chromosome	Hydrogen Peroxide (H2O2) [class: Peroxides], Carbonyl cyanide 3-chlorophenylhydrazone (CCCP) [class: Hydrazone], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Sodium Nitrite (NaNo2) [class: Nitrites]
+BAC0202	lde	G2JVL2	Listeria monocytogenes	Chromosome	Acridine Orange [class: Acridine], Ethidium Bromide [class: Phenanthridine]
+BAC0535	lmrS	Q5HE38	Staphylococcus aureus subsp. aureus COL	Chromosome	Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Ethidium Bromide [class: Phenanthridine], Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0560	marA	P0ACH5	Escherichia coli (strain K12)	Chromosome	Cyclohexane [class: Cycloalkane], Diphenyl Ether [class: Phenyl], n-hexane [class: Alkane]
+BAC0561	marR	P27245	Escherichia coli (strain K12)	Chromosome	Cyclohexane [class: Cycloalkane], Diphenyl Ether [class: Phenyl], n-hexane [class: Alkane]
+BAC0205	mco	Q69HT9	Staphylococcus aureus	Chromosome	Copper (Cu), Cobalt (Co)
+BAC0206	mctB	P64883	Mycobacterium tuberculosis	Chromosome	Copper (Cu)
+BAC0207	mdeA	P13254	Pseudomonas putida (Arthrobacter siderocapsulatus)	Chromosome	Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Hoechst 33342 [class: Bisbenzimide], Ethidium Bromide [class: Phenanthridine], Rhodamine 6G [class: Xanthene], Acriflavine [class: Acridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Crystal Violet [class: Triarylmethane], Dequalinium [class: Quaternary Ammonium Compounds (QACs)], Pentamidine [class: Diamidine], Pyronin Y [class: Xanthene]
+BAC0208	mdfA/cmr	P0AEY8	Only gram -ve, E. coli (Strain K12)	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Sodium Hydroxide (NaOH) [class: Base], Rhodamine 6G [class: Xanthene]
+BAC0209	mdrL/yfmO	Q9X769	Listeria monocytogenes	Chromosome	Zinc (Zn), Cobalt (Cobalt), Chromium (Cr), Ethidium Bromide [class: Phenanthridine], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0645	mdtA	D0ZND8	Salmonella enterica serovar Typhimurium	Chromosome	Zinc (Zn)
+BAC0210	mdtA/yegM	P76397	Escherichia coli (strain K12)	Chromosome	Sodium Deoxycholate (SDC) [class: Acid]
+BAC0646	mdtB	D0ZND9	Salmonella enterica serovar Typhimurium	Chromosome	Zinc (Zn)
+BAC0211	mdtB/yegN	P76398	Escherichia coli (strain K12)	Chromosome	Sodium Deoxycholate (SDC) [class: Acid], Hydrochloric acid (HCl) [class: Acid]
+BAC0647	mdtC	D0ZNE0	Salmonella enterica serovar Typhimurium	Chromosome	Zinc (Zn)
+BAC0212	mdtC/yegO	P76399	Escherichia coli (strain K12)	Chromosome	Sodium Deoxycholate (SDC) [class: Acid]
+BAC0213	mdtE/yhiU	P37636	Escherichia coli (strain K12)	Chromosome	Crystal Violet [class: Triarylmethane], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Sodium Deoxycholate (SDC) [class: Acid], Rhodamine 6G [class: Xanthene], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0214	mdtF/yhiV	P37637	Escherichia coli (strain K12)	Chromosome	Crystal Violet [class: Triarylmethane], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Sodium Deoxycholate (SDC) [class: Acid], Rhodamine 6G [class: Xanthene], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0215	mdtG/yceE	P25744	Escherichia coli (strain K12)	Chromosome	Sodium Deoxycholate (SDC) [class: Acid]
+BAC0216	mdtI/ydgE	P69210	Escherichia coli (strain K12)	Chromosome	Sodium Deoxycholate (SDC) [class: Acid], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Spermidine [class: Polyamines]
+BAC0217	mdtJ/ebrB/ydgF	Q3Z1V3	Shigella sonnei (strain Ss046)	Chromosome	Spermidine [class: Polyamines]
+BAC0218	mdtK/ydhE	P37340	Escherichia coli (strain K12)	Chromosome	Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Sodium Deoxycholate (SDC) [class: Acid], Ethidium Bromide [class: Phenanthridine], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Acriflavine [class: Acridine]
+BAC0219	mdtM/yjiO	P39386	Escherichia coli (strain K12)	Chromosome	Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine], Tetraphenylarsonium (TPA) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0220	mdtN/yjcR	P32716	Escherichia coli (strain K12)	Chromosome	Acriflavine [class: Acridine], Tetraphenylarsonium (TPA) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0221	mepA	Q7A7N0	Only gram +ve, Staphylococcus aureus	Chromosome	Chlorhexidine [class: Biguanides], Ethidium Bromide [class: Phenanthridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)],  Acriflavine [class: Acridine], Rhodamine 6G [class: Xanthene], Dequalinium [class: Quaternary Ammonium Compounds (QACs)], Pentadiamine [class: Diamidine], Trimethylamine-diphenylhexatriene (TMA-DPH) [class: Diphenylhexatriene], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)], Crystal Violet [class: Triarylmethane], Pyronin Y [class: Xanthene]
+BAC0222	mepB	P0C070	Pseudomonas putida	Chromosome	Toluene [class: Aromatic hydrocarbons], n-hexane [class: Alkane]
+BAC0223	mepC	P0C071	Pseudomonas putida	Chromosome	Toluene [class: Aromatic hydrocarbons] [class: Aromatic hydrocarbons], n-hexane [class: Alkane]
+BAC0224	merA	P16171	Bacillus cereus R6007	Chromosome	Mercury (Hg), Phenylmercury Acetate [class: Organo-mercury]
+BAC0648	merA	P08662	Serratia marcescens	Plasmid pDU1358	Mercury (Hg), Phenylmercury Acetate [class: Organo-mercury]
+BAC0649	merA	E3VST6	Tenacibaculum discolor 9A5	Chromosome	Mercury (Hg)
+BAC0650	merA	O08449	Pseudomonas sp. K-62	Plasmid pMR26	Mercury (Hg), Phenylmercury Acetate [class: Organo-mercury], Methylmercury Acetate [class: Organo-mercury]
+BAC0651	merA	P0A0E5	Staphylococcus aureus	Plasmid pI258	Mercury (Hg)
+BAC0652	merA	O66017	Pseudomonas stutzeri	Plasmid pPB	Mercury (Hg)
+BAC0653	merA	Q934S5	Thiobacillus ferrooxidans	Chromosome, Transposon Tn5037	Mercury (Hg)
+BAC0657	merB	O07303	Pseudomonas sp. K-62	Plasmid pMR26	Mercury (Hg), Phenylmercury Acetate [class: Organo-mercury], Methylmercury Acetate [class: Organo-mercury]
+BAC0658	merB	P08653	Staphylococcus aureus	plasmid pI258	Mercury (Hg), Phenylmercury Acetate [class: Organo-mercury]
+BAC0659	merB	P08664	Serratia marcescens	Plasmid pDU1358	Mercury (Hg), Phenylmercury Acetate [class: Organo-mercury]
+BAC0660	merB	Q52396	Pseudomonas stutzeri	Plasmid pPB	Mercury (Hg)
+BAC0654	merB1	P16172	Bacillus sp. (strain RC607)	Chromosome	Mercury (Hg), Phenylmercury Acetate [class: Organo-mercury]
+BAC0663	merB1	Q9XDX3	Bacillus megaterium MB1	Chromosome, Transposon TnMERI1	Mercury (Hg), Fluorescein mercuric acetate [class: Organo-mercury], p-chloro-mercuribenzoic acid [class: Organo-mercury], Phenylmercury Acetate [class: Organo-mercury]
+BAC0655	merB2	Q9WWL2	Bacillus sp. (strain RC607)	Chromosome	Mercury (Hg), Phenylmercury Acetate [class: Organo-mercury]
+BAC0661	merB2	Q7DJN2	Bacillus megaterium MB1	Chromosome, Transposon TnMERI1	Mercury (Hg), Fluorescein mercuric acetate [class: Organo-mercury], p-chloro-mercuribenzoic acid [class: Organo-mercury], Phenylmercury Acetate [class: Organo-mercury]
+BAC0656	merB3	Q7DHE7	Bacillus sp. (strain RC607)	Chromosome	Mercury (Hg), Phenylmercury Acetate [class: Organo-mercury]
+BAC0662	merB3	Q9RHR0	Bacillus megaterium MB1	Chromosome, Transposon TnMERI1	Mercury (Hg), Fluorescein mercuric acetate [class: Organo-mercury], p-chloro-mercuribenzoic acid [class: Organo-mercury], Phenylmercury Acetate [class: Organo-mercury], Thimerosal [class: Organo-mercury], Methylmercury chloride [class: Organo-mercury], Ethylmercury chloride [class: Organo-mercury]
+BAC0664	merC	O66048	Pseudomonas stutzeri	Plasmid pPB	Mercury (Hg)
+BAC0226	merC	P22905	Thiobacillus ferrooxidans (Acidithiobacillus ferrooxidans)	Chromosome	Mercury (Hg)
+BAC0665	merD	O66022	Pseudomonas stutzeri	Plasmid pPB	Mercury (Hg)
+BAC0666	merD	O66018	Pseudomonas stutzeri	Plasmid pPB	Mercury (Hg)
+BAC0227	merD	P06689	Pseudomonas aeruginosa	Plasmid pVS1	Mercury (Hg)
+BAC0667	merD	P08654	Serratia marcescens	Plasmid pDU1358	Mercury (Hg)
+BAC0668	merD	Q5NUV1 	Ralstonia metallidurans CH34	Plasmid pMOL28, Plasmid pMOL30	Mercury (Hg)
+BAC0669	merD	Q9Z3Y7	Pseudomonas sp. K-62	Plasmid pMR26	Mercury (Hg)
+BAC0670	merE	Q52104	Serratia marcescens	Plasmid pDU1358 (Serratia marcescens)	Mercury (Hg)
+BAC0671	merE	Q79BG5	Pseudomonas stutzeri	Plasmid pPB	Mercury (Hg)
+BAC0672	merE	Q79BE4	Pseudomonas stutzeri	Plasmid pPB	Mercury (Hg)
+BAC0673	merE	P06690	Pseudomonas aeruginosa	Plasmid pVS1	Mercury (Hg)
+BAC0228	merF	Q2QCN0	Pseudomonas sp. CT14 	Plasmid pMER327/419 (Pseudomonas fluorescens), Plasmid pECL_A (Enterobacter cloacae subsp. cloacae (strain ATCC 13047 / DSM 30054 / NBRC 13535 / NCDC 279-56))	Mercury (Hg)
+BAC0229	merG	O07302	Pseudomonas sp. K-62	Plasmid pMR26 (Pseudomonas sp. K-62), Plasmid pIJB1 (Burkholderia cepacia (Pseudomonas cepacia))	Mercury (Hg), Phenylmercury Acetate [class: Organo-mercury]
+BAC0230	merH	B2I419	Mycobacterium marinum (strain ATCC BAA-535 / M)	Plasmid pMM23 (Mycobacterium marinum), Plasmid pMAB (Mycobacterium abscessus (strain ATCC 19977 / DSM 44196))	Mercury (Hg)
+BAC0674	merP	Q934S6	Thiobacillus ferrooxidans	Chromosome, Transposon Tn5037	Mercury (Hg)
+BAC0231	merP	P13113	Serratia marcescens	Plasmid pDU1358 (Serratia marcescens)	Mercury (Hg)
+BAC0675	merP	O07301	Pseudomonas sp. K-62	Plasmid pMR26 (Pseudomonas sp. K-62)	Mercury (Hg)
+BAC0676	merP	Q7DHE4	Bacillus sp. (strain RC607)	Chromosome	Mercury (Hg)
+BAC0677	merP	H6WCN4	Tenacibaculum discolor 9A5	Chromosome	Mercury (Hg)
+BAC0678	merP	O66016	Pseudomonas stutzeri	Plasmid pPB	Mercury (Hg)
+BAC0679	merP	O66047	Pseudomonas stutzeri	Plasmid pPB	Mercury (Hg)
+BAC0680	merR	P22874	Staphylococcus aureus	Plasmid pI258	Mercury (Hg)
+BAC0232	merR	P0A183	Pseudomonas aeruginosa	Plasmid pVS1 (Pseudomonas aeruginosa)	Mercury (Hg)
+BAC0685	merR	H6WCN2	Tenacibaculum discolor 9A5	Chromosome	Mercury (Hg)
+BAC0686	merR	P13111	Serratia marcescens	Plasmid pDU1358 (Serratia marcescens)	Mercury (Hg)
+BAC0687	merR	Q79BG7	Pseudomonas stutzeri	Plasmid pPB	Mercury (Hg)
+BAC0689	merR	Q934S8	Thiobacillus ferrooxidans	Chromosome, Transposon Tn5037	Mercury (Hg)
+BAC0682	merR1	P22853	Bacillus sp. (strain RC607)	Chromosome	Mercury (Hg)
+BAC0683	merR1	O07300	Pseudomonas sp. K-62	Plasmid pMR26 (Pseudomonas sp. K-62)	Mercury (Hg)
+BAC0681	merR2	Q9WWL1	Bacillus sp. (strain RC607)	Chromosome	Mercury (Hg), Phenylmercury Acetate [class: Organo-mercury]
+BAC0684	merR2	Q7DKL2	Pseudomonas sp. K-62	Plasmid pMR26 (Pseudomonas sp. K-62)	Mercury (Hg)
+BAC0688	merR2	Q79B70	Pseudomonas stutzeri	Plasmid pPB	Mercury (Hg), Phenylmercury Acetate [class: Organo-mercury]
+BAC0690	merT	Q934S7	Thiobacillus ferrooxidans	Chromosome, Transposon Tn5037	Mercury (Hg)
+BAC0691	merT	Q52397	Pseudomonas stutzeri	Plasmid pPB	Mercury (Hg)
+BAC0692	merT	Q79BG6	Pseudomonas stutzeri	Plasmid pPB	Mercury (Hg)
+BAC0693	merT	Q79F00	Pseudomonas sp. K-62	Plasmid pMR26 (Pseudomonas sp. K-62)	Mercury (Hg)
+BAC0233	merT	P94185	Alcaligenes sp.	Plasmid IncHI2, pMER610 (Alcaligenes spp.)	Mercury (Hg)
+BAC0695	merT	P13112	Serratia marcescens	Plasmid pDU1358 (Serratia marcescens)	Mercury (Hg)
+BAC0696	merT	P08656	Staphylococcus aureus	Plasmid pI258	Mercury (Hg)
+BAC0697	merT	Q7DHE5	Bacillus sp. (strain RC607)	Chromosome	Mercury (Hg)
+BAC0694	merT-P	H6WCN3	Tenacibaculum discolor 9A5	Chromosome	Mercury (Hg)
+BAC0234	mexA	P52477	Pseudomonas aeruginosa (strain ATCC 15692/PAO1/1C/PRS 101/LMG 12228)	Chromosome	Triclosan [class: Phenolic compounds], n-hexane [class: Alkane], p-xylene [class: Aromatic hydrocarbons]
+BAC0235	mexB	P52002	Pseudomonas aeruginosa (strain ATCC 15692/PAO1/1C/PRS 101/LMG 12228)	Chromosome	Triclosan [class: Phenolic compounds], n-hexane [class: Alkane], p-xylene [class: Aromatic hydrocarbons]
+BAC0236	mexC	Q51395	Pseudomonas aeruginosa	Chromosome	Triclosan [class: Phenolic compounds], n-hexane [class: Alkane], p-xylene [class: Aromatic hydrocarbons]
+BAC0237	mexD	Q51396	Pseudomonas aeruginosa	Chromosome	Triclosan [class: Phenolic compounds], n-hexane [class: Alkane], p-xylene [class: Aromatic hydrocarbons]
+BAC0238	mexE	Q1IB41	Pseudomonas entomophila (strain L48)	Chromosome	Triclosan [class: Phenolic compounds], n-hexane [class: Alkane], p-xylene [class: Aromatic hydrocarbons]
+BAC0239	mexF	Q4KBN7	Pseudomonas fluorescens (strain Pf-5/ATCC BAA-477)	Chromosome	Triclosan [class: Phenolic compounds], n-hexane [class: Alkane], p-xylene [class: Aromatic hydrocarbons]
+BAC0240	mexI	Q9HWH4	Pseudomonas aeruginosa 138244	Chromosome	Vanadium (V), Triclosan [class: Phenolic compounds]
+BAC0241	mexJ	Q9HXW3	Pseudomonas aeruginosa (strain ATCC 15692 / PAO1 / 1C / PRS 101 / LMG 12228)	Chromosome	Triclosan [class: Phenolic compounds]
+BAC0242	mexK	Q9HXW4	Pseudomonas aeruginosa (strain ATCC 15692 / PAO1 / 1C / PRS 101 / LMG 12228)	Chromosome	Triclosan [class: Phenolic compounds]
+BAC0243	mexR	P52003	Pseudomonas aeruginosa (strain ATCC 15692 / PAO1 / 1C / PRS 101 / LMG 12228)	Chromosome	Triclosan [class: Phenolic compounds]
+BAC0244	mexT	O87785	Pseudomonas aeruginosa	Chromosome	Triclosan [class: Phenolic compounds]
+BAC0245	mexV	Q9HW28	Pseudomonas aeruginosa (strain ATCC 15692 / PAO1 / 1C / PRS 101 / LMG 12228)	Chromosome	Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine]
+BAC0246	mexW	Q9HW27	Pseudomonas aeruginosa (strain ATCC 15692 / PAO1 / 1C / PRS 101 / LMG 12228)	Chromosome	Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine]
+BAC0247	mexX	Q9ZNG9	Pseudomonas aeruginosa	Chromosome	Ethidium Bromide [class: Phenanthridine]
+BAC0248	mexY	Q9ZNG8	Pseudomonas aeruginosa	Chromosome	Ethidium Bromide [class: Phenanthridine]
+BAC0642	mgtA	P36640	Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)	Chromosome	Cobalt (Co), Magnesium (Mg)
+BAC0087	mgtA	P0ABB8	Escherichia coli (strain K12)	Chromosome	Cobalt (Co), Magnesium (Mg)
+BAC0480	mmco	O53858	Mycobacterium tuberculosis	Chromosome	Copper (Cu)
+BAC0249	mmR	P69926	Mycobacterium tuberculosis	Chromosome	Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Acriflavine [class: Acridine], Ethidium Bromide [class: Phenanthridine], Safranin O [class: Azin], Pyronin Y [class: Xanthene]
+BAC0250	mntA/ytgA	O34385	Bacillus subtilis (strain 168)	Chromosome	Manganese (Mn), Cadmium (Cd)
+BAC0251	mntH/yfeP	P0A769	Escherichia coli (strain K12)	Chromosome	Manganese (Mn), Iron (Fe), Cadmium (Cd), Cobalt (Co), Zinc (Zn)
+BAC0252	mntP/yebN	P76264	Escherichia coli K-12	Chromosome	Manganese (Mn), Magnesium (Mg), Methyl Viologen [class: Paraquat], Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0253	mntR	P0A9F1	Escherichia coli	Chromosome	Manganese (Mn), Magnesium (Mg)
+BAC0598	modA	Q72FN6	Desulfovibrio vulgaris Hildenborough (strain GZ6027)	Chromosome	Tungsten (W), Molybdenum (Mo)
+BAC0609	modA	P37329	Escherichia coli (strain K12)	Chromosome	Tungsten (W), Molybdenum (Mo)
+BAC0599	modB	Q72FN2	Desulfovibrio vulgaris Hildenborough (strain GZ6027)	Chromosome	Tungsten (W), Molybdenum (Mo)
+BAC0610	modB	P0AF01	Escherichia coli (strain K12)	Chromosome	Tungsten (W), Molybdenum (Mo)
+BAC0600	modC	Q72FN3	Desulfovibrio vulgaris Hildenborough (strain GZ6027)	Chromosome	Tungsten (W), Molybdenum (Mo)
+BAC0611	modC	P09833	Escherichia coli (strain K12)	Chromosome	Tungsten (W), Molybdenum (Mo)
+BAC0608	modE	P0A9G8	Escherichia coli (strain K12)	Chromosome	Tungsten (W), Molybdenum (Mo)
+BAC0254	mrdH	Q88IN1	Pseudomonas putida (strain KT2440)	Plasmid pWW0 (Pseudomonas putida (Arthrobacter siderocapsulatus))	Nickel (Ni), Cadmium (Cd), Zinc (Zn), Cobalt (Co)
+BAC0255	mreA	Q88IN0	Pseudomonas putida (strain KT2440)	Chromosome	Nickel (Ni), Zinc (Zn)
+BAC0256	mtrA	Q9WW32	Neisseria gonorrhoeae	Chromosome	Triton X-100 [class: Polyethylene glycol]
+BAC0257	mtrC	P43505	Neisseria gonorrhoeae	Chromosome	Triton X-100 [class: Polyethylene glycol], Crystal Violet [class: Triarylmethane]
+BAC0258	mtrD	Q5F725	Neisseria gonorrhoeae (strain ATCC 700825 / FA 1090)	Chromosome	Triton X-100 [class: Polyethylene glycol]
+BAC0259	mtrE	B4RN86	Neisseria gonorrhoeae (strain NCCP11945)	Chromosome	Triton X-100 [class: Polyethylene glycol], Sodium Cholate [class: Acid]
+BAC0260	mtrF	B4RN92	Neisseria gonorrhoeae (strain NCCP11945)	Chromosome	Triton X-100 [class: Polyethylene glycol]
+BAC0261	mtrR	P39897	Neisseria gonorrhoeae	Chromosome	Triton X-100 [class: Polyethylene glycol], Crystal Violet [class: Triarylmethane]
+BAC0262	mymT	P0CI28	Mycobacterium tuberculosis	Chromosome	Copper (Cu), Nickel (Ni), Zinc (Zn)
+BAC0549	nccA	Q44586	Alcaligenes xylosoxidans 31A	Plasmid pTOM9	Nickel (Ni), Cobalt (Co), Cadmium (Cd)
+BAC0550	nccB	Q44585	Alcaligenes xylosoxidans 31A	Plasmid pTOM9	Nickel (Ni), Cobalt (Co), Cadmium (Cd)
+BAC0551	nccC	Q44584	Alcaligenes xylosoxidans 31A	Plasmid pTOM9	Nickel (Ni), Cobalt (Co), Cadmium (Cd)
+BAC0555	nccH	Q44583	Alcaligenes xylosoxidans 31A	Plasmid pTOM9	Nickel (Ni), Cobalt (Co), Cadmium (Cd)
+BAC0554	nccN	Q44587	Alcaligenes xylosoxidans 31A	Plasmid pTOM9	Nickel (Ni), Cobalt (Co), Cadmium (Cd)
+BAC0553	nccX	Q44582	Alcaligenes xylosoxidans 31A	Plasmid pTOM9	Nickel (Ni), Cobalt (Co), Cadmium (Cd)
+BAC0552	nccY	Q44581	Alcaligenes xylosoxidans 31A	Plasmid pTOM9	Nickel (Ni), Cobalt (Co), Cadmium (Cd)
+BAC0263	ncrA	Q06VT3	Leptospirillum ferriphilum	Chromosome	Nickel (Ni)
+BAC0698	ncrA	Q1KLR2	Serratia marcescens strain C-1	Chromosome	Cobalt (Co), Nickel (Ni)
+BAC0702	ncrA	Q8VTR6	Hafnia alvei 5-5	Plasmid pNRS148	Cobalt (Co), Nickel (Ni)
+BAC0264	ncrB	Q06VT2	Leptospirillum ferriphilum	Chromosome	Nickel (Ni)
+BAC0699	ncrB	Q1KLR1	Serratia marcescens strain C-1	Chromosome	Cobalt (Co), Nickel (Ni)
+BAC0703	ncrB	Q8VTR5	Hafnia alvei 5-5	Plasmid pNRS148	Cobalt (Co), Nickel (Ni)
+BAC0265	ncrC	D5CKG5	Leptospirillum ferriphilum	Chromosome	Nickel (Ni)
+BAC0700	ncrC	Q1KLR0	Serratia marcescens strain C-1	Chromosome	Cobalt (Co), Nickel (Ni)
+BAC0133	ncrC	Q8VTR4	Hafnia alvei 5-5	Plasmid pNRS148	Cobalt (Co), Nickel (Ni)
+BAC0266	ncrY	Q06VT0	Leptospirillum ferriphilum	Chromosome	Nickel (Ni)
+BAC0701	ncrY	Q8VTR3	Hafnia alvei 5-5	Plasmid pNRS148	Cobalt (Co), Nickel (Ni)
+BAC0267	nczA	B8GZE9	Caulobacter crescentus (strain NA1000 / CB15N)	Chromosome	Nickel (Ni), Cobalt (Co), Zinc (Zn)
+BAC0540	nfsA	P17117	Escherichia coli K12	Chromosome	Chromium (Cr)
+BAC0268	nhlF	P96454	Rhodococcus rhodochrous	Chromosome	Cobalt (Co)
+BAC0269	nia	Q92Z60	Sinorhizobium melitoli	Plasmid pSymA (Sinorhizobium melitoli)	Iron (Fe), Nickel (Ni)
+BAC0270	nikA	P33590	Escherichia coli (strain K12)	Chromosome	Nickel (Ni)
+BAC0271	nikB	P33591	Escherichia coli (strain K12)	Chromosome	Nickel (Ni)
+BAC0272	nikC	P0AFA9	Escherichia coli (strain K12)	Chromosome	Nickel (Ni)
+BAC0273	nikD	P33593	Escherichia coli (strain K12)	Chromosome	Nickel (Ni)
+BAC0274	nikE	P33594	Escherichia coli (strain K12)	Chromosome	Nickel (Ni)
+BAC0275	nikR	P0A6Z6	Escherichia coli (strain K12)	Chromosome	Nickel (Ni)
+BAC0276	nirA	Q6RUG3	Klebsiella oxytoca	Chromosome	Nickel (Ni)
+BAC0277	nirB	Q6RUG2	Klebsiella oxytoca	Chromosome	Nickel (Ni)
+BAC0278	nirC	Q6RUG1	Klebsiella oxytoca	Chromosome	Nickel (Ni)
+BAC0279	nirD	Q6RUG0	Klebsiella oxytoca	Chromosome	Nickel (Ni)
+BAC0280	nixA	Q48262	Helicobacter pylori (strain ATCC 700392 / 26695) (Campylobacter pylori)	Plasmid pRHL2 (Rhodococcus sp. (strain RHA1))	Nickel (Ni)
+BAC0281	nmtR	O69711	Mycobacterium tuberculosis	Chromosome	Nickel (Ni), Cadmium (Cd), Lead (Pb)
+BAC0282	norA	P0A0J7	Staphylococcus aureus	Chromosome	Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)], Acriflavine [class: Acridine], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Crystal Violet [class: Triarylmethane], Dequalinium [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine] , Pentamidine [class: Diamidine], Pyronin Y [class: Xanthene], Rhodamine 6G [class: Xanthene], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0283	norB	Q8NWQ5	Staphylococcus aureus (strain MW2)	Chromosome	Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0284	norM/pmpM	Q9F5N7	Only gram -ve, N. gonorrhoeae, N. meningitidis, Burkholderia vietnamiensis	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0285	nreB	F0KND8	Acromobacter xylosoxidans 31A, Synechocystis spp.	Plasmid pMOL30 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839)),	Cobalt (Co), Nickel (Ni)
+BAC0286	nrsA	Q55935	Synechocystis sp. (strain PCC 6803 / Kazusa)	Chromosome	Nickel (Ni)
+BAC0287	nrsD/nreB	F7UKI9	Acinetobacter calcoaceticus (strain PHEA-2), Synechocystis sp. (strain PCC 6803 / Kazusa)	Chromosome	Nickel (Ni), Cobalt (Co)
+BAC0288	nrsR	F7UKI5	Synechocystis sp. (strain PCC 6803 / GT-S)	Chromosome	Nickel (Ni)
+BAC0289	nrsS	F7UKI4	Synechocystis sp. (strain PCC 6803 / GT-S)	Chromosome	Nickel (Ni)
+BAC0290	ompD/nmpC	P37592	Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)	Chromosome	Methyl Viologen [class: Paraquat]
+BAC0291	oprJ	Q51397	Pseudomonas aeruginosa (strain ATCC 15692/PAO1/1C/PRS 101/LMG 12228)	Chromosome	Triclosan [class: Phenolic compounds], n-hexane [class: Alkane], p-xylene [class: Aromatic hydrocarbons]
+BAC0292	oprM/oprK	Q51487	Pseudomonas aeruginosa	Chromosome	n-hexane [class: Alkane], p-xylene [class: Aromatic hydrocarbons]
+BAC0562	oprN	P95423	Pseudomonas aeruginosa (strain ATCC 15692/PAO1/1C/PRS 101/LMG 12228)	Chromosome	Triclosan [class: Phenolic compounds], n-hexane [class: Alkane], p-xylene [class: Aromatic hydrocarbons]
+BAC0294	oqxA	Q69HW3	Escherichia coli	Plasmid p0LA52 (E. coli), Plasmid pGDGK3 (Klebsiella pneumoniae)	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Clorine Dioxide (ClO2) [class: Halogens], Triclosan [class: Phenolic compounds], Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Acriflavine [class: Acridine]
+BAC0295	oqxB	Q69HW2	Escherichia coli	Plasmid pOLA52 (E. coli),	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Clorine Dioxide (ClO2) [class: Halogens], Triclosan [class: Phenolic compounds], Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Acriflavine [class: Acridine]
+BAC0358	oscA	B6CM35	Pseudomonas corrugata 28	Chromosome	Chromium (Cr), Dodine [class: Acetate]
+BAC0296	ostA/lptD	P31554	Escherichia coli (strain K12)	Chromosome	n-hexane [class: Alkane]
+BAC0536	oxyRkp	C4WZN6	Klebsiella pneumoniae NTUH-K2044	Chromosome	Hydrogen Peroxide (H2O2) [class: Peroxides], Sodium Deoxycholate (SDC) [class: Acid], Acriflavine [class: Acridine], Rhodamine 6G [class: Xanthene], Ethidium Bromide [class: Phenanthridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0297	PA0320	Q9I6H1	Pseudomonas aeruginosa (strain ATCC 15692 / PAO1 / 1C / PRS 101 / LMG 12228)	Chromosome	Cadmium (Cd), Mercury (Hg), Tributyltin (TBT) [class: Organo-tin], Hydrogen Peroxide (H2O2) [class: Peroxides], Hydrochloric acid (HCl) [class: Acid]
+BAC0298	pbrA	Q58AJ6	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL30 (Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839), Plasmid pLVPK  (Klebsiella pneumoniae)	Lead (Pb)
+BAC0299	pbrB/pbrC	Q58AJ7	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL30 (Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)), Plasmid pLVPK (Klebsiella pneumoniae)	Lead (Pb)
+BAC0300	pbrD	Q1LAL8	Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839)	Plasmid pMOL30 (Ralstonia metallidurans (strain CH34/ATCC 43123/DSM 2839))	Lead (Pb)
+BAC0301	pbrR	D8IQ72	Herbaspirillum seropedicae (strain SmR1)	Plasmid pLVPK (Klebsiella pneumoniae), Plasmid pMOL30 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839))	Lead (Pb)
+BAC0302	pbrT	Q5GR69	Alcaligenes xylosoxydans xylosoxydans	Plasmid pA81	Lead (Pb)
+BAC0506	pcm	R4IUI7	Stenotrophomonas maltophilia (strain K279a)	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Carbonyl cyanide 3-chlorophenylhydrazone (CCCP) [class: Hydrazone], Acriflavine [class: Acridine]
+BAC0303	pcoA	Q47452	Escherichia coli	Plasmid pRJ1004	Copper (Cu)
+BAC0732	pcoA	Q56795	Xanthomonas campestris pv. Juglandis	Plasmid	Copper (Cu)
+BAC0304	pcoB	Q47453	Escherichia coli	Plasmid pRJ1004	Copper (Cu)
+BAC0734	pcoB	Q56796	Xanthomonas campestris pv. Juglandis	Plasmid	Copper (Cu)
+BAC0305	pcoC	Q47454	Escherichia coli	Plasmid pRJ1004	Copper (Cu)
+BAC0735	pcoC	Q56797	Xanthomonas campestris pv. Juglandis	Plasmid	Copper (Cu)
+BAC0306	pcoD	Q47455	Escherichia coli	Plasmid pRJ1004	Copper (Cu)
+BAC0733	pcoD	Q56798	Xanthomonas campestris pv. Juglandis	Plasmid	Copper (Cu)
+BAC0307	pcoE	Q47459	Escherichia coli	Plasmid pRJ1004	Copper (Cu), Silver (Ag)
+BAC0308	pcoR	Q47456	Escherichia coli	Plasmid pRJ1004	Copper (Cu)
+BAC0309	pcoS	Q47457	Escherichia coli	Plasmid pRJ1004	Copper (Cu)
+BAC0481	pdrM	Q8DPQ6	Streptococcus pneumoniae	Chromosome	Acriflavine [class: Acridine], 4,6-diamidino-2-phenylindole (DAPI) [class: Diamindine]
+BAC0612	perO	D5AQ60	Rhodobacter capsulatus	Chromosome	Molybdenum (Mo), Tungsten (W), Vanadium (V)
+BAC0310	perR	Q2G282	Staphylococcus aureus (strain NCTC 8325)	Chromosome	Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0497	pfr	P52093	Helicobacter pylori	Chromosome	Iron (Fe), Copper (Cu), Manganese (Mn)
+BAC0311	pgpA/ltpgpA	P21441	Leishmania tarentolae (Sauroleishmania tarentolae)	Chromosome	Arsenic (As), Antimony (Sb)
+BAC0530	phoB	C4X6T6	Klebsiella pneumoniae NTUH-K2044	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides]
+BAC0531	phoR	C4X6T5	Klebsiella pneumoniae NTUH-K2044	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides]
+BAC0312	pitA	P0AFJ7	Escherichia coli (strain K12)	Chromosome	Zinc (Zn), Tellurium (Te)
+BAC0313	pmpM	Q9I3Y3	Only gram -ve, Pseudomonas aeruginosa	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Acriflavine [class: Acridine]
+BAC0314	pmrA	P0A4K4	Streptococcus pneumoniae serotype 4 (strain ATCC BAA-334 / TIGR4)	Chromosome	Acriflavine [class: Acridine], Ethidium Bromide [class: Phenanthridine]
+BAC0487	pmrA	Q70FH0	Erwinia carotovora ssp. Carotovora	Chromosome	Iron (Fe)
+BAC0488	pmrB	Q70FG9	Erwinia carotovora ssp. Carotovora	Chromosome	Iron (Fe)
+BAC0485	pmrC	Q70FH1	Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)	Chromosome	Iron (Fe)
+BAC0486	pmrG	Q8ZNF4	Salmonella typhimurium (strain LT2 / SGSC1412 / ATCC 700720)	Chromosome	Iron (Fe)
+BAC0315	pstA	P07654	Escherichia coli (strain K12)	Chromosome	Arsenic (As)
+BAC0316	pstB	P0AAH0	Escherichia coli (strain K12)	Chromosome	Arsenic (As)
+BAC0317	pstC	P0AGH8	Escherichia coli (strain K12)	Chromosome	Arsenic (As)
+BAC0318	pstS	P0AG82	Escherichia coli (strain K12)	Chromosome	Arsenic (As)
+BAC0319	qacA	P0A0J9	Only gram +ve, Staphylococcus aureus	Plasmid VRSAp, pSK1 (S. aureus)	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine], Chlorhexidine [class: Biguanides], Cetylpyridinium Chloride (CPC) [class: Quaternary Ammonium Compounds (QACs)], Crystal Violet [class: Triarylmethane], Pyronin Y [class: Xanthene], Quinaldine red [class: Quinolines], Rhodamine 6G [class: Xanthene], Safranin O [class: Azin], Cetrimide (CTM)  [class: Quaternary Ammonium Compounds (QACs)], Alexidine [class: Biguanides], Amicarbalide [class: Diamidine], Pentamidine [class: Diamidine], Hexamidine [class: Diamidine], Propamidine [class: Diamidine], Diamidinodiphenylamine [class: Diamidine], Dibrompropamidine [class: Diamidine], 1a-62/JC-1-127 [class: Guanylhydrazones], 1i-39/JC-1-134 [class: Guanylhydrazones], Stilbamidine [class: Diamidine], Phenamidine [class: Diamidine], Diminazene [class: Diamidine]
+BAC0320	qacB	Q7WUJ5	Only gram +ve, Staphylococcus aureus	Plasmid pTZ2162 (S. Aureus)	Ethidium Bromide [class: Phenanthridine], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Pentamidine [class: Diamidine], Propamidine [class: Diamidine], Diaminodiphenylamine [class: Diamidine], Amicarbalide [class: Diamidine], Hexamidine [class: Diamidine], Stilbamidine [class: Diamidine], 1i-39/JC-1-134 [class: Guanylhydrazones], 1a-62/JC-1-127 [class: Guanylhydrazones]
+BAC0321	qacC/qacD/smr	P14319	Staphylococcus aureus	Plasmid pTZ20, pWBG32, pTZ22, pKH8	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine], Pyronin Y [class: Xanthene], Rhodamine 6G [class: Xanthene], Crystal Violet [class: Triarylmethane], Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)], Cetylpyridinium Chloride (CPC) [class: Quaternary Ammonium Compounds (QACs)], Dequalinium [class: Quaternary Ammonium Compounds (QACs)]
+BAC0322	qacE	P0AGC9	Only gram -ve, Escherichia coli, K. pneumoniae, Pseudomonas aeruginosa	Plasmid IncP-beta R751 (E. coli), Plasmid IncP-beta R751 (Enterobacter aerogenes)	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine], Pyronin Y [class: Xanthene], Rhodamine 6G [class: Xanthene], Crystal Violet [class: Triarylmethane], Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)], Cetylpyridinium Chloride (CPC) [class: Quaternary Ammonium Compounds (QACs)], Dequalinium [class: Quaternary Ammonium Compounds (QACs)]
+BAC0323	qacEdelta1	Q7BQY4	Both gram +ve and -ve , Staphylococcus aureus, E. faecalis, P. aeruginosa	Plasmids Rms149, In786, R388-R151 hybrid, pOZ176, pKM0509, R1033,  pKLC102, pLQ1001	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine], Chlorhexidine [class: Biguanides], Pyronin Y [class: Xanthene], Rhodamine 6G [class: Xanthene], Methyl Viologen [class: Paraquat], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], 4,6-diamidino-2-phenylindole (DAPI) [class: Diamindine], Acridine Orange [class: Acridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Deoxycholate (SDC) [class: Acid], Crystal Violet [class: Triarylmethane], Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)], Cetylpyridinium Chloride (CPC) [class: Quaternary Ammonium Compounds (QACs)], Dequalinium [class: Quaternary Ammonium Compounds (QACs)]
+BAC0324	qacF	Q9X2N9	Only gram -ve, E. aerogenes, E. cloacae	Plasmid pIP833 (E. aerogenes)	Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0325	qacG	O87866	both gram +ve (A. aureus) and gram -ve (P. aeruginosa, A. salmonicida)	Plasmid pST94 (Staphylococcus spp.)	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine]
+BAC0326	qacH/qacI	O87868	only gram +ve, Staphylococcus aureus	Plasmid pST2H6 ( Staphylococcus saprophyticus)	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine], Proflavin [class: Acridine]
+BAC0327	qacJ	Q84EL2	only gram +ve, Staphylococcus spp.	Plasmid pNVH01(S. aureus)	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0328	qacR	P0A0N4	Staphylococcus aureus	Plasmid pSK1 (S. aureus)	Chlorhexidine [class: Biguanides], Cetylpyridinium Chloride (CPC) [class: Quaternary Ammonium Compounds (QACs)], Dequalinium [class: Quaternary Ammonium Compounds (QACs)], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Pentamidine [class: Diamidine], Propamidine [class: Diamidine], Diaminodiphenylamine [class: Diamidine]
+BAC0329	qacZ	Q82YU7	Enterococcus faecalis (strain ATCC 700802 / V583)	Plasmid pTEF1	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0711	qrg	E9NM73	Streptococcus oralis	Transposon	Cetyltrimethylammonium bromide (CTAB) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0330	rcnA/yohM	P76425	Escherichia coli (strain K12)	Chromosome	Cobalt (Co), Nickel (Ni), Iron (Fe)
+BAC0331	rcnB/yohN	P64534	Escherichia coli (strain K12)	Chromosome	Nickel (Ni), Cobalt (Co)
+BAC0332	rcnR/yohL	P64530	Escherichia coli (strain K12)	Chromosome	Cobalt (Co), Nickel (Ni), Iron (Fe)
+BAC0356	recG	Q9HTL3	Pseudomonas aeruginosa PAO1	Chromosome	Chromium (Cr), Tellurium (Te), Selenium (Se)
+BAC0357	recG	B5L350	Pseudomonas corrugata 28	Chromosome	Chromium (Cr)
+BAC0333	ricR	O07434	Mycobacterium tuberculosis H37Rv	Chromosome	Copper (Cu)
+BAC0334	robA	P0ACI0	Escherichia coli O157:H7	Chromosome	Silver (Ag), Mercury (Hg), Cadmium (Cd), Cyclohexane [class: Cycloalkane], Pentane [class: Alkane], n-hexane [class: Alkane], Diphenyl Ether [class: Phenyl]
+BAC0335	rpoS	P35540	Escherichia coli, Shigella flexneri	Chromosome	Hydrochloric acid (HCl) [class: Acid],  Sodium hydroxide (NaOH) [class: Base]
+BAC0355	ruvB	Q51426	Pseudomonas aeruginosa PAO1	Chromosome	Chromium (Cr), Tellurium (Te), Selenium (Se)
+BAC0293	ruvB	B5L348	Pseudomonas corrugata 28	Chromosome	Chromium (Cr), Cetylpyridinium Chloride (CPC) [class: Quaternary Ammonium Compounds (QACs)], Dodine [class: Acetate], 2-nitroimidazole [class: imidazole]
+BAC0336	sdeA	D1RKV4	Legionella longbeachae D-4968	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Ethidium Bromide [class: Phenanthridine], n-hexane [class: Alkane], Chlorhexidine [class: Biguanides], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0337	sdeB	Q84GI9	Serratia marcescens subsp. marcescens	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Ethidium Bromide [class: Phenanthridine], n-hexane [class: Alkane], Chlorhexidine [class: Biguanides], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0338	sdeX	Q7WSD6	Only gram -ve, Serratia marcescens	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Triclosan [class: Phenolic compounds], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Acriflavine [class: Acridine], Rhodamine 6G [class: Xanthene]
+BAC0339	sdeY	Q7WSD5	Only gram -ve, Serratia marcescens	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Triclosan [class: Phenolic compounds], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Acriflavine [class: Acridine], Rhodamine 6G [class: Xanthene]
+BAC0340	sepA	Q849Q9	Staphylococcus aureus	Chromosome	Acriflavine [class: Acridine], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Ethidium Bromide [class: Phenanthridine]
+BAC0754	sh-fabI	I2EC90	Staphylococcus aureus	Plasmid	Triclosan [class: Phenolic compounds]
+BAC0341	silA	Q9ZHC9	Salmonella typhimurium	Plasmid pMG101 (Salmonella typhimurium)	Silver (Ag)
+BAC0342	silB	Q9ZHD0	Salmonella typhimurium	Plasmid pMG101 (Salmonella typhimurium)	Silver (Ag)
+BAC0343	silC	Q9ZHD2	Salmonella typhimurium	Plasmid pMG101 (Salmonella typhimurium)	Silver (Ag)
+BAC0344	silE	Q9Z4N3	Salmonella typhimurium	Plasmid pMG101 (Salmonella typhimurium)	Silver (Ag)
+BAC0345	silF	Q9ZHD1	Salmonella typhimurium	Plasmid pMG101 (Salmonella typhimurium)	Silver (Ag)
+BAC0346	silP	Q9ZHC7	Salmonella typhimurium	Plasmid pMG101 (Salmonella typhimurium), Plasmid pLVPK (Klebsiella pneumoniae)	Silver (Ag)
+BAC0347	silR	Q9ZHD3	Salmonella typhimurium	Plasmid pMG101 (Salmonella typhimurium)	Silver (Ag)
+BAC0348	silS	Q9ZHD4	Salmonella typhimurium	Plasmid pMG101 (Salmonella typhimurium)	Silver (Ag)
+BAC0349	sitA	Q9XCS2	Escherichia coli O45:K1 (strain S88 / ExPEC)	Plasmid pECOS88 (Escherichia coli O45:K1 (strain S88 / ExPEC)), Plasmid pCVM29188_146 (Salmonella enterica subsp. enterica serovar Kentucky str. CVM29188)	Manganese (Mn), Iron (Fe), Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0350	sitB	Q9XCS1	Escherichia coli (strain SMS-3-5 / SECEC)	Plasmid pSMS35_130 (Escherichia coli (strain SMS-3-5 / SECEC)), Plasmid pCS0010A (Salmonella enterica subsp. enterica serovar Kentucky)	Manganese (Mn), Iron (Fe), Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0351	sitC	Q9XCS0	Escherichia coli (strain SMS-3-5 / SECEC)	Plasmid pSMS35_130 (Escherichia coli (strain SMS-3-5 / SECEC)), Plasmid pPag3 (Pantoea vagans (strain C9-1) (Pantoea agglomerans (strain C9-1)))	Manganese (Mn), Iron (Fe), Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0352	sitD	Q9XCR9	Escherichia coli (strain SMS-3-5 / SECEC	Plasmid pSMS35_130 (Escherichia coli (strain SMS-3-5 / SECEC)), Plasmid pPag3 (Pantoea vagans (strain C9-1) (Pantoea agglomerans (strain C9-1)))	Manganese (Mn), Iron (Fe), Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0353	smdA	A7VN01	Serratia marcescens	Chromosome	4,6-diamidino-2-phenylindole (DAPI) [class: Diamidine], Hoechst 33342 [class: Bisbenzimide]
+BAC0354	smdB	A7VN02	Serratia marcescens	Chromosome	4,6-diamidino-2-phenylindole (DAPI) [class: Diamidine], Hoechst 33342 [class: Bisbenzimide]
+BAC0358	smeD	I0KSX9	Stenotrophomonas maltophilia	Chromosome	Triclosan [class: Phenolic compounds], Acriflavine [class: Acridine], Rhodamine 6G [class: Xanthene], Crystal Violet [class: Triarylmethane], Ethidium Bromide [class: Phenanthridine], Proflavin [class: Acridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0359	smeE	I0KSX8	Stenotrophomonas maltophilia	Chromosome	Triclosan [class: Phenolic compounds], Acriflavine [class: Acridine], Rhodamine 6G [class: Xanthene], Crystal Violet [class: Triarylmethane], Ethidium Bromide [class: Phenanthridine], Proflavin [class: Acridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0360	smeF	Q9F239	Stenotrophomonas maltophilia	Chromosome	Triclosan [class: Phenolic compounds], Acriflavine [class: Acridine], Rhodamine 6G [class: Xanthene], Crystal Violet [class: Triarylmethane], Ethidium Bromide [class: Phenanthridine], Proflavin [class: Acridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0362	smeT	Q5MXJ5	Stenotrophomonas maltophilia	Chromosome	Triclosan [class: Phenolic compounds]
+BAC0363	smfY	Q2AAU2	Serratia marcescens	Chromosome	Acriflavine [class: Acridine], 4,6-diamidino-2-phenylindole (DAPI) [class: Diamidine], Ethidium Bromide [class: Phenanthridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Methyl Viologen [class: Paraquat], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0364	smrA	C7SLZ1	Stenotrophomonas maltophilia	Chromosome	Ethidium Bromide [class: Phenanthridine], Rhodamine 6G [class: Xanthene], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], 4,6-diamidino-2-phenylindole (DAPI) [class: Diamidine]
+BAC0365	smtA	P30331	Cyanobacteria (e.g. Synechococcus elongatus (strain PCC 7942) (Anacystis nidulans R2)); Escherichia coli (strain K12)	Chromosome	Zinc (Zn), Mercury (Hg)
+BAC0366	smtB/ziaR	P30340	Cyanobacteria (e.g. Synechococcus elongatus (strain PCC 7942) (Anacystis nidulans R2))	Chromosome	Zinc (Zn)
+BAC0367	smvA/emrB	D0ZXQ3	Salmonella typhimurium	Chromosome	Methyl Viologen [class: Paraquat], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Hoechst 33342 [class: Bisbenzimide], Ethidium Bromide [class: Phenanthridine], Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Acriflavine [class: Acridine]
+BAC0368	sodA	P00448	Escherichia coli K12	Chromosome	Selenium (Se), Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0705	sodA	P53652	Pseudomonas aeruginosa	Chromosome	Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0706	sodB	P53641	Pseudomonas aeruginosa	Chromosome	Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0707	sodB	P0AGD3	Escherichia coli K12	Chromosome	Selenium (Se), Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0370	soxR	P0ACS2	Escherichia coli (strain K12)	Chromosome	Methyl Viologen [class: Paraquat]
+BAC0371	soxS	P0A9E2	Escherichia coli (strain K12)	Chromosome	Zinc (Zn), Cyclohexane [class: Cycloalkane]
+BAC0372	srpA	O31099	Pseudomonas putida (Arthrobacter siderocapsulatus)	Chromosome	n-hexane [class: Alkane], Toluene [class: Aromatic hydrocarbons], Dimethylphthalate [class: Pthalate]
+BAC0373	srpB	O31100	Pseudomonas putida (Arthrobacter siderocapsulatus)	Chromosome	n-hexane [class: Alkane], Toluene [class: Aromatic hydrocarbons], Dimethylphthalate [class: Pthalate]
+BAC0374	srpC	O31101	Pseudomonas putida	Chromosome	n-hexane [class: Alkane], Toluene [class: Aromatic hydrocarbons], Dimethylphthalate [class: Pthalate]
+BAC0152	srpC	Q55027	Synechococcus elongatus strain PCC 7942 (Anacystis nidulans R2)	Plasmid pANL	Chromium (Cr)
+BAC0375	srpR	Q9R9T9	Pseudomonas putida	Chromosome	n-hexane [class: Alkane], Toluene [class: Aromatic hydrocarbons], Dimethylphthalate [class: Pthalate]
+BAC0376	srpS	Q9R9U0	Pseudomonas putida	Chromosome	n-hexane [class: Alkane], Toluene [class: Aromatic hydrocarbons], Dimethylphthalate [class: Pthalate]
+BAC0377	ssmE	A7VN75	Serratia marcescens	Chromosome	Acriflavine [class: Acridine], Ethidium Bromide [class: Phenanthridine], Methyl Viologen [class: Paraquat], Chlorhexidine [class: Biguanides]
+BAC0378	sugE	P69937	only gram -ve, Escherichia coli	Plasmid IncN p541 (Escherichia coli), Plasmid pIW759 (Salmonella typhimurium)	Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)], Cetylpyridinium Chloride (CPC) [class: Quaternary Ammonium Compounds (QACs)], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0379	tbtA	Q71UZ7	Pseudomonas stutzeri (Pseudomonas perfectomarina)	Chromosome	Tributyltin (TBT) [class: Organo-tin], n-hexane [class: Alkane]
+BAC0380	tbtB	Q71UZ6	Pseudomonas stutzeri (Pseudomonas perfectomarina)	Chromosome	Tributyltin (TBT) [class: Organo-tin], n-hexane [class: Alkane]
+BAC0381	tbtM	Q71UZ5	Pseudomonas stutzeri	Chromosome	Tributyltin (TBT) [class: Organo-tin], n-hexane [class: Alkane]
+BAC0382	tbtR	Q71UZ4	Pseudomonas stutzeri 	Chromosome	Tributyltin (TBT) [class: Organo-tin], n-hexane [class: Alkane]
+BAC0741	tcrA	Q3MNJ6	Enterococcus faecium	Plasmid	Copper (Cu)
+BAC0383	tcrB	Q8VPE6	Enterococcus faecium (Streptococcus faecium)	Plasmid pA17sv1 (Enterococcus faecium),	Copper (Cu)
+BAC0740	tcrY	Q3MNJ7	Enterococcus faecium	Plasmid	Copper (Cu)
+BAC0742	tcrZ	Q3MNJ5	Enterococcus faecium	Plasmid	Copper (Cu)
+BAC0384	tehA	P25396	Escherichia coli (strain K12)	Chromosome	Tellurium (Te), Proflavin [class: Acridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine], Crystal Violet [class: Triarylmethane], Dequalinium [class: Quaternary Ammonium Compounds (QACs)], Methyl Viologen [class: Paraquat]
+BAC0385	tehB	P25397	Escherichia coli (strain K12)	Chromosome	Tellurium (Te), Proflavin [class: Acridine]
+BAC0386	terA	P18778	Alcaligenes sp.	Plasmid IncHI2 pMER610 (Alcaligenes sp.), Plasmid pK2044 (Klebsiella pneumoniae subsp. pneumoniae NTUH-K2044)	Tellurium (Te)
+BAC0387	terB	P18779	Alcaligenes sp.	Plasmid IncHI2 pMER610 (Alcaligenes sp.), Plasmid pPag2 (Pantoea vagans (strain C9-1) (Pantoea agglomerans (strain C9-1)))	Tellurium (Te)
+BAC0388	terC	P18780	Alcaligenes sp.	Plasmid IncHI2 pMER610 (Alcaligenes sp.), Plasmid pK2044 (Klebsiella pneumoniae subsp. pneumoniae NTUH-K2044 )	Tellurium (Te)
+BAC0389	terD	P18781	Alcaligenes sp.	Plasmid IncHI2 pMER610 (Alcaligenes sp.), Plasmid IncHI2 R478 (Serratia marcescens), Plasmid pK29 (Klebsiella pneumoniae)	Tellurium (Te)
+BAC0390	terE	P18782	Alcaligenes sp.	Plasmid IncHI2 pMER610 (Alcaligenes sp.), Plasmid IncHI2 R478 (Serratia marcescens)	Tellurium (Te)
+BAC0391	terW	P75010	Serratia marcescens subsp. Marcescens	Plasmid IncHI2 R478 (Serratia marcescens), Plasmid pK29 (Klebsiella pneumoniae), Plasmid pEC-IMP (Enterobacter cloacae)	Tellurium (Te)
+BAC0392	terZ	Q52353	Serratia marcescens subsp. Marcescens	Plasmid IncHI2 R478 (Serratia marcescens), Plasmid pK29 (Klebsiella pneumoniae)	Tellurium (Te)
+BAC0393	tolC	P02930	Escherichia coli (strain K12)	Chromosome	Phenol [class: Phenolic compounds], Triclosan [class: Phenolic compounds], Sodium Deoxycholate (SDC) [class: Acid], Sodium Cholate [class: Acid], Sodium Taurodeoxycholate [class: Acid], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Proflavin [class: Acridine], Acriflavine [class: Acridine], Ethidium Bromide [class: Phenanthridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Rhodamine 6G [class: Xanthene], Tetraphenylarsonium (TPA) [class: Quaternary Ammonium Compounds (QACs)], Cetrimide (CTM) [class: Quaternary Ammonium Compounds (QACs)], Dequalinium [class: Quaternary Ammonium Compounds (QACs)], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Plumbagin [class: Naphthoquinone]
+BAC0507	tolCsm	R4ITT0	Stenotrophomonas maltophilia (strain K279a)	Chromosome	Acriflavine [class: Acridine], Carbonyl cyanide 3-chlorophenylhydrazone (CCCP) [class: Hydrazone], Crystal Violet [class: Triarylmethane], Methyl Viologen [class: Paraquat], Plumbagin [class: Naphthoquinone], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Tetrachlorosalicylanilide (TCS) [class: Salicylanilide], Menadione [class: Naphthoquinone]
+BAC0394	trgA	O33548	Rhodobacter sphaeroides (Rhodopseudomonas sphaeroides)	Chromosome	Tellurium (Te)
+BAC0395	trgB	O07841	Rhodobacterales bacterium Y4I, Rhodobacter capsulatus	Chromosome	Tellurium (Te), Copper (Cu)
+BAC0396	triA	Q663F0	Yersinia pseudotuberculosis serotype I (strain IP32953)	Plasmid pYptb32953 (Yersinia pseudotuberculosis serotype I (strain IP32953) ), Plasmid pCROD2 (Citrobacter rodentium (strain ICC168))	Triclosan [class: Phenolic compounds]
+BAC0397	triB	Q663E9	Yersinia pseudotuberculosis serotype I (strain IP32953)	Plasmid pYptb32953 (Yersinia pseudotuberculosis serotype I (strain IP32953) ), Plasmid p29930 (Yersinia enterocolitica)	Triclosan [class: Phenolic compounds]
+BAC0398	triC	Q663E8	Yersinia pseudotuberculosis serotype I (strain IP32953)	Plasmid pYptb32953 (Yersinia pseudotuberculosis serotype I (strain IP32953) ), Plasmid p29930 (Yersinia enterocolitica)	Triclosan [class: Phenolic compounds]
+BAC0399	troA	P96116	Treponema pallidum (strain Nichols)	Chromosome	Zinc (Zn), Manganese (Mn), Iron (Fe)
+BAC0400	troB	P96117	Treponema pallidum (strain Nichols)	Chromosome	Zinc (Zn), Manganese (Mn), Iron (Fe)
+BAC0401	troC	P96118	Treponema pallidum (strain Nichols)	Chromosome	Zinc (Zn), Manganese (Mn), Iron (Fe)
+BAC0402	troD	P96119	Treponema pallidum (strain Nichols)	Chromosome	Zinc (Zn), Manganese (Mn), Iron (Fe)
+BAC0403	troR	P96120	Treponema pallidum (strain Nichols)	Chromosome	Zinc (Zn), Manganese (Mn), Iron (Fe)
+BAC0404	ttgA	Q9WWZ9	Pseudomonas putida (Arthrobacter siderocapsulatus)	Chromosome	n-hexane [class: Alkane], Toluene [class: Aromatic hydrocarbons], Dimethylphthalate [class: Pthalate], Styrene [class: Polystyrenes], m-xylene [class: Aromatic hydrocarbons], Ethylbenzene [class: Aromatic hydrocarbons], Propylbenzene [class: Aromatic hydrocarbons]
+BAC0405	ttgB	O52248	Pseudomonas putida (Arthrobacter siderocapsulatus)	Chromosome	n-hexane [class: Alkane], Toluene [class: Aromatic hydrocarbons], Dimethylphthalate [class: Pthalate], Styrene [class: Polystyrenes], m-xylene [class: Aromatic hydrocarbons], Ethylbenzene [class: Aromatic hydrocarbons], Propylbenzene [class: Aromatic hydrocarbons]
+BAC0406	ttgC	Q9WWZ8	Pseudomonas putida (Arthrobacter siderocapsulatus)	Chromosome	n-hexane [class: Alkane], Toluene [class: Aromatic hydrocarbons], Dimethylphthalate [class: Pthalate], Styrene [class: Polystyrenes], m-xylene [class: Aromatic hydrocarbons], Ethylbenzene [class: Aromatic hydrocarbons], Propylbenzene [class: Aromatic hydrocarbons]
+BAC0407	ttgD	Q9KWV5	Pseudomonas putida (Arthrobacter siderocapsulatus)	Chromosome	Toluene [class: Aromatic hydrocarbons], Styrene [class: Polystyrenes]
+BAC0408	ttgE	Q9KWV4	Pseudomonas putida (Arthrobacter siderocapsulatus)	Chromosome	Toluene [class: Aromatic hydrocarbons], Styrene [class: Polystyrenes]
+BAC0409	ttgF	Q9KWV3	Pseudomonas putida (Arthrobacter siderocapsulatus)	Chromosome	Toluene [class: Aromatic hydrocarbons], Styrene [class: Polystyrenes]
+BAC0410	ttgG	Q93PU5	Pseudomonas putida (Arthrobacter siderocapsulatus)	Plasmid pGRT1 (Pseudomonas putida (Arthrobacter siderocapsulatus))	Toluene [class: Aromatic hydrocarbons], Styrene [class: Polystyrenes], m-xylene [class: Aromatic hydrocarbons], Ethylbenzene [class: Aromatic hydrocarbons], Propylbenzene [class: Aromatic hydrocarbons]
+BAC0411	ttgH	Q93PU4	Pseudomonas putida (Arthrobacter siderocapsulatus)	Plasmid pGRT1 (Pseudomonas putida (Arthrobacter siderocapsulatus))	Toluene [class: Aromatic hydrocarbons], Styrene [class: Polystyrenes], m-xylene [class: Aromatic hydrocarbons], Ethylbenzene [class: Aromatic hydrocarbons], Propylbenzene [class: Aromatic hydrocarbons]
+BAC0412	ttgI	Q93PU3	Pseudomonas putida (Arthrobacter siderocapsulatus)	Plasmid pGRT1 (Pseudomonas putida (Arthrobacter siderocapsulatus))	Toluene [class: Aromatic hydrocarbons], Styrene [class: Polystyrenes], m-xylene [class: Aromatic hydrocarbons], Ethylbenzene [class: Aromatic hydrocarbons], Propylbenzene [class: Aromatic hydrocarbons]
+BAC0413	ttgR	Q9AIU0	Pseudomonas putida (Arthrobacter siderocapsulatus)	Chromosome	n-hexane [class: Alkane], Toluene [class: Aromatic hydrocarbons], Dimethylphthalate [class: Pthalate], Styrene [class: Polystyrenes], m-xylene [class: Aromatic hydrocarbons], Ethylbenzene [class: Aromatic hydrocarbons], Propylbenzene [class: Aromatic hydrocarbons]
+BAC0414	ttgT	E0X9D2	Pseudomonas putida (Arthrobacter siderocapsulatus)	Chromosome	Toluene [class: Aromatic hydrocarbons], Styrene [class: Polystyrenes]
+BAC0415	ttgV	Q93PU6	Pseudomonas putida (Arthrobacter siderocapsulatus)	Plasmid pGRT1 (Pseudomonas putida (Arthrobacter siderocapsulatus))	Toluene [class: Aromatic hydrocarbons], Styrene [class: Polystyrenes]
+BAC0416	ttgW	Q93PU7	Pseudomonas putida (Arthrobacter siderocapsulatus)	Plasmid pGRT1 (Pseudomonas putida (Arthrobacter siderocapsulatus))	Toluene [class: Aromatic hydrocarbons], Styrene [class: Polystyrenes]
+BAC0601	tunR	Q72FN4	Desulfovibrio vulgaris Hildenborough (strain GZ6027)	Chromosome	Tungsten (W), Molybdenum (Mo)
+BAC0605	tupA	Q93KD6	Eubacterium acidaminophilum	Chromosome	Tungsten (W)
+BAC0606	tupB	Q93KD5	Eubacterium acidaminophilum	Chromosome	Tungsten (W)
+BAC0607	tupC	Q93KD4	Eubacterium acidaminophilum	Chromosome	Tungsten (W)
+BAC0417	vcaM	Q9KKV4	Vibrio cholerae	Chromosome	Ethidium Bromide [class: Phenanthridine], Rhodamine 6G [class: Xanthene], 4,6-diamidino-2-phenylindole (DAPI) [class: Diamidine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Acridine Orange [class: Acridine]
+BAC0418	vceA	O51918	Vibrio cholerae	Chromosome	Sodium Deoxycholate (SDC) [class: Acid]
+BAC0419	vceB	O51919	Vibrio cholerae	Chromosome	Sodium Deoxycholate (SDC) [class: Acid]
+BAC0420	vceC	Q9KS51	Vibrio cholerae serotype O1 (strain ATCC 39315 / El Tor Inaba N16961)	Chromosome	Sodium Deoxycholate (SDC) [class: Acid]
+BAC0421	vceR	Q9KS52	Vibrio cholerae serotype O1 (strain ATCC 39315 / El Tor Inaba N16961)	Chromosome	Sodium Deoxycholate (SDC) [class: Acid]
+BAC0422	vcmA	Q9KRU4	Vibrio chloerae	Chromosome	Ethidium Bromide [class: Phenanthridine], 4,6-diamidino-2-phenylindole (DAPI) [class: Diamidine], Hoechst 33342 [class: Bisbenzimide], Acriflavine [class: Acridine]
+BAC0423	vcrM	F8RKZ1	Vibrio cholerae non-O1	Chromosome	Acriflavine [class: Acridine], 4,6-diamidino-2-phenylindole (DAPI) [class: Diamidine], Hoechst 33342 [class: Bisbenzimide], Rhodamine 6G [class: Xanthene], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Ethidium Bromide [class: Phenanthridine]
+BAC0527	vexA	Q9KVI1	Vibrio cholerae serotype O1	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Triton X-100 [class: Polyethylene glycol]
+BAC0424	vexB	Q9KVI2	Vibrio cholerae serotype O1	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Triton X-100 [class: Polyethylene glycol]
+BAC0528	vexC	Q9KR86	Vibrio cholerae serotype O1	Chromosome	Ethidium Bromide [class: Phenanthridine]
+BAC0425	vexD	Q9KR85	Vibrio cholerae serotype O1	Chromosome	Ethidium Bromide [class: Phenanthridine]
+BAC0426	vexE	A6P7H2	Vibrio cholerae 2740-80	Chromosome	Ethidium Bromide [class: Phenanthridine]
+BAC0427	vexF	A6P7H3	Vibrio cholerae 2740-80	Chromosome	Ethidium Bromide [class: Phenanthridine]
+BAC0509	vexH	Q9KTI8	Vibrio cholerae serotype O1	Chromosome	Triton X-100 [class: Polyethylene glycol], Sodium Cholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid] 
+BAC0428	vexK	Q9KRG9	Vibrio cholerae serotype O1 (strain ATCC 39315 / El Tor Inaba N16961)	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Triton X-100 [class: Polyethylene glycol]
+BAC0429	vmeA	Q2AAU4	Vibrio parahaemolyticus	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Acriflavine [class: Acridine], Rhodamine 6G [class: Xanthene], Crystal Violet [class: Triarylmethane], Ethidium Bromide [class: Phenanthridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Deoxycholate (SDC) [class: Acid]
+BAC0430	vmeB	Q2AAU3	Vibrio parahaemolyticus	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Acriflavine [class: Acridine], Rhodamine 6G [class: Xanthene], Crystal Violet [class: Triarylmethane], Ethidium Bromide [class: Phenanthridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Deoxycholate (SDC) [class: Acid]
+BAC0510	vmeC	Q87TN0	Vibrio parahaemolyticus RIMD2210633	Chromosome	Sodium Glycocholate [class: Acid], Sodium Taurocholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Cholate [class: Acid], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Rhodamine 6G [class: Xanthene], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Hoechst 33342 [class: Bisbenzimide]
+BAC0511	vmeD	Q87TN1	Vibrio parahaemolyticus RIMD2210633	Chromosome	Sodium Glycocholate [class: Acid], Sodium Taurocholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Cholate [class: Acid], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Rhodamine 6G [class: Xanthene], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Ethidium Bromide [class: Phenanthridine], Acriflavine [class: Acridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Hoechst 33342 [class: Bisbenzimide]
+BAC0512	vmeE	Q87R58	Vibrio parahaemolyticus RIMD2210633	Chromosome	Ethidium Bromide [class: Phenanthridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Cholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Glycocholate [class: Acid], Acriflavine [class: Acridine]
+BAC0513	vmeF	Q87R57	Vibrio parahaemolyticus RIMD2210633	Chromosome	Ethidium Bromide [class: Phenanthridine], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Cholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Glycocholate [class: Acid], Acriflavine [class: Acridine]
+BAC0517	vmeG	Q87QH3	Vibrio parahaemolyticus RIMD2210633	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Cholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Glycocholate [class: Acid], Ethidium Bromide [class: Phenanthridine], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides]
+BAC0518	vmeH	Q87QH2	Vibrio parahaemolyticus RIMD2210633	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Cholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Glycocholate [class: Acid], Ethidium Bromide [class: Phenanthridine], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides]
+BAC0519	vmeI	Q87QH1	Vibrio parahaemolyticus RIMD2210633	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Cholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Glycocholate [class: Acid], Ethidium Bromide [class: Phenanthridine], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides]
+BAC0520	vmeJ	Q87LY5	Vibrio parahaemolyticus RIMD2210633	Chromosome	Ethidium Bromide [class: Phenanthridine], Rhodamine 6G [class: Xanthene]
+BAC0521	vmeK	Q87LY6	Vibrio parahaemolyticus RIMD2210633	Chromosome	Ethidium Bromide [class: Phenanthridine], Rhodamine 6G [class: Xanthene]
+BAC0522	vmeP	Q87IY6	Vibrio parahaemolyticus RIMD2210633	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Cholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Glycocholate [class: Acid]
+BAC0523	vmeQ	Q87IY5	Vibrio parahaemolyticus RIMD2210633	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Cholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Glycocholate [class: Acid]
+BAC0524	vmeT	Q87HZ9	Vibrio parahaemolyticus RIMD2210633	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Cholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Glycocholate [class: Acid], Ethidium Bromide [class: Phenanthridine], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Acriflavine [class: Acridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0525	vmeU	Q87HZ8	Vibrio parahaemolyticus RIMD2210633	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Cholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Glycocholate [class: Acid], Ethidium Bromide [class: Phenanthridine], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Acriflavine [class: Acridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0526	vmeV	Q87HZ7	Vibrio parahaemolyticus RIMD2210633	Chromosome	Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Cholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Glycocholate [class: Acid], Ethidium Bromide [class: Phenanthridine], Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Acriflavine [class: Acridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0514	vmeY	Q87GX4	Vibrio parahaemolyticus RIMD2210633	Chromosome	Sodium Glycocholate [class: Acid], Sodium Taurocholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Cholate [class: Acid], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0515	vmeZ	Q87GX5	Vibrio parahaemolyticus RIMD2210633	Chromosome	Sodium Glycocholate [class: Acid], Sodium Taurocholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Cholate [class: Acid], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0431	vmrA	Q93HR7	Vibrio parahaemolyticus	Chromosome	4,6-diamidino-2-phenylindole (DAPI) [class: Diamidine], Acriflavine [class: Acridine], Ethidium Bromide [class: Phenanthridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)]
+BAC0516	vpoC	Q87SJ8	Vibrio parahaemolyticus RIMD2210633	Chromosome	Benzylkonium Chloride (BAC) [class: Quaternary Ammonium Compounds (QACs)], Chlorhexidine [class: Biguanides], Ethidium Bromide [class: Phenanthridine], Rhodamine 6G [class: Xanthene], Acriflavine [class: Acridine], Tetraphenylphosphonium (TPP) [class: Quaternary Ammonium Compounds (QACs)], Hoechst 33342 [class: Bisbenzimide], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate], Sodium Cholate [class: Acid], Sodium Deoxycholate (SDC) [class: Acid], Sodium Glycocholate [class: Acid]
+BAC0602	wtpA	Q8U4K5	Pyrococcus furiosus	Chromosome	Tungsten (W), Molybdenum (Mo)
+BAC0603	wtpB	Q8U4K4	Pyrococcus furiosus	Chromosome	Tungsten (W), Molybdenum (Mo)
+BAC0604	wtpC	Q8U4K3	Pyrococcus furiosus	Chromosome	Tungsten (W), Molybdenum (Mo)
+BAC0432	ybtP	Q9R7V3	Yersinia pestis	Chromosome	Iron (Fe)
+BAC0433	ybtQ	Q9Z375	Yersinia pestis	Chromosome	Iron (Fe)
+BAC0434	ychH	P0AB49	Escherichia coli (strain K12)	Chromosome	Cadmium (Cd), Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0556	ycnJ	C0SP95	Bacillus subtilis168	Chromosome	Copper (Cu)
+BAC0557	ycnK	P94433	Bacillus subtilis 168	Chromosome	Copper (Cu)
+BAC0435	yddg/emrE	D0ZXP9	Salmonella typhimurium (strain 14028s/SGSC 2262)	Chromosome	Methyl Viologen [class: Paraquat]
+BAC0436	ydeI	P31130	Escherichia coli (strain K12)	Chromosome	Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0437	ydeO	P76135	Escherichia coli (strain K12)	Chromosome	Hydrochloric acid (HCl) [class: Acid], Rhodamine 6G [class: Xanthene], Sodium Dodecyl Sulfate (SDS) [class: Organo-sulfate]
+BAC0438	ydeP	P77561	Escherichia coli (strain K12)	Chromosome	Hydrochloric acid (HCl) [class: Acid]
+BAC0439	yfeA	Q56952	Yersinia pestis	Chromosome	Iron (Fe), Manganese (Mn)
+BAC0440	yfeB	Q56953	Yersinia pestis	Chromosome	Iron (Fe), Manganese (Mn)
+BAC0441	yfeC	Q56954	Yersinia pestis	Chromosome	Iron (Fe), Manganese (Mn)
+BAC0442	yfeD	Q56955	Yersinia pestis	Chromosome	Iron (Fe), Manganese (Mn)
+BAC0443	yfmO	O06473	Bacillus subtilis (strain 168) 	Chromosome	Copper (Cu)
+BAC0444	yfmP	O06474	Bacillus subutilis (strain 168)	Chromosome	Copper (Cu)
+BAC0445	ygiW	P0ADU5	Escherichia coli	Plasmid pMR-1 (Shewanella oneidensis (strain MR-1))	Cadmium (Cd), Tributyltin (TBT) [class: Organo-tin], Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0446	yhcN	P64614	Escherichia coli (strain K12)	Chromosome	Cadmium (Cd), Hydrogen Peroxide (H2O2) [class: Peroxides], Hydrochloric acid (HCl) [class: Acid]
+BAC0541	yieF	P0AGE6	Escherichia coli K12	Chromosome	Chromium (Cr), Vanadium (V), Molybdenum (Mo), Methylene Blue [class: Thiazinium]
+BAC0447	yjaA	P09162	Escherichia coli (strain K12)	Chromosome	Cadmium (Cd), Hydrogen Peroxide (H2O2) [class: Peroxides], Hydrochloric acid (HCl) [class: Acid]
+BAC0448	ykkC	P49856	Bacillus subtilis (strain 168)	Chromosome	Ethidium Bromide [class: Phenanthridine], Crystal Violet [class: Triarylmethane], Methyl Viologen [class: Paraquat]
+BAC0449	ykkD	P49857	Bacillus subtilis (strain 168)	Chromosome	Ethidium Bromide [class: Phenanthridine], Crystal Violet [class: Triarylmethane], Methyl Viologen [class: Paraquat]
+BAC0450	ymgB/ariR	P75993	Escherichia coli (strain K12)	Plasmid pPag3 (Pantoea vagans (strain C9-1) (Pantoea agglomerans (strain C9-1)))	Hydrochloric Acid (HCl) [class: Acid], Hydrogen Peroxide (H2O2) [class: Peroxides]
+BAC0451	yodD	P64519	Escherichia coli (strain K12)	Chromosome	Cadmium (Cd), Hydrogen Peroxide (H2O2) [class: Peroxides], Hydrochloric acid (HCl) [class: Acid]
+BAC0452	yqjH	Q46871	Escherichia coli (strain K12)	Chromosome	Iron (Fe), Nickel (Ni)
+BAC0453	zevA	P44137	Haemophilus influenzae	Chromosome	Zinc (Zn)
+BAC0454	zevB	P44136	Haemophilus influenzae	Chromosome	Zinc (Zn)
+BAC0455	ziaA	Q59998	Synechocystis sp. (strain PCC 6803 / Kazusa)	Chromosome	Zinc (Zn)
+BAC0456	ziaR	Q55940	Synechocystis sp. (strain PCC 6803 / Kazusa)	Chromosome	Zinc (Zn)
+BAC0457	zinT/yodA	P76344	Escherichia coli (strain K12)	Chromosome	Cadmium (Cd), Zinc (Zn)
+BAC0458	zipB	Q7WJT8	Bordetella bronchiseptica (strain ATCC BAA-588 / NCTC 13252 / RB50) (Alcaligenes bronchisepticus)	Chromosome	Zinc (Zn), Cadmium (Cd)
+BAC0459	zitB/ybgR	P75757	Escherichia coli (strain K12)	Chromosome	Zinc (Zn)
+BAC0460	zneB/hmxB	Q1LCD7	Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839)	Plasmid megaplasmid CH34 (Ralstonia metallidurans (strain CH34 / ATCC 43123 / DSM 2839))	Zinc (Zn)
+BAC0461	zntA/yhhO	P37617	Escherichia coli (strain K12)	Chromosome	Lead (Pb), Cadmium (Cd), Zinc (Zn)
+BAC0462	zntR/yhdM	P0ACS5	Escherichia coli (strain K12)	Chromosome	Zinc (Zn)
+BAC0463	znuA/yebL	P39172	Escherichia coli (strain K12)	Chromosome	Zinc (Zn)
+BAC0464	znuB/yebI	P39832	Escherichia coli (strain K12)	Chromosome	Zinc (Zn)
+BAC0465	znuC/yebM	P0A9X1	Escherichia coli (strain K12)	Chromosome	Zinc (Zn)
+BAC0466	zraP	Q9L9I0	Salmonella typhimurium (strain LT2/SGSC1412/ATCC 700720) 	Chromosome	Zinc (Zn)
+BAC0467	zraR/hydH	P14375	Escherichia coli (strain K12)	Chromosome	Zinc (Zn)
+BAC0468	zraS/hydG	P14377	Escherichia coli (strain K12)	Chromosome	Zinc (Zn), Lead (Pb)
+BAC0469	zupT/ygiE	P0A8H3	Escherichia coli (strain K12)	Chromosome	Zinc (Zn), Iron (Fe), Cobalt (Co), Nickel (Ni), Copper (Cu), Cadmium (Cd)
+BAC0470	zur/yjbK	P0AC51	Escherichia coli (strain K12)	Chromosome	Zinc (Zn)
