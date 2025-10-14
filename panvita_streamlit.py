@@ -146,7 +146,7 @@ class PanViTaWithProgress(PanViTa):
             self.tracker.update_progress(5)  # Executando alinhamentos
             
             # Align and mine
-            self._align_and_mine(aligner_types, aligner_exes, aligner_names)
+            self._align_and_mine_parallel(aligner_types, aligner_exes, aligner_names)
             
             self.tracker.update_progress(6)  # Processando resultados
             
