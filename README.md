@@ -4,7 +4,7 @@
 <!-- [![License - OUTDATED FOR NOW ](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![DOI - OUTDATED FOR NOW](https://img.shields.io/badge/DOI-10.3389%2Ffbinf.2023.1070406-blue.svg)](https://doi.org/10.3389/fbinf.2023.1070406)-->
 
-## 📖 About PanVITA 2
+## 📖 About PanViTa 2
 
 **PanViTa 2** (Pan Virulence and resisTance Analysis) is a bioinformatics tool developed for comparative analysis of multiple genomes against specialized databases for antimicrobial resistance and virulence factors.
 
