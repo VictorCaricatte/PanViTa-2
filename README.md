@@ -1,4 +1,4 @@
-# PanVITA 2 - Pan Virulence and resisTance Analysis
+# PanViTa 2 - Pan Virulence and resisTance Analysis
 
 [![Python Version](https://img.shields.io/badge/python-3.7%2B-blue.svg)](https://python.org)
 <!-- [![License - OUTDATED FOR NOW ](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -6,7 +6,7 @@
 
 ## 📖 About PanVITA 2
 
-**PanVITA 2** (Pan Virulence and resisTance Analysis) is a bioinformatics tool developed for comparative analysis of multiple genomes against specialized databases for antimicrobial resistance and virulence factors.
+**PanViTa 2** (Pan Virulence and resisTance Analysis) is a bioinformatics tool developed for comparative analysis of multiple genomes against specialized databases for antimicrobial resistance and virulence factors.
 
 This tool allows identification and comparison of resistance genes to antibiotics, heavy metals, biocides, and virulence factors in prokaryotic genomes, generating intuitive visualizations and presence/absence matrices for epidemiological and evolutionary analyses.
 
