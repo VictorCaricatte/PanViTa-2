@@ -291,13 +291,13 @@ class DependencyManager:
 
             if PanViTaConfig.is_windows():
                 diamond_file = FileHandler.safe_download(
-                    "https://github.com/bbuchfink/diamond/releases/download/v2.1.14/diamond-windows.zip")
+                    "https://github.com/bbuchfink/diamond/releases/download/v2.1.21/diamond-windows.zip")
                 with zipfile.ZipFile(diamond_file, 'r') as zip_ref:
                     zip_ref.extractall('.')
                 diamond_exe = "diamond.exe"
             else:
                 diamond_file = FileHandler.safe_download(
-                    "https://github.com/bbuchfink/diamond/releases/download/v2.1.14/diamond-linux64.tar.gz")
+                    "https://github.com/bbuchfink/diamond/releases/download/v2.1.21/diamond-linux64.tar.gz")
                 FileHandler.extract_tar_file(diamond_file)
                 diamond_exe = "diamond"
                 if not PanViTaConfig.is_windows():
