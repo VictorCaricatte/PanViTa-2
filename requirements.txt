@@ -1,9 +1,15 @@
-streamlit>=1.28.0
-pandas>=1.5.0
-matplotlib>=3.6.0
+Python 3.10 or above
+PyQt6>=6.4.0
+PyQt6-WebEngine>=6.4.0
+psutil>=5.9.0
+pandas>=2.0.0
 seaborn>=0.12.0
 numpy>=1.24.0
-Pillow>=9.0.0
-wget>=3.2
-plotly>=5.15.0
+matplotlib>=3.7.0
+networkx>=3.0
+scikit-learn>=1.0.0
 scipy>=1.10.0
+UpSetPlot>=0.8.0
+plotly>=5.14.0
+adjustText>=0.8.0
+wget>=3.2
