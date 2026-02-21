@@ -1,4 +1,4 @@
-# ==============================================================================
+# ===============================================================================
 # Author:       Victor S Caricatte De Araújo
 # Co-author:    Diego Neres, Vinicius Oliveira
 # Email:        victorsc@ufmg.br , dlnrodrigues@ufmg.br , vinicius.oliveira.1444802@sga.pucminas.br
@@ -6,10 +6,10 @@
 # Version:      2.0.4
 # Date:         February 18, 2026
 # Notes: You may need deactivate conda. 
-# ==============================================================================
+# ===============================================================================
 # File: panvita.py
 # Description: Main execution script for PanViTa 
-# ==============================================================================
+# ===============================================================================
 
 # Standard library imports
 import os
