@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/25460929/README.md)
 # PanViTa 2 — Pan Virulence and resisTance Analysis
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://python.org)
