@@ -4,7 +4,7 @@ PanVita 2 - Dependency Installation Script
 ===============================================
 
 This script automatically installs all the necessary dependencies
-to run PanVita 2 (Advanced Bioinformatics GUI).
+to run PanVita 2 and PanViTa 2 Interface.
 
 Date: February 21, 2026
 """
@@ -18,7 +18,7 @@ def print_banner():
     """Displays the script banner"""
     print("=" * 60)
     print("  PanVita 2 - Python Dependency Installer")
-    print("  Version: 2.0.4")
+    print("  Version: 2.0.3")
     print("=" * 60)
     print()
 
