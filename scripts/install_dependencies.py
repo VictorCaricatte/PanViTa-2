@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-PanVITA - Dependency Installation Script
+PanVita 2 - Dependency Installation Script
 ===============================================
 
 This script automatically installs all the necessary dependencies
-to run PanVITA (Pan-genome Virulence and Antimicrobial Resistance Tool).
+to run PanVita 2 (Advanced Bioinformatics GUI).
 
-Date: August 12, 2025
+Date: February 21, 2026
 """
 
 import sys
@@ -17,8 +17,8 @@ import os
 def print_banner():
     """Displays the script banner"""
     print("=" * 60)
-    print("  PanVITA - Python Dependency Installer")
-    print("  Versão: 2.0.0")
+    print("  PanVita 2 - Python Dependency Installer")
+    print("  Version: 2.0.4")
     print("=" * 60)
     print()
 
@@ -37,9 +37,9 @@ def check_virtual_env():
         print("⚠️  WARNING: No active virtual environment detected.")
         print("   We recommend using a virtual environment to avoid conflicts.")
         print("   Dependencies will be installed on the global system.")
-        response = input("   Continue anyway? (s/N)): ").strip().lower()
+        response = input("   Continue anyway? (y/N): ").strip().lower()
         if response not in ['s', 'sim', 'y', 'yes']:
-            print("   Installation canceled. Run in a virtual environment..")
+            print("   Installation canceled. Run in a virtual environment.")
             return False
     
     return True
@@ -48,7 +48,7 @@ def check_python_version():
     """Check if the Python version is compatible"""
     version = sys.version_info
     if version.major < 3 or (version.major == 3 and version.minor < 7):
-        print("❌ ERROR: PanVITA requires Python 3.7 or higher.")
+        print("❌ ERROR: PanVita 2 requires Python 3.7 or higher.")
         print(f"   Current version: {version.major}.{version.minor}.{version.micro}")
         print("   Please update Python and try again.")
         return False
@@ -109,61 +109,33 @@ def install_package(package_name, import_name=None, upgrade=True):
             print(f"❌ Error when installing {package_name}: {e}")
             return False
         except ImportError:
-            print(f"⚠️  {package_name} was installed but could not be imported. A restart may be required..")
+            print(f"⚠️  {package_name} was installed but could not be imported. A restart may be required.")
             return False
 
-def install_basemap():
-    """Special installation for basemap (more complex)"""
-    try:
-        from mpl_toolkits.basemap import Basemap
-        print("✅ basemap is already installed")
-        return True
-    except ImportError:
-        print("📦 Installing basemap (may take a few minutes)...")
-        
-        # Try different installation methods for basemap
-        methods = [
-            # Método 1: conda (if available)
-            ["conda", "install", "-c", "conda-forge", "basemap", "-y"],
-            # Method 2: pip with specific repository
-            [sys.executable, "-m", "pip", "install", "basemap-data"],
-            [sys.executable, "-m", "pip", "install", "basemap", "--upgrade"]
-        ]
-        
-        for method in methods:
-            try:
-                print(f"   Trying: {' '.join(method)}")
-                subprocess.check_call(method)
-                # Check if the installation worked
-                from mpl_toolkits.basemap import Basemap
-                print("✅ basemap installed successfully")
-                return True
-            except (subprocess.CalledProcessError, ImportError, FileNotFoundError):
-                continue
-        
-        print("⚠️  Warning: Unable to install basemap automatically.")
-        print("   PanVITA will work, but map functionality may not be available.")
-        print("   To install manually:")
-        print("   - With conda: conda install -c conda-forge basemap")
-        print("   - With pip: pip install basemap basemap-data")
-        return False
-
 def install_all_dependencies():
-    """Installs all required dependencies"""
-    print("🔧 Installing PanVITA dependencies...\n")
+    """Installs all required dependencies for PanVita 2"""
+    print("🔧 Installing PanVita 2 dependencies...\n")
     
-    # List of required packages (core)
+    # List of required packages: (pip_name, import_name)
     packages = [
+        ("PyQt6", "PyQt6.QtCore"),
+        ("PyQt6-WebEngine", "PyQt6.QtWebEngineCore"),
+        ("psutil", "psutil"),
         ("pandas", "pandas"),
-        ("matplotlib", "matplotlib"),
         ("seaborn", "seaborn"),
-        ("wget", "wget"),
-        ("numpy", "numpy"),          # Explicitly added
-        ("scipy", "scipy"),          # Seaborn dependence
+        ("numpy", "numpy"),
+        ("matplotlib", "matplotlib"),
+        ("networkx", "networkx"),
+        ("scikit-learn", "sklearn"),
+        ("scipy", "scipy"),
+        ("UpSetPlot", "upsetplot"),
+        ("plotly", "plotly"),
+        ("adjustText", "adjustText"),
+        ("wget", "wget")
     ]
     
     success_count = 0
-    total_count = len(packages) + 1  # +1 for basemap
+    total_count = len(packages)
     
     # Install regular packages
     for package_name, import_name in packages:
@@ -172,17 +144,10 @@ def install_all_dependencies():
         else:
             print(f"⚠️  Failed to install {package_name}, trying to continue...")
     
-    # Install basemap (special case) - optional
-    print("\n📍 Installing basemap (optional for map functionality)...")
-    if install_basemap():
-        success_count += 1
-    else:
-        print("⚠️  Basemap was not installed, but PanVITA will work without maps.")
-    
     print(f"\n📊 Installation result: {success_count}/{total_count} packages")
     
-    # Even if not all packages have been installed, check the essential ones
-    essential_packages = ["pandas", "matplotlib", "seaborn", "wget", "numpy"]
+    # Essential packages for the core functionality
+    essential_packages = ["PyQt6.QtCore", "pandas", "matplotlib", "seaborn", "numpy", "sklearn"]
     essential_installed = 0
     
     for package in essential_packages:
@@ -197,26 +162,29 @@ def install_all_dependencies():
         return True
     else:
         print(f"⚠️  Some essential dependencies were not installed ({essential_installed}/{len(essential_packages)}).")
-        print("   PanVITA may not work properly.")
+        print("   PanVita 2 may not work properly.")
         return False
 
 def test_imports():
-    """Tests that all imports work correctly"""
+    """Tests that all PanVita 2 imports work correctly"""
     print("\n🧪 Testing imports...")
     
     imports_to_test = [
+        ("from PyQt6.QtWidgets import QApplication", "PyQt6"),
+        ("from PyQt6.QtWebEngineWidgets import QWebEngineView", "PyQt6-WebEngine"),
+        ("import psutil", "psutil"),
         ("import pandas as pd", "pandas"),
         ("import matplotlib.pyplot as plt", "matplotlib"),
         ("import seaborn as sns", "seaborn"),
-        ("import wget", "wget"),
+        ("import numpy as np", "numpy"),
+        ("import networkx as nx", "networkx"),
+        ("import sklearn", "scikit-learn"),
+        ("import scipy", "scipy"),
+        ("from upsetplot import UpSet", "UpSetPlot"),
+        ("import plotly", "plotly"),
+        ("from adjustText import adjust_text", "adjustText"),
+        ("import wget", "wget")
     ]
-    
-    # Special test for basemap
-    try:
-        exec("from mpl_toolkits.basemap import Basemap")
-        print("✅ basemap - OK")
-    except ImportError:
-        print("⚠️  basemap - Not available (limited map functionality)")
     
     failed_imports = []
     
@@ -225,7 +193,7 @@ def test_imports():
             exec(import_statement)
             print(f"✅ {package_name} - OK")
         except ImportError as e:
-            print(f"❌ {package_name} - FALHOU: {e}")
+            print(f"❌ {package_name} - FAILED: {e}")
             failed_imports.append(package_name)
     
     if not failed_imports:
@@ -250,30 +218,25 @@ def show_usage_instructions():
     )
     
     if in_venv:
-        print("📋 Next steps (ambiente virtual ativo):")
-        print("   python panvita.py [opções]")
+        print("📋 Next steps (active virtual environment):")
+        print("   python interface.py")
         print()
         print("💡 For future executions:")
         if os.name == 'nt':  # Windows
-            print("   scripts\\activate_env.bat    # Ativar ambiente")
+            print("   scripts\\activate      # Activate environment")
         else:  # Unix/Linux
-            print("   source .venv/bin/activate   # Ativar ambiente")
-            print("   # OU")
-            print("   ./scripts/activate_env.sh   # Script de ativação")
+            print("   source .venv/bin/activate   # Activate environment")
     else:
         print("📋 Next steps:")
         if os.name == 'nt':  # Windows
-            print("   python panvita.py [opções]")
+            print("   python interface.py")
         else:  # Unix/Linux
-            print("   python3 panvita.py [opções]")
+            print("   python3 interface.py")
     
     print()
     print("📁 Make sure you have:")
-    print("   - GenBank Files (.gbk, .gbf, .gbff)")
-    print("   - Configured database")
-    print("   - BLAST and/or DIAMOND installed")
-    print()
-    print("🔗 For more information, see README.md")
+    print("   - All core files (interface.py, panvita.py, etc.) in the same folder.")
+    print("   - GenBank or FASTA Files ready for analysis.")
     print()
 
 def main():
@@ -312,12 +275,12 @@ def main():
         print("\n❌ Installation was not fully successful.")
         print("   Check the errors above and try manually installing the failed packages.")
         if os.environ.get('VIRTUAL_ENV'):
-            print("   Example command: pip install pandas numpy matplotlib seaborn wget scipy")
+            print("   Example command: pip install PyQt6 pandas scikit-learn seaborn plotly")
         else:
             if os.name == 'nt':
-                print("   Example command: python -m pip install pandas numpy matplotlib seaborn wget scipy")
+                print("   Example command: python -m pip install PyQt6 pandas scikit-learn seaborn plotly")
             else:
-                print("   Example command: pip3 install pandas numpy matplotlib seaborn wget scipy")
+                print("   Example command: pip3 install PyQt6 pandas scikit-learn seaborn plotly")
         sys.exit(1)
 
 if __name__ == "__main__":
