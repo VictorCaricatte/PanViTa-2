@@ -2,7 +2,7 @@
 # PanViTa 2 — Pan Virulence and resisTance Analysis
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://python.org)
-[![Version](https://img.shields.io/badge/Version-2.3.0-blue.svg)]()
+[![Version](https://img.shields.io/badge/Version-2.0.3-blue.svg)]()
 [![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows-lightgrey.svg)]()
 [![DOI](https://img.shields.io/badge/DOI-10.3389%2Ffbinf.2023.1070406-blue.svg)](https://doi.org/10.3389/fbinf.2023.1070406)
 
