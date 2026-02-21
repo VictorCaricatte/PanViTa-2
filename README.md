@@ -8,7 +8,7 @@
 
 ##  About PanViTa 2
 
-**PanViTa 2** (Pan Virulence and resisTance Analysis) is a bioinformatics pipeline for large-scale comparative genomics of prokaryotes. It automatically screens multiple annotated genomes against curated databases of antimicrobial resistance genes and virulence factors, classifies genes into Core, Accessory, and Exclusive categories, and produces publication-ready visualizations and tabular reports — all from a single command.
+**PanViTa 2** (Pan Virulence and resisTance Analysis) is a bioinformatics software for large-scale comparative genomics of prokaryotes. It automatically screens multiple annotated genomes against curated databases of antimicrobial resistance genes and virulence factors, classifies genes into Core, Accessory, and Exclusive categories, and produces publication-ready visualizations and tabular reports — all from a single command.
 
 PanViTa 2 is a complete rewrite of the original PanViTa ([Rodrigues *et al.*, 2023](https://doi.org/10.3389/fbinf.2023.1070406)), featuring a fully modular architecture, parallel alignment execution, seven supported databases, advanced visualizations (UpSet plots, PCoA, co-occurrence networks), and cross-platform support.
 
