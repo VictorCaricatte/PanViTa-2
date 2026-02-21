@@ -40,7 +40,7 @@ PanViTa 2 is a complete rewrite of the original PanViTa ([Rodrigues *et al.*, 20
 
 All databases are **downloaded and indexed automatically** on first use and can be updated at any time with `-update`.
 
-### 🔧 Alignment Tools
+###  Alignment Tools
 
 | Tool | Flag | Description |
 |------|------|-------------|
@@ -62,7 +62,7 @@ Both tools are downloaded and managed automatically.
 | **Distribution Bar Charts** | Core/Accessory/Exclusive breakdown per drug class, resistance mechanism, or virulence category |
 | **Detailed Reports** | Long-format CSV and Excel reports per genome per gene with metadata |
 
-### 🌐 Advanced Features
+###  Advanced Features
 
 - **Automatic download** of genomes from NCBI (GenBank and FASTA formats)
 - **Automatic genome annotation** via PROKKA integration
