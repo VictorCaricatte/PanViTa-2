@@ -460,4 +460,4 @@ This project is licensed under the GPL-3.0 License and have a Brasilian registra
 
 ---
 
-**Version**: 2.3.0 | **Last updated**: February 2026
+**Version**: 2.0.4 | **Last updated**: February 2026
