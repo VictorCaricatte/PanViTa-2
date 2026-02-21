@@ -18,7 +18,7 @@ def print_banner():
     """Displays the script banner"""
     print("=" * 60)
     print("  PanVita 2 - Python Dependency Installer")
-    print("  Version: 2.0.3")
+    print("  Version: 2.0.4")
     print("=" * 60)
     print()
 
