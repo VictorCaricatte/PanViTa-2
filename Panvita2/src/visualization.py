@@ -1,6 +1,5 @@
 # File: visualization.py
 # Description: Plotting and matrix generation 
-# Updated: Fixed Column Collision in Reports (Pan_Class vs Category) and Radar Plot optimization.
 
 import os
 import sys
@@ -1241,4 +1240,5 @@ class Visualization:
             print(f"Simple pan-genome plot saved as: {output_file}")
                 
         except Exception as e:
+
             print(f"Error generating lineplot: {e}")
