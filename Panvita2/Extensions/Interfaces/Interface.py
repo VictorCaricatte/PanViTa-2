@@ -49,13 +49,13 @@ except ImportError:
 
 LANGUAGES = {
     "EN": {
-        "menu_home": "≡   Home", "menu_db": "🗄  Inputs & Databases", "menu_align": "🧬  Filters & Aligner",
-        "menu_ncbi": "🌐  NCBI Settings", "menu_term": "💻  Execution Terminal", "menu_res": "📊  Results Viewer",
-        "menu_queue": "📝  Queue & History", "menu_help": "📖  Help & Documentation",
+        "menu_home": "≡   Home", "menu_db": "🗄  Inputs & Databases", "menu_align": "  Filters & Aligner",
+        "menu_ncbi": "  NCBI Settings", "menu_term": "  Execution Terminal", "menu_res": "  Results Viewer",
+        "menu_queue": "  Queue & History", "menu_help": "  Help & Documentation",
         "global_actions": "⚙ Global Actions", "desc_home": "Bioinformatics Software", "sys_check": "<b>System Check:</b>",
-        "btn_color": "🎨 Accent Color", "btn_theme": "🌗 Light/Dark", "btn_save_p": "💾 Save Preset",
-        "btn_load_p": "📂 Load Preset", "btn_update": "🔄 Update Dependencies", "btn_add_queue": "➕ ADD TO QUEUE",
-        "btn_run": "▶ START QUEUE", "btn_stop": "🛑 STOP / CANCEL", "lbl_status_idle": "Status: Idle", 
+        "btn_color": " Accent Color", "btn_theme": " Light/Dark", "btn_save_p": " Save Preset",
+        "btn_load_p": " Load Preset", "btn_update": " Update Dependencies", "btn_add_queue": " ADD TO QUEUE",
+        "btn_run": "▶ START QUEUE", "btn_stop": " STOP / CANCEL", "lbl_status_idle": "Status: Idle", 
         "gb_files": "Input Files (Drag & Drop | Double-Click to Remove)",
         "btn_browse": "Browse Files", "btn_clear": "Clear List", "gb_db": "Target Databases", "cb_custom": "Custom DB (FASTA)",
         "gb_align": "Alignment Engine & CPUs", "rb_auto": "Automatic (Recommended)", "rb_diamond": "DIAMOND Only (-diamond)",
@@ -65,20 +65,20 @@ LANGUAGES = {
         "cb_a": "Annotate via PROKKA (-a)", "cb_g": "Download FASTA (-g)", "cb_m": "Download Metadata (-m)",
         "cb_s": "Locus_Tag matches strain (-s)", "gb_out": "Outputs and Plotting", "rb_pdf": "Graphs in PDF",
         "rb_png": "Graphs in PNG", "cb_save": "Save found genes (.faa) (-save-genes)", "cb_keep": "Keep temporary files (-keep)",
-        "btn_exp_log": "💾 Export Log as .TXT", "btn_clear_term": "🧹 Clear Terminal", "btn_load_res": "📂 Open CSV Result", 
-        "btn_exp_pdf": "📄 Export PDF Report", "btn_paths": "⚙ Configure Paths", "btn_load_graph": "🖼 Load PNG Graph", 
-        "lbl_search": "🔍 Filter Results:", "btn_exp_filt": "💾 Export Filtered CSV", "btn_load_html": "🌐 Load Interactive HTML Graph",
+        "btn_exp_log": " Export Log as .TXT", "btn_clear_term": " Clear Terminal", "btn_load_res": " Open CSV Result", 
+        "btn_exp_pdf": " Export PDF Report", "btn_paths": " Configure Paths", "btn_load_graph": " Load PNG Graph", 
+        "lbl_search": " Filter Results:", "btn_exp_filt": " Export Filtered CSV", "btn_load_html": " Load Interactive HTML Graph",
         "metrics_hits": "Total Hits: ", "metrics_id": "Avg Identity: ", "metrics_db": "Top DB: ", "q_title": "Task Queue", 
         "q_hist": "Run History", "q_clear": "Clear Queue", "h_clear": "Clear History"
     },
     "PT": {
-        "menu_home": "≡   Início", "menu_db": "🗄  Entradas e Bancos", "menu_align": "🧬  Filtros e Alinhador",
-        "menu_ncbi": "🌐  Configurações NCBI", "menu_term": "💻  Terminal de Execução", "menu_res": "📊  Visualizar Resultados",
-        "menu_queue": "📝  Fila e Histórico", "menu_help": "📖  Ajuda e Documentação",
+        "menu_home": "≡   Início", "menu_db": "🗄  Entradas e Bancos", "menu_align": "  Filtros e Alinhador",
+        "menu_ncbi": "  Configurações NCBI", "menu_term": "  Terminal de Execução", "menu_res": "  Visualizar Resultados",
+        "menu_queue": "  Fila e Histórico", "menu_help": "  Ajuda e Documentação",
         "global_actions": "⚙ Ações Globais", "desc_home": "Software de Bioinformática", "sys_check": "<b>Verificação do Sistema:</b>",
-        "btn_color": "🎨 Cor de Destaque", "btn_theme": "🌗 Claro/Escuro", "btn_save_p": "💾 Salvar Preset",
-        "btn_load_p": "📂 Carregar Preset", "btn_update": "🔄 Atualizar Dependências", "btn_add_queue": "➕ ADICIONAR À FILA",
-        "btn_run": "▶ INICIAR FILA", "btn_stop": "🛑 PARAR / CANCELAR", "lbl_status_idle": "Status: Ocioso", 
+        "btn_color": " Cor de Destaque", "btn_theme": " Claro/Escuro", "btn_save_p": " Salvar Preset",
+        "btn_load_p": " Carregar Preset", "btn_update": " Atualizar Dependências", "btn_add_queue": " ADICIONAR À FILA",
+        "btn_run": "▶ INICIAR FILA", "btn_stop": " PARAR / CANCELAR", "lbl_status_idle": "Status: Ocioso", 
         "gb_files": "Arquivos de Entrada (Arraste aqui | Duplo-clique remove)",
         "btn_browse": "Procurar Arquivos", "btn_clear": "Limpar Lista", "gb_db": "Bancos de Dados Alvo", "cb_custom": "Banco Customizado (FASTA)",
         "gb_align": "Motor de Alinhamento e CPUs", "rb_auto": "Automático (Recomendado)", "rb_diamond": "Apenas DIAMOND (-diamond)",
@@ -88,9 +88,9 @@ LANGUAGES = {
         "cb_a": "Anotar via PROKKA (-a)", "cb_g": "Baixar FASTA (-g)", "cb_m": "Baixar Metadata (-m)",
         "cb_s": "Locus_Tag igual à cepa (-s)", "gb_out": "Saídas e Gráficos", "rb_pdf": "Gráficos em PDF",
         "rb_png": "Gráficos em PNG", "cb_save": "Salvar genes encontrados (.faa)", "cb_keep": "Manter arquivos temporários (-keep)",
-        "btn_exp_log": "💾 Exportar Log (.TXT)", "btn_clear_term": "🧹 Limpar Terminal", "btn_load_res": "📂 Abrir Resultado CSV", 
-        "btn_exp_pdf": "📄 Exportar Relatório PDF", "btn_paths": "⚙ Configurar Caminhos", "btn_load_graph": "🖼 Carregar Gráfico PNG", 
-        "lbl_search": "🔍 Filtrar Resultados:", "btn_exp_filt": "💾 Exportar CSV Filtrado", "btn_load_html": "🌐 Carregar Gráfico Interativo HTML",
+        "btn_exp_log": " Exportar Log (.TXT)", "btn_clear_term": " Limpar Terminal", "btn_load_res": " Abrir Resultado CSV", 
+        "btn_exp_pdf": " Exportar Relatório PDF", "btn_paths": " Configurar Caminhos", "btn_load_graph": " Carregar Gráfico PNG", 
+        "lbl_search": " Filtrar Resultados:", "btn_exp_filt": " Exportar CSV Filtrado", "btn_load_html": " Carregar Gráfico Interativo HTML",
         "metrics_hits": "Total de Hits: ", "metrics_id": "Identidade Média: ", "metrics_db": "Banco Topo: ", "q_title": "Fila de Tarefas", 
         "q_hist": "Histórico de Execuções", "q_clear": "Limpar Fila", "h_clear": "Limpar Histórico"
     }
@@ -926,12 +926,12 @@ class PanVitaApp(QMainWindow):
         self.nav_group = QButtonGroup(self)
         self.btn_home = self.create_menu_button("≡   Home", 0)
         self.btn_db = self.create_menu_button("🗄  Inputs & Databases", 1)
-        self.btn_align = self.create_menu_button("🧬  Filters & Aligner", 2)
-        self.btn_ncbi = self.create_menu_button("🌐  NCBI Settings", 3)
-        self.btn_term = self.create_menu_button("💻  Execution Terminal", 4)
-        self.btn_res = self.create_menu_button("📊  Results Viewer", 5)
-        self.btn_queue = self.create_menu_button("📝  Queue & History", 6)
-        self.btn_help = self.create_menu_button("📖  Help & Documentation", 7)
+        self.btn_align = self.create_menu_button("  Filters & Aligner", 2)
+        self.btn_ncbi = self.create_menu_button("  NCBI Settings", 3)
+        self.btn_term = self.create_menu_button("  Execution Terminal", 4)
+        self.btn_res = self.create_menu_button("  Results Viewer", 5)
+        self.btn_queue = self.create_menu_button("  Queue & History", 6)
+        self.btn_help = self.create_menu_button("  Help & Documentation", 7)
 
         for btn in [self.btn_home, self.btn_db, self.btn_align, self.btn_ncbi, self.btn_term, self.btn_res, self.btn_queue, self.btn_help]:
             left_menu_layout.addWidget(btn)
@@ -978,25 +978,25 @@ class PanVitaApp(QMainWindow):
         self.cmb_lang.setCurrentIndex(0 if self.lang == "EN" else 1)
         self.cmb_lang.currentIndexChanged.connect(self.change_language)
 
-        self.btn_color = QPushButton("🎨 Accent Color")
+        self.btn_color = QPushButton(" Accent Color")
         self.btn_color.clicked.connect(self.change_accent_color)
         
-        self.btn_theme = QPushButton("🌗 Light/Dark")
+        self.btn_theme = QPushButton(" Light/Dark")
         self.btn_theme.clicked.connect(self.toggle_theme)
 
         self.btn_config_paths = QPushButton("⚙ Configure Paths")
         self.btn_config_paths.clicked.connect(self.open_path_config)
         
-        self.btn_save_p = QPushButton("💾 Save Preset")
+        self.btn_save_p = QPushButton(" Save Preset")
         self.btn_save_p.clicked.connect(self.save_preset)
         
-        self.btn_load_p = QPushButton("📂 Load Preset")
+        self.btn_load_p = QPushButton(" Load Preset")
         self.btn_load_p.clicked.connect(self.load_preset)
 
-        self.btn_update = QPushButton("🔄 Update Dependencies")
+        self.btn_update = QPushButton(" Update Dependencies")
         self.btn_update.clicked.connect(self.run_update)
 
-        self.btn_add_to_queue = QPushButton("➕ ADD TO QUEUE")
+        self.btn_add_to_queue = QPushButton(" ADD TO QUEUE")
         self.btn_add_to_queue.setObjectName("AddQueueBtn")
         self.btn_add_to_queue.clicked.connect(self.add_to_queue)
         self.btn_add_to_queue.setFixedHeight(35)
@@ -1365,9 +1365,9 @@ class PanVitaApp(QMainWindow):
         layout.setContentsMargins(20, 20, 20, 20)
         
         h_btn = QHBoxLayout()
-        self.btn_clear_term = QPushButton("🧹 Clear Terminal")
+        self.btn_clear_term = QPushButton(" Clear Terminal")
         self.btn_clear_term.clicked.connect(lambda: self.terminal.clear())
-        self.btn_export_log = QPushButton("💾 Export Log as .TXT")
+        self.btn_export_log = QPushButton(" Export Log as .TXT")
         self.btn_export_log.clicked.connect(self.export_log)
         
         h_btn.addStretch()
@@ -1387,11 +1387,11 @@ class PanVitaApp(QMainWindow):
         layout.setContentsMargins(20, 20, 20, 20)
         
         h_btn = QHBoxLayout()
-        self.btn_load_res = QPushButton("📂 Open CSV Result")
+        self.btn_load_res = QPushButton(" Open CSV Result")
         self.btn_load_res.clicked.connect(self.prompt_load_results_csv)
-        self.btn_export_pdf = QPushButton("📄 Export PDF Report")
+        self.btn_export_pdf = QPushButton(" Export PDF Report")
         self.btn_export_pdf.clicked.connect(self.export_pdf_report)
-        self.btn_export_filtered = QPushButton("💾 Export Filtered CSV")
+        self.btn_export_filtered = QPushButton(" Export Filtered CSV")
         self.btn_export_filtered.clicked.connect(self.export_filtered_csv)
         
         h_btn.addWidget(self.btn_load_res)
@@ -1542,7 +1542,7 @@ class PanVitaApp(QMainWindow):
         
         <hr>
 
-        <h2 style="color: {color};">⌨️ Atalhos de Teclado (Shortcuts)</h2>
+        <h2 style="color: {color};"> Atalhos de Teclado (Shortcuts)</h2>
         <ul>
             <li><b>Ctrl + R:</b> Executar / Parar Análise</li>
             <li><b>Ctrl + O:</b> Abrir Arquivos de Entrada</li>
@@ -1552,7 +1552,7 @@ class PanVitaApp(QMainWindow):
 
         <hr>
         
-        <h2 style="color: {color};">⚙️ Motores de Alinhamento</h2>
+        <h2 style="color: {color};"> Motores de Alinhamento</h2>
         <p>O PanVita utiliza dois dos alinhadores mais consagrados do mundo científico:</p>
         <ul>
             <li><b>BLAST (Basic Local Alignment Search Tool):</b> Altamente sensível e exato. O PanVita utiliza o <i>makeblastdb</i> para criar os bancos locais e o <i>blastp</i> ou <i>blastn</i> para o alinhamento. Ideal quando a precisão é necessária.</li>
@@ -1561,7 +1561,7 @@ class PanVitaApp(QMainWindow):
         
         <hr>
 
-        <h2 style="color: {color};">🗄️ Bancos de Dados Suportados</h2>
+        <h2 style="color: {color};"> Bancos de Dados Suportados</h2>
         <ul>
             <li><b>CARD (Comprehensive Antibiotic Resistance Database):</b> Focado exclusivamente na base molecular da resistência antimicrobiana (AMR). É rigorosamente curado e excelente para delinear resistomas.</li>
             <li><b>BacMet:</b> Especializado em genes de resistência a biocidas antibacterianos e metais pesados. Fundamental para estudos de biorremediação e toxicidade ambiental.</li>
@@ -1574,7 +1574,7 @@ class PanVitaApp(QMainWindow):
         
         <hr>
 
-        <h2 style="color: {color};">📊 Resultados Gerados</h2>
+        <h2 style="color: {color};"> Resultados Gerados</h2>
         <p>Após a conclusão, o software produzirá uma pasta contendo:</p>
         <ol>
             <li><b>Arquivos CSV:</b> Tabelas padronizadas contendo as identificações (ID), o nome do gene mapeado, a % de Identidade e a % de Cobertura do alinhamento.</li>
@@ -1599,7 +1599,7 @@ class PanVitaApp(QMainWindow):
 
         <hr>
         
-        <h2 style="color: {color};">⚙️ Alignment Engines</h2>
+        <h2 style="color: {color};"> Alignment Engines</h2>
         <p>PanVita utilizes two established aligners in the scientific community:</p>
         <ul>
             <li><b>BLAST (Basic Local Alignment Search Tool):</b> Highly sensitive and exact. PanVita uses <i>makeblastdb</i> to build local databases and <i>blastp/blastn</i> for alignment. Ideal when precision is required.</li>
@@ -1608,7 +1608,7 @@ class PanVitaApp(QMainWindow):
         
         <hr>
 
-        <h2 style="color: {color};">🗄️ Supported Databases</h2>
+        <h2 style="color: {color};"> Supported Databases</h2>
         <ul>
             <li><b>CARD (Comprehensive Antibiotic Resistance Database):</b> Focused exclusively on the molecular basis of antimicrobial resistance (AMR). It is rigorously curated and excellent for resistome profiling.</li>
             <li><b>BacMet:</b> Specialized in antibacterial biocide and heavy metal resistance genes. Fundamental for bioremediation and environmental toxicity studies.</li>
@@ -1621,7 +1621,7 @@ class PanVitaApp(QMainWindow):
         
         <hr>
 
-        <h2 style="color: {color};">📊 Generated Results</h2>
+        <h2 style="color: {color};"> Generated Results</h2>
         <p>Upon completion, the software will produce a folder containing:</p>
         <ol>
             <li><b>CSV Files:</b> Standardized tables containing the sequence IDs, the mapped gene name, % Identity, and % Coverage of the alignment.</li>
@@ -1738,7 +1738,7 @@ class PanVitaApp(QMainWindow):
             self.execute_load_csv(path)
 
     def execute_load_csv(self, path):
-        self.lbl_status.setText("Status: Loading CSV data... ⏳")
+        self.lbl_status.setText("Status: Loading CSV data... ")
         self.res_table.clear()
         self.csv_thread = CSVLoaderThread(path)
         self.csv_thread.finished.connect(self.on_csv_loaded)
@@ -1836,9 +1836,9 @@ class PanVitaApp(QMainWindow):
         if not item: return
         menu = QMenu(self)
         
-        view_fasta_action = QAction("🧬 Visualizar Sequência FASTA", self)
-        copy_action = QAction("📋 Copiar Conteúdo", self)
-        search_ncbi_action = QAction("🌐 Pesquisar no NCBI", self)
+        view_fasta_action = QAction(" Visualizar Sequência FASTA", self)
+        copy_action = QAction(" Copiar Conteúdo", self)
+        search_ncbi_action = QAction(" Pesquisar no NCBI", self)
         
         view_fasta_action.triggered.connect(lambda: self.view_fasta_sequence(item.text()))
         copy_action.triggered.connect(lambda: QApplication.clipboard().setText(item.text()))
@@ -2057,7 +2057,7 @@ class PanVitaApp(QMainWindow):
 
         self.btn_term.setChecked(True)
         self.set_page(4, self.btn_term.text())
-        self.lbl_status.setText("Status: Starting analysis... 🚀")
+        self.lbl_status.setText("Status: Starting analysis... ")
         self.progress_bar.setValue(0)
         self.current_task_start_time = datetime.now()
         self.execute_script(args)
@@ -2123,13 +2123,13 @@ class PanVitaApp(QMainWindow):
                 self.log(line + "\n")
                 low_txt = line.lower()
                 if "aligning" in low_txt or "running diamond" in low_txt or "running blast" in low_txt:
-                    self.lbl_status.setText("Status: Aligning sequences... 🧬")
+                    self.lbl_status.setText("Status: Aligning sequences... ")
                     if self.progress_bar.value() < 30: self.progress_bar.setValue(30)
                 elif "downloading" in low_txt or "ncbi" in low_txt:
-                    self.lbl_status.setText("Status: Downloading from NCBI... 🌐")
+                    self.lbl_status.setText("Status: Downloading from NCBI... ")
                     if self.progress_bar.value() < 60: self.progress_bar.setValue(60)
                 elif "plotting" in low_txt or "generating graph" in low_txt:
-                    self.lbl_status.setText("Status: Generating output graphs... 📊")
+                    self.lbl_status.setText("Status: Generating output graphs... ")
                     if self.progress_bar.value() < 90: self.progress_bar.setValue(90)
 
     def handle_stderr(self):
