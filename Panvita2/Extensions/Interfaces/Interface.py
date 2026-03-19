@@ -49,7 +49,7 @@ except ImportError:
 
 LANGUAGES = {
     "EN": {
-        "menu_home": "≡   Home", "menu_db": "🗄  Inputs & Databases", "menu_align": "  Filters & Aligner",
+        "menu_home": "≡   Home", "menu_db": "  Inputs & Databases", "menu_align": "  Filters & Aligner",
         "menu_ncbi": "  NCBI Settings", "menu_term": "  Execution Terminal", "menu_res": "  Results Viewer",
         "menu_queue": "  Queue & History", "menu_help": "  Help & Documentation",
         "global_actions": "⚙ Global Actions", "desc_home": "Bioinformatics Software", "sys_check": "<b>System Check:</b>",
@@ -72,7 +72,7 @@ LANGUAGES = {
         "q_hist": "Run History", "q_clear": "Clear Queue", "h_clear": "Clear History"
     },
     "PT": {
-        "menu_home": "≡   Início", "menu_db": "🗄  Entradas e Bancos", "menu_align": "  Filtros e Alinhador",
+        "menu_home": "≡   Início", "menu_db": "  Entradas e Bancos", "menu_align": "  Filtros e Alinhador",
         "menu_ncbi": "  Configurações NCBI", "menu_term": "  Terminal de Execução", "menu_res": "  Visualizar Resultados",
         "menu_queue": "  Fila e Histórico", "menu_help": "  Ajuda e Documentação",
         "global_actions": "⚙ Ações Globais", "desc_home": "Software de Bioinformática", "sys_check": "<b>Verificação do Sistema:</b>",
