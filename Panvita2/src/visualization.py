@@ -14,6 +14,7 @@ from matplotlib import cm
 from matplotlib.patches import Ellipse
 import matplotlib.transforms as transforms
 import warnings
+import re
 
 try:
     import networkx as nx
@@ -24,6 +25,7 @@ try:
     from sklearn.manifold import MDS
     from sklearn.cluster import KMeans
     from scipy.spatial.distance import pdist, squareform
+    from scipy.cluster.hierarchy import linkage, fcluster
 except ImportError:
     MDS = None
 
@@ -32,7 +34,6 @@ try:
 except ImportError:
     from_contents = None
 
-# New dependency for interactive 3D plots
 try:
     import plotly.graph_objects as go
     import plotly.io as pio
@@ -40,13 +41,11 @@ try:
 except ImportError:
     PLOTLY_AVAILABLE = False
 
-# Suppress warnings for cleaner output
 warnings.filterwarnings("ignore")
 
 class Visualization:
     @staticmethod
     def generate_matrix(db_param, outputs, comp, aligner_suffix=""):
-        """Generate presence/absence matrix from alignment results"""
         db_name = db_param[1:]
         
         if aligner_suffix:
@@ -105,7 +104,6 @@ class Visualization:
                 gene = None
                 locus_tag = linha[0]
                 
-                # Special handling for MEGARes
                 if 'MEG_' in linha[1] and '|' in linha[1]:
                     parts = linha[1].split('|')
                     if len(parts) >= 5:
@@ -176,7 +174,6 @@ class Visualization:
 
     @staticmethod
     def generate_heatmap(data_file, db_param, outputs, erro, aligner_suffix=""):
-        """Generate refined heatmap visualization from matrix"""
         fileType = "pdf"
         if "-pdf" in sys.argv:
             fileType = "pdf"
@@ -192,7 +189,6 @@ class Visualization:
         
         outputs.append(out)
         
-        # Updated Colors: Victors now matches VFDB (Reds)
         if db_param == "-card": color = "Blues"
         elif db_param == "-vfdb": color = "Reds"
         elif db_param == "-bacmet": color = "Greens"
@@ -236,7 +232,6 @@ class Visualization:
             sns.set(font_scale=1.0)
             sns.set_style("white")
 
-            # Create annotation matrix to show only hits (values > 0)
             def format_hit(val):
                 try:
                     if float(val) > 0:
@@ -248,7 +243,6 @@ class Visualization:
             try:
                 annot_matrix = df.map(format_hit)
             except AttributeError:
-                # Fallback for older pandas versions
                 annot_matrix = df.applymap(format_hit)
 
             ax = sns.heatmap(
@@ -282,7 +276,6 @@ class Visualization:
 
     @staticmethod
     def generate_barplot(data_file, index_col, output_file, fileType, outputs):
-        """Generates a bar chart from a data file."""
         try:
             data = pd.read_csv(data_file, sep=";", index_col=index_col)
             if data.empty:
@@ -322,7 +315,6 @@ class Visualization:
 
     @staticmethod
     def generate_joint_and_marginal_distributions(data_file, db_param, outputs, erro, aligner_suffix=""):
-        """Hexbin joint plot with marginal distributions"""
         try:
             fileType = "pdf" if "-pdf" in sys.argv or "-png" not in sys.argv else "png"
             if "-png" in sys.argv:
@@ -331,7 +323,6 @@ class Visualization:
             out = f"joint_hexbin_{db_name}{f'_{aligner_suffix}' if aligner_suffix else ''}.{fileType}"
             outputs.append(out)
 
-            # Updated Colors: Victors matches VFDB
             if db_param == "-card": color_palette, main_color = "Blues", "#2171b5"
             elif db_param == "-vfdb": color_palette, main_color = "Reds", "#cb181d"
             elif db_param == "-bacmet": color_palette, main_color = "Greens", "#238b45"
@@ -383,7 +374,6 @@ class Visualization:
 
     @staticmethod
     def generate_scatterplot_heatmap(data_file, db_param, outputs, erro, aligner_suffix=""):
-        """Dynamic scatterplot-based heatmap"""
         fileType = "pdf"
         if "-pdf" in sys.argv:
             fileType = "pdf"
@@ -410,7 +400,6 @@ class Visualization:
                 id_max = float(long_df['Identity'].max())
                 if id_max <= id_min: id_max = id_min + 1.0
 
-                # Updated Colors: Victors matches VFDB
                 palette_map = {
                     "-card": "Blues", "-vfdb": "Reds", "-bacmet": "Greens", "-megares": "Oranges",
                     "-resfinder": "PuBu", "-argannot": "RdPu", "-victors": "Reds", "-custom": "Greys"
@@ -443,7 +432,6 @@ class Visualization:
 
     @staticmethod
     def generate_clustermap(data_file, db_param, outputs, erro, aligner_suffix=""):
-        """Hierarchical Clustermap"""
         fileType = "pdf"
         if "-pdf" in sys.argv:
             fileType = "pdf"
@@ -454,7 +442,6 @@ class Visualization:
         out = f"clustermap_{db_name}{f'_{aligner_suffix}' if aligner_suffix else ''}.{fileType}"
         outputs.append(out)
 
-        # Colors: Victors matches VFDB
         cmap_map = {
             "-card": "Blues", "-vfdb": "Reds", "-bacmet": "Greens", "-megares": "Oranges",
             "-resfinder": "PuBu", "-argannot": "RdPu", "-victors": "Reds", "-custom": "Greys"
@@ -492,7 +479,6 @@ class Visualization:
 
     @staticmethod
     def generate_rarefaction_permutations(data_file, title, output_file, fileType, outputs):
-        """Generates a Pangenome Rarefaction Curve with Permutations"""
         try:
             df = pd.read_csv(data_file, sep=";", index_col="Strains")
             df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
@@ -578,10 +564,6 @@ class Visualization:
 
     @staticmethod
     def generate_pcoa_jaccard(data_file, db_param, outputs, meta1, aligner_suffix=""):
-        """
-        Generates a PCoA (Principal Coordinates Analysis) plot using Jaccard Distance.
-        UPDATED: Added check for Stress calculation.
-        """
         if MDS is None:
             print("Warning: Scikit-learn or Scipy not installed. Skipping PCoA.")
             return
@@ -603,20 +585,15 @@ class Visualization:
             
             dist_matrix = pdist(df_binary.values, metric='jaccard')
             
-            # Using MDS for PCoA
-            # Note: normalized_stress is only available in scikit-learn >= 1.0. 
-            # We wrap it in try-except to handle older versions gracefully.
             try:
                 mds = MDS(n_components=2, dissimilarity='precomputed', random_state=42, normalized_stress='auto')
                 coords = mds.fit_transform(squareform(dist_matrix))
             except TypeError:
-                # Fallback for older sklearn versions that don't support normalized_stress
                 mds = MDS(n_components=2, dissimilarity='precomputed', random_state=42)
                 coords = mds.fit_transform(squareform(dist_matrix))
             
             plot_df = pd.DataFrame(coords, columns=['PCoA1', 'PCoA2'], index=df_binary.index)
             
-            # K-Means for Coloring
             n_clusters = min(3, len(plot_df)) 
             kmeans = KMeans(n_clusters=n_clusters, random_state=42).fit(plot_df)
             plot_df['Cluster'] = kmeans.labels_.astype(str)
@@ -626,16 +603,13 @@ class Visualization:
             if stress < 0.001:
                 print("  Note: A stress value of 0.000 indicates a perfect fit (common in small datasets).")
             
-            # Setup Plot Style - Scientific
             plt.figure(figsize=(10, 8))
             
-            # Define colors
-            colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"] # Scientific standard
+            colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]
             cluster_ids = sorted(plot_df['Cluster'].unique())
             
             ax = plt.gca()
             
-            # Plot function with manual ellipses
             def confidence_ellipse(x, y, ax, n_std=2.0, facecolor='none', **kwargs):
                 if x.size < 2 or y.size < 2: return
                 cov = np.cov(x, y)
@@ -659,21 +633,17 @@ class Visualization:
                 ellipse.set_transform(transf + ax.transData)
                 return ax.add_patch(ellipse)
 
-            # Draw Points and Ellipses
             for i, cluster in enumerate(cluster_ids):
                 subset = plot_df[plot_df['Cluster'] == cluster]
                 color = colors[i % len(colors)]
                 
-                # Draw Points
                 ax.scatter(subset['PCoA1'], subset['PCoA2'], c=color, label=f"Cluster {i+1}", 
                            s=100, alpha=0.9, edgecolors='k', linewidth=0.5)
                 
-                # Draw Ellipse (Confidence Interval)
                 if len(subset) > 2:
                     confidence_ellipse(subset['PCoA1'], subset['PCoA2'], ax, n_std=2.0,
                                       edgecolor=color, facecolor=color, alpha=0.2, linestyle='-.')
 
-            # Add labels if few points
             if len(plot_df) <= 30:
                 from adjustText import adjust_text 
                 texts = []
@@ -683,7 +653,6 @@ class Visualization:
                     adjust_text(texts, arrowprops=dict(arrowstyle='-', color='gray', alpha=0.5))
                 except: pass
             
-            # Aesthetics matching the image provided
             plt.axhline(0, color='grey', linestyle='-', linewidth=0.8)
             plt.axvline(0, color='grey', linestyle='-', linewidth=0.8)
             plt.title(f"PCoA (Jaccard) - {db_name.upper()} | Stress: {stress:.3f}", fontsize=14, fontweight='bold')
@@ -704,7 +673,6 @@ class Visualization:
 
     @staticmethod
     def generate_upsetplot(data_file, db_param, outputs, aligner_suffix=""):
-        """Generates an UpSet Plot to visualize gene set intersections."""
         if from_contents is None:
             print("Warning: 'upsetplot' library not installed. Skipping UpSet Plot.")
             return
@@ -716,24 +684,19 @@ class Visualization:
         try:
             print(f"\nGenerating UpSet Plot for {db_name.upper()}...")
             
-            # Load data and ensure proper indexing
             df = pd.read_csv(data_file, sep=";", index_col="Strains")
             df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
             df_binary = (df > 0).astype(int)
             
-            # Optimization: If dataset is huge, pick top 20 distinct intersection patterns or top 30 strains
             if df_binary.shape[0] > 30:
                 print("  Dataset too large for clear UpSet plot. Selecting top 30 strains by gene count.")
                 gene_counts = df_binary.sum(axis=1)
                 top_strains = gene_counts.sort_values(ascending=False).head(30).index
                 df_binary = df_binary.loc[top_strains]
             
-            # Build dictionary {Strain_Name: [list of genes]}
-            # This shows how Strains overlap based on gene content
             upset_data_dict = {}
             for strain in df_binary.index:
                 present_genes = df_binary.loc[strain][df_binary.loc[strain] == 1].index.tolist()
-                # Only add if not empty to avoid errors
                 if present_genes:
                     upset_data_dict[strain] = present_genes
             
@@ -741,13 +704,10 @@ class Visualization:
                 print("  No intersection data found to plot.")
                 return
 
-            # Convert to UpSet format
             upset_data = from_contents(upset_data_dict)
             
-            # Plotting
             fig = plt.figure(figsize=(12, 8))
             
-            # Calculate dynamic min_subset_size to avoid clutter
             total_intersections = len(upset_data)
             min_size = max(2, int(total_intersections * 0.01))
             
@@ -755,11 +715,10 @@ class Visualization:
                           sort_by='cardinality', sort_categories_by='cardinality',
                           min_subset_size=min_size)
             
-            # Styling
             try:
                 upset.style_subsets(present=list(upset_data_dict.keys())[:5], edgecolor='white', linewidth=1)
             except:
-                pass # Fail gracefully if styling subset doesn't work
+                pass
                 
             upset.plot()
             plt.suptitle(f"UpSet Plot - Gene Intersections (Top Strains)", fontsize=16, fontweight='bold', y=1.02)
@@ -775,10 +734,6 @@ class Visualization:
 
     @staticmethod
     def generate_interactive_network_3d(data_file, db_param, outputs, meta1, aligner_suffix=""):
-        """
-        Generates an INTERACTIVE 3D Network using Plotly.
-        UPDATED: Added background grid.
-        """
         if not PLOTLY_AVAILABLE or MDS is None:
             return
         
@@ -823,13 +778,10 @@ class Visualization:
             categories = [meta1.get(n, "Unknown") for n in G.nodes()]
             unique_cats = sorted(list(set(categories)))
             
-            # Create color palette using seaborn to match 2D logic
             palette = sns.color_palette("husl", len(unique_cats))
-            # Convert RGB tuples to Hex for Plotly
             palette_hex = [f"#{int(r*255):02x}{int(g*255):02x}{int(b*255):02x}" for r,g,b in palette]
             cat_color_map = dict(zip(unique_cats, palette_hex))
             
-            # Edges Trace (Background)
             edge_x, edge_y, edge_z = [], [], []
             for edge in G.edges():
                 x0, y0, z0 = pos[edge[0]]
@@ -846,16 +798,12 @@ class Visualization:
                 showlegend=False
             )
 
-            # Create Figure and add Edges
             fig = go.Figure()
             fig.add_trace(edge_trace)
 
-            # Add a separate Trace for EACH category to create the Legend
             for cat in unique_cats:
-                # Find indices of nodes belonging to this category
                 node_indices = [i for i, x in enumerate(categories) if x == cat]
                 
-                # Filter coordinates and names
                 x_c = [x_nodes[i] for i in node_indices]
                 y_c = [y_nodes[i] for i in node_indices]
                 z_c = [z_nodes[i] for i in node_indices]
@@ -864,10 +812,10 @@ class Visualization:
                 fig.add_trace(go.Scatter3d(
                     x=x_c, y=y_c, z=z_c,
                     mode='markers',
-                    name=cat, # This name appears in the legend
+                    name=cat, 
                     marker=dict(
                         size=6,
-                        color=cat_color_map[cat], # Single color for this group
+                        color=cat_color_map[cat], 
                     ),
                     text=[f"Gene: {n}<br>Cat: {cat}" for n in node_names],
                     hoverinfo='text'
@@ -879,13 +827,27 @@ class Visualization:
                     title="Gene Category",
                     itemsizing='constant'
                 ),
+                updatemenus=[
+                    dict(
+                        type="buttons",
+                        direction="right",
+                        x=0.0,
+                        y=1.12,
+                        xanchor="left",
+                        yanchor="bottom",
+                        showactive=True,
+                        buttons=[
+                            dict(label="Hide Legend", method="relayout", args=[{"showlegend": False}]),
+                            dict(label="Show Legend", method="relayout", args=[{"showlegend": True}])
+                        ]
+                    )
+                ],
                 scene=dict(
-                    # Show Cartesian grid
                     xaxis=dict(showbackground=True, showgrid=True, title='X'),
                     yaxis=dict(showbackground=True, showgrid=True, title='Y'),
                     zaxis=dict(showbackground=True, showgrid=True, title='Z')
                 ),
-                margin=dict(l=0, r=0, b=0, t=40)
+                margin=dict(l=0, r=0, b=0, t=80)
             )
             
             pio.write_html(fig, file=out_html, auto_open=False)
@@ -897,10 +859,6 @@ class Visualization:
 
     @staticmethod
     def generate_interactive_strain_network_3d(data_file, db_param, outputs, aligner_suffix=""):
-        """
-        Generates an INTERACTIVE 3D Network for STRAINS (Linhagens) using Plotly.
-        Nodes = Strains, Edges = Similarity based on gene content.
-        """
         if not PLOTLY_AVAILABLE or MDS is None:
             return
         
@@ -912,18 +870,16 @@ class Visualization:
             df = pd.read_csv(data_file, sep=";", index_col="Strains")
             df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
             
-            # Use original dataframe (Rows=Strains, Cols=Genes)
             df_binary = (df > 0).astype(int)
             
             if df_binary.shape[0] < 3:
                 print("  Not enough strains for network.")
                 return
 
-            # Calculate Similarity between STRAINS (rows)
             dist_matrix = pdist(df_binary.values, metric='jaccard')
             sim_matrix = 1 - squareform(dist_matrix)
             
-            threshold = 0.75 # Similarity threshold
+            threshold = 0.75 
             adj = np.where(sim_matrix > threshold, 1, 0)
             np.fill_diagonal(adj, 0)
             
@@ -944,7 +900,6 @@ class Visualization:
             
             node_names = list(G.nodes())
 
-            # Edges Trace
             edge_x, edge_y, edge_z = [], [], []
             for edge in G.edges():
                 x0, y0, z0 = pos[edge[0]]
@@ -960,13 +915,12 @@ class Visualization:
                 hoverinfo='none'
             )
 
-            # Nodes Trace (Strains)
             node_trace = go.Scatter3d(
                 x=x_nodes, y=y_nodes, z=z_nodes,
                 mode='markers+text',
                 marker=dict(
                     size=8,
-                    color='#1f77b4', # Unified color for strains
+                    color='#1f77b4', 
                     opacity=0.8
                 ),
                 text=node_names,
@@ -977,12 +931,27 @@ class Visualization:
             fig.update_layout(
                 title=f"3D Strain Similarity Network - {db_name.upper()}",
                 showlegend=False,
+                updatemenus=[
+                    dict(
+                        type="buttons",
+                        direction="right",
+                        x=0.0,
+                        y=1.12,
+                        xanchor="left",
+                        yanchor="bottom",
+                        showactive=True,
+                        buttons=[
+                            dict(label="Hide Legend", method="relayout", args=[{"showlegend": False}]),
+                            dict(label="Show Legend", method="relayout", args=[{"showlegend": True}])
+                        ]
+                    )
+                ],
                 scene=dict(
                     xaxis=dict(showbackground=True, showgrid=True, title='X'),
                     yaxis=dict(showbackground=True, showgrid=True, title='Y'),
                     zaxis=dict(showbackground=True, showgrid=True, title='Z')
                 ),
-                margin=dict(l=0, r=0, b=0, t=40)
+                margin=dict(l=0, r=0, b=0, t=80)
             )
             
             pio.write_html(fig, file=out_html, auto_open=False)
@@ -994,10 +963,6 @@ class Visualization:
 
     @staticmethod
     def generate_radar_plot(data_file, db_param, outputs, aligner_suffix=""):
-        """
-        Generates a Radar/Spider Plot mapping individual Strains (Linhagens).
-        Uses aliases for Strains to keep the plot neat, and creates an extra image serving as the legend.
-        """
         db_name = db_param[1:]
         fileType = "pdf" if "-pdf" in sys.argv or "-png" not in sys.argv else "png"
         out = f"radar_plot_{db_name}{f'_{aligner_suffix}' if aligner_suffix else ''}.{fileType}"
@@ -1007,13 +972,11 @@ class Visualization:
             df = pd.read_csv(data_file, sep=";", index_col="Strains")
             df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
             
-            # 1. Clean data: Remove columns with all zeros
             df = df.loc[:, (df != 0).any(axis=0)]
             if df.empty:
                 print("  No data available for radar plot.")
                 return
 
-            # 2. Strict Limit on Genes (Axes) to prevent pollution
             if df.shape[1] > 20:
                 print("  Limiting Radar Plot to top 20 most variable genes for clarity.")
                 variance = df.var()
@@ -1023,7 +986,6 @@ class Visualization:
             categories = list(df.columns)
             N = len(categories)
             
-            # 3. Abbreviation Helper for axes
             def abbreviate(name, max_len=10):
                 s = str(name).strip()
                 if len(s) > max_len:
@@ -1032,36 +994,95 @@ class Visualization:
 
             categories_abbr = [abbreviate(c) for c in categories]
             
-            # 4. Create Aliases for Strains (L1, L2...)
-            original_strains = df.index.tolist()
-            strain_aliases = {strain: f"L{idx+1}" for idx, strain in enumerate(original_strains)}
-            df = df.rename(index=strain_aliases)
+            N_genes = df.shape[1]
+            N_strains = df.shape[0]
+            df_values = df.values
             
-            # Setup Angles
+            clustering_available = False
+            try:
+                from scipy.cluster.hierarchy import linkage, fcluster
+                from scipy.spatial.distance import pdist
+                clustering_available = True
+            except ImportError:
+                pass
+
+            groups = []
+            group_names = []
+
+            if clustering_available and N_strains > 1:
+                dist_matrix = pdist(df_values, metric='euclidean')
+                if np.max(dist_matrix) == 0:
+                    cluster_labels = np.ones(N_strains, dtype=int)
+                else:
+                    Z = linkage(dist_matrix, method='average')
+                    t = 100.0 * np.sqrt(N_genes) * 0.45
+                    cluster_labels = fcluster(Z, t, criterion='distance')
+                
+                unique_clusters = np.unique(cluster_labels)
+                for c_id in unique_clusters:
+                    indices = np.where(cluster_labels == c_id)[0].tolist()
+                    groups.append(indices)
+                    
+                    names_in_cluster = [str(df.index[i]) for i in indices]
+                    if len(names_in_cluster) == 1:
+                        group_names.append(names_in_cluster[0])
+                    else:
+                        first_word = re.search(r'([a-zA-Z]+)', names_in_cluster[0])
+                        base = first_word.group(1).capitalize() if first_word else "Cluster"
+                        group_names.append(f"{base}-like Group ({len(names_in_cluster)} strains)")
+            else:
+                prefix_groups = {}
+                for i, name in enumerate(df.index):
+                    match = re.search(r'([a-zA-Z]+)', str(name))
+                    prefix = match.group(1).capitalize() if match else "Group"
+                    if prefix not in prefix_groups:
+                        prefix_groups[prefix] = []
+                    prefix_groups[prefix].append(i)
+                    
+                for prefix, indices in prefix_groups.items():
+                    groups.append(indices)
+                    if len(indices) == 1:
+                        group_names.append(str(df.index[indices[0]]))
+                    else:
+                        group_names.append(f"{prefix} Group ({len(indices)} strains)")
+
+            plot_df_rows = []
+            legend_data = []
+            row_names = []
+
+            for g_idx, sg in enumerate(groups):
+                alias = f"L{g_idx + 1}"
+                grp_mean = np.mean([df_values[i] for i in sg], axis=0)
+                plot_df_rows.append(grp_mean)
+                row_names.append(alias)
+                
+                for idx in sg:
+                    legend_data.append([alias, group_names[g_idx], df.index[idx]])
+
+            plot_df = pd.DataFrame(plot_df_rows, columns=df.columns, index=row_names)
+
             angles = [n / float(N) * 2 * math.pi for n in range(N)]
-            angles += angles[:1] # Close the loop
+            angles += angles[:1] 
             
             plt.figure(figsize=(10, 10))
             ax = plt.subplot(111, polar=True)
             
-            # Set Labels
             plt.xticks(angles[:-1], categories_abbr, color='black', size=9)
             ax.set_rlabel_position(0)
             plt.yticks([25, 50, 75, 100], ["25", "50", "75", "100"], color="grey", size=7)
             plt.ylim(0, 100)
             
-            num_strains = len(df.index)
+            num_strains = len(plot_df.index)
+            colors = cm.get_cmap("tab20")
             
-            # Plot individual lines for each strain
-            colors = cm.get_cmap("tab10", num_strains)
-            for idx, (alias, row) in enumerate(df.iterrows()):
+            for idx, (alias, row) in enumerate(plot_df.iterrows()):
                 values = row.tolist()
                 values += values[:1]
-                color = colors(idx % 10)
+                color = colors(idx % 20)
                 ax.plot(angles, values, linewidth=1.5, linestyle='solid', label=alias, color=color)
                 ax.fill(angles, values, color=color, alpha=0.05)
             
-            plt.legend(loc='upper right', bbox_to_anchor=(1.3, 1.1), title="Strains")
+            plt.legend(loc='upper right', bbox_to_anchor=(1.3, 1.1), title="Lineages")
             plt.title(f"Radar Identity Map - {db_name.upper()}", size=16, y=1.08, fontweight='bold')
             
             plt.savefig(out, dpi=300, bbox_inches="tight")
@@ -1069,17 +1090,14 @@ class Visualization:
             outputs.append(out)
             print(f"Radar Plot saved: {out}")
             
-            # 5. Generate Separate Legend Image that ties the Genomes back to the Strain Alias shown
             legend_out = f"radar_plot_legend_{db_name}{f'_{aligner_suffix}' if aligner_suffix else ''}.{fileType}"
             
-            # Calculate dynamic height for the legend table
-            leg_height = max(4, num_strains * 0.4)
-            fig_leg, ax_leg = plt.subplots(figsize=(8, leg_height))
+            leg_height = max(4, len(legend_data) * 0.4)
+            fig_leg, ax_leg = plt.subplots(figsize=(10, leg_height))
             ax_leg.axis('tight')
             ax_leg.axis('off')
             
-            table_data = [[alias, orig] for orig, alias in strain_aliases.items()]
-            table = ax_leg.table(cellText=table_data, colLabels=["Strain Alias", "Genome/Original Name"], loc='center', cellLoc='left')
+            table = ax_leg.table(cellText=legend_data, colLabels=["Lineage Alias", "Inferred Group", "Original Strain"], loc='center', cellLoc='left')
             table.auto_set_font_size(False)
             table.set_fontsize(12)
             table.scale(1, 1.5)
@@ -1096,7 +1114,6 @@ class Visualization:
 
     @staticmethod
     def generate_detailed_report(matrix_file, gene_count_file, db_param, meta1, meta2, outputs, aligner_suffix=""):
-        """Generates a comprehensive Excel and CSV report with robust Category Calculation"""
         db_name = db_param[1:]
         suffix = f"_{aligner_suffix}" if aligner_suffix else ""
         
@@ -1106,11 +1123,9 @@ class Visualization:
         print(f"\nGenerating detailed comprehensive reports for {db_name.upper()}...")
         
         try:
-            # Load the main matrix
             df_matrix = pd.read_csv(matrix_file, sep=';', index_col='Strains')
             df_matrix = df_matrix.loc[:, ~df_matrix.columns.str.contains('^Unnamed')]
             
-            # Robust: Remove spaces from column names (genes) to match metadata keys
             df_matrix.columns = df_matrix.columns.str.strip()
             
             total_genomes = len(df_matrix.index)
@@ -1118,10 +1133,8 @@ class Visualization:
                 print("Error: No genomes found in matrix for report.")
                 return
 
-            # Calculate Pan-Genome Categories Internally (More Robust)
-            # Renamed to 'Pan_Class' to avoid collision with biological 'Category'
             binary_matrix = (df_matrix > 0).astype(int)
-            gene_sums = binary_matrix.sum(axis=0) # Sum columns (Genes)
+            gene_sums = binary_matrix.sum(axis=0) 
             
             pan_categories = {}
             core_count = 0
@@ -1142,26 +1155,21 @@ class Visualization:
             
             print(f"  Classification Stats: Core={core_count}, Accessory={accessory_count}, Exclusive={exclusive_count}")
 
-            # Flatten matrix for report
             df_long = df_matrix.melt(ignore_index=False, var_name='Gene', value_name='Identity').reset_index()
             
-            # Rename 'Strains' to 'Genome' if necessary
             if 'Strains' in df_long.columns:
                 df_long.rename(columns={'Strains': 'Genome'}, inplace=True)
             elif 'index' in df_long.columns:
                  df_long.rename(columns={'index': 'Genome'}, inplace=True)
             
-            # Clean gene names in long dataframe too
             df_long['Gene'] = df_long['Gene'].astype(str).str.strip()
                 
-            # Filter only present genes
             df_present = df_long[df_long['Identity'] > 0].copy()
             
             if df_present.empty:
                 print("  No genes present to report.")
                 return
 
-            # Define Labels based on DB
             label_1, label_2 = "Classification_1", "Classification_2"
             
             if db_param == "-card": label_1, label_2 = "Drug_Class", "Resistance_Mechanism"
@@ -1172,23 +1180,16 @@ class Visualization:
             elif db_param == "-argannot": label_1, label_2 = "Antibiotic_Class", "Category"
             elif db_param == "-resfinder": label_1, label_2 = "Resistance_Type", "Phenotype"
 
-            # Clean metadata keys: strip whitespace and handle potential mismatches
             meta1_clean = {str(k).strip(): v for k, v in meta1.items()}
             meta2_clean = {str(k).strip(): v for k, v in meta2.items()}
 
-            # Map Data
-            # 1. Pan-Genome Classification (Core/Accessory/Exclusive)
             df_present['Pan_Class'] = df_present['Gene'].map(pan_categories).fillna('Unknown')
             
-            # 2. Biological Classification (Mechanism/Category/Product)
             df_present[label_1] = df_present['Gene'].map(meta1_clean).fillna('Unknown')
             df_present[label_2] = df_present['Gene'].map(meta2_clean).fillna('Unknown')
             
-            # Select and Order Columns
-            # Ensure we include both the Pan_Class AND the DB specific labels
             final_df = df_present[['Genome', 'Gene', 'Identity', 'Pan_Class', label_1, label_2]].sort_values(by=['Genome', 'Gene'])
             
-            # Save Outputs
             final_df.to_csv(csv_filename, index=False)
             outputs.append(csv_filename)
             
@@ -1206,7 +1207,6 @@ class Visualization:
 
     @staticmethod
     def generate_lineplot(data_file, title, pan_label, core_label, output_file, fileType, outputs):
-        """Standard cumulative lineplot"""
         try:
             df_pan = pd.read_csv(data_file, sep=";")
             if len(df_pan) == 0: return
@@ -1240,5 +1240,4 @@ class Visualization:
             print(f"Simple pan-genome plot saved as: {output_file}")
                 
         except Exception as e:
-
             print(f"Error generating lineplot: {e}")
