@@ -108,7 +108,7 @@ class DependencyManager:
         """Download and install BLAST for Windows"""
         print("Downloading BLAST for Windows (with all dependencies)...")
         blast_file = FileHandler.safe_download(
-            "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.12.0/ncbi-blast-2.12.0+-x64-win64.tar.gz")
+            "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.17.0+-x64-win64.tar.gz")
         
         
         FileHandler.extract_tar_file(blast_file)
