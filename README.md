@@ -81,7 +81,7 @@ Both tools are downloaded and managed automatically.
 
 ```bash
 git clone https://github.com/VictorCaricatte/PanViTa-2.git
-cd PanVITA2
+cd Panvita2
 cd src
 pyhton3 panvita.py
 ```
