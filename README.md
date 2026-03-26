@@ -81,7 +81,9 @@ Both tools are downloaded and managed automatically.
 
 ```bash
 git clone https://github.com/VictorCaricatte/PanViTa-2.git
-cd PanVITA-2.0
+cd PanVITA2
+cd src
+pyhton3 panvita.py
 ```
 
 ### Python Dependencies
