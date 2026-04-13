@@ -2,14 +2,14 @@
 
 This guide provides detailed instructions for installing all the dependencies required to run PanVITA using Python virtual environments.
 
-## 📋 Sistem requiriment
+##  Sistem requiriment
 
 - **Python**: 3.7 ou upper.
 - **Operating System**: Windows, Linux, ou macOS
 - **Memory**: Minimum 4GB RAM (recomended 8GB+)
 - **Disk space**: Minimum 2GB livres
 
-## 🚀 Fast instalation (RECOMENDED)
+##  Fast instalation (RECOMENDED)
 
 Installation scripts now automatically create a Python virtual environment to avoid conflicts with other installations.
 
@@ -72,7 +72,7 @@ python panvita.py [opções]
 deactivate
 ```
 
-## 📦 Dependencies Included
+##  Dependencies Included
 
 ### Required Packages
 - **pandas** (>=1.3.0): Data manipulation and analysis
@@ -85,7 +85,7 @@ deactivate
 ### Optional Packages
 - **basemap** (>=1.3.0): Viewing geographic maps (may fail on some installations)
 
-## 🛠️ Manual Installation per Package
+##  Manual Installation per Package
 
 If the automatic installation fails, you can install each package individually in the virtual environment.:
 
@@ -108,7 +108,7 @@ pip install basemap basemap-data
 pip install -r requirements.txt
 ```
 
-## 🔧 Troubleshooting
+##  Troubleshooting
 
 ### Error: "Python not found"
 **Solution**: Install Python 3.7+ and add it to your system PATH
@@ -157,7 +157,7 @@ pip install -i https://pypi.douban.com/simple/ package_name
 # Ou baixe arquivos .whl manualmente de https://pypi.org/
 ```
 
-## 🧪 Installation Verification
+##  Installation Verification
 
 Run the verification test:
 ```bash
@@ -172,10 +172,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import wget
 
-print("✅ Todas as dependências estão funcionando!")
+print(" Todas as dependências estão funcionando!")
 ```
 
-## 📊 Memory Usage
+##  Memory Usage
 
 | Package | Approximate Size | RAM Usage |
 |--------|-------------------|------------|
@@ -186,7 +186,7 @@ print("✅ Todas as dependências estão funcionando!")
 
 **Approximate total**: ~270MB of space + 2-4GB RAM during execution
 
-## 🐍 Virtual Environments (RECOMENDED)
+##  Virtual Environments (RECOMENDED)
 
 To avoid dependency conflicts:
 
@@ -207,7 +207,7 @@ pip install -r requirements.txt
 deactivate
 ```
 
-## 📞 Support
+##  Support
 
 If you still have problems:
 
@@ -216,7 +216,7 @@ If you still have problems:
 3. **Clear cache**: `pip cache purge`
 4. **Report problems** in the project repository
 
-## 🔄 Updates
+##  Updates
 
 To update all dependencies:
 ```bash
